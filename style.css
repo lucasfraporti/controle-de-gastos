@@ -1,0 +1,61 @@
+/* Modal */
+
+.modal{
+    visibility: hidden;
+    opacity: 0;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all .4s;
+}
+
+.modalContent{
+    border-radius: 4px;
+    position: relative;
+    width: 500px;
+    max-width: 90%;
+    background-color: rgb(113, 193, 207);
+    padding: 1em 2em;
+}
+
+.modalContent h1{
+    margin-bottom: 10px;
+    color: rgb(250, 248, 248);
+}
+
+.modalContent a{
+    color: rgb(250, 248, 248);
+}
+
+.modalContent .p1{
+    color: rgb(250, 248, 248);
+    margin-top: 6px;
+    font-size: 1.25rem;
+}
+
+.modalContent .btn-green{
+    margin-top: 15px;
+    margin-bottom: 10px;
+    font-size: 0.75rem;
+}
+
+.modal:target{
+    position: fixed;
+    visibility: visible;
+    opacity: 1;
+}
+
+.modalClose{
+    position: absolute;
+    top: -16px;
+    right: 5px;
+    color: rgb(250, 248, 248);
+    text-decoration: none;
+    cursor: pointer;
+    font-size: 2.5rem;
+}
