@@ -1,6 +1,7 @@
 const express = require("express");
 const mysql = require("mysql");
 const cors = require("cors");
+const jwt = require("jsonwebtoken");
 const App = express();
 const port = 3001;
 
@@ -14,23 +15,66 @@ const db = mysql.createConnection({
     host: "localhost"
 });
 
+// -------------------------- LOGIN --------------------------
+
+App.post("/login", (req, res) => {
+    const {username, password} = req.body;
+    db.query("SELECT * FROM users WHERE username = ? AND password = ?", [username, password], (err, result) => {
+        if(err){
+            res.status(500).send(err);
+        }else if(result.length == 0){
+            res.status(404).send("Usuário ou senha incorretos.");
+        }else{
+            const token = jwt.sign({userId: JSON.parse(JSON.stringify(result))[0].id}, "p1l4@2022", {expiresIn: 600});
+            return res.json({auth: true, token: token});
+        };
+        res.status(401).end();
+    });
+});
+
+function verifyJWT(req, res, next){
+    const token = req.headers["x-access-token"];
+    jwt.verify(token, "p1l4@2022", (err, decoded) => {
+        if(err){
+            return res.status(401).end();
+        }else{
+            // Buscando o userId do payload
+            req.userId = decoded.userId;
+            console.log(req.userId)
+            next();
+        };
+    });
+};
+
+// localhost:3001/cadastro
+App.post('/cadastro', (req, res) => {
+    const {username, password} = req.body;
+    db.query("INSERT INTO users (username, password) VALUES (?, ?)", [username, password], (err, result) => {
+        if(err){
+            res.status(500).json({error: err});
+        }else{
+            console.log(result);
+        };
+    });
+});
+
 // localhost:3001/get
-App.get("/get", (req, res) => {
+App.get("/get", verifyJWT, (req, res) => {
     db.query("SELECT * FROM valores", (err, result) => {
         if(err){
-            console.log(err);
+            res.status(500).send(err);
         }else{
             res.send(result);
         };
     });
 });
 
-// localhost:3001/get/:id
-App.get("/get/id/:id", (req, res) => {
+// localhost:3001/get/id/:id
+App.get("/get/id/:id", verifyJWT, (req, res) => {
     const id = req.params.id;
     db.query("SELECT * FROM valores WHERE id = ?", [id], (err, result) => {
         if(err){
-            console.log(err);
+            res.status(500).send(err);
         }else{
             res.send(result);
         };
@@ -38,10 +82,10 @@ App.get("/get/id/:id", (req, res) => {
 });
 
 // localhost:3001/get/profit
-App.get("/get/profit", (req, res) => {
+App.get("/get/profit", verifyJWT, (req, res) => {
     db.query("SELECT COALESCE(SUM(price), 0) AS total_sum FROM valores WHERE type = 'E'", (err, result) => {
         if(err){
-            console.log(err);
+            res.status(500).send(err);
         }else{
             res.send(result);
         };
@@ -49,10 +93,10 @@ App.get("/get/profit", (req, res) => {
 });
 
 // localhost:3001/get/loss
-App.get("/get/loss", (req, res) => {
+App.get("/get/loss", verifyJWT, (req, res) => {
     db.query("SELECT COALESCE(SUM(price), 0) AS total_sum FROM valores WHERE type = 'S'", (err, result) => {
         if(err){
-            console.log(err);
+            res.status(500).send(err);
         }else{
             res.send(result);
         };
@@ -60,37 +104,37 @@ App.get("/get/loss", (req, res) => {
 });
 
 // localhost:3001/post
-App.post("/post", (req, res) => {
-    const id_user = req.body.id_user;
+App.post("/post", verifyJWT, (req, res) => {
+    const id_user = req.userId;
     const {date, price, description, type, category} = req.body;
     db.query("INSERT INTO valores (id_user, date, price, description, type, category) VALUES (?,?,?,?,?,?)", [id_user, date, price, description, type, category], (err, result) => {
         if(err){
-            console.log(err);
+            res.status(500).send(err);
+        }else{
+            res.status(201).json(result);
+        };
+    });
+});
+
+// localhost:3001/update/:id
+App.put("/update/:id", verifyJWT, (req, res) => {
+    const id = req.params.id;
+    const {date, price, description, type, category} = req.body;
+    db.query("UPDATE valores SET date = ?, price = ?, description = ?, type = ?, category = ? WHERE id = ?", [date, price, description, type, category, id], (err, result) => {
+        if(err){
+            res.status(500).send(err);
         }else{
             res.json(result);
         };
     });
 });
 
-// localhost:3001/update/:id
-App.put("/update/:id", (req, res) => {
-    const id = req.params.id;
-    const {date, price, description, type, category} = req.body;
-    db.query("UPDATE valores SET date = ?, price = ?, description = ?, type = ?, category = ? WHERE id = ?", [date, price, description, type, category, id], (err, result) => {
-        if(err){
-            console.log(err);
-        }else{
-            res.send(result);
-        };
-    });
-});
-
 // localhost:3001/delete/:id
-App.delete("/delete/:id", (req, res) => {
+App.delete("/delete/:id", verifyJWT, (req, res) => {
     const id = req.params.id;
-    db.query("DELETE FROM valores WHERE id = ?", [id], (err, result) => {
+    db.query("DELETE FROM valores WHERE id = ? AND userId = ", [id], (err, result) => {
         if(err){
-            console.log(err);
+            res.status(500).send(err);
         }else{
             res.send(result);
         };
