@@ -27,17 +27,17 @@
     </form>
 
     <form id="signup">
-      <input type="text" placeholder="Email" required />
+      <input type="text" placeholder="Email"  id="regemail"required />
       <i class="fas fa-envelope iEmail"></i>
-      <input type="password" placeholder="Senha" required />
+      <input type="password" placeholder="Senha" id="regpassword1" required />
       <i class="fas fa-lock iPassword"></i>
-      <input type="password" placeholder="Senha" required />
+      <input type="password" placeholder="Senha" id="regpassword2" required />
       <i class="fas fa-lock iPassword2"></i>
       <div class="divCheck">
         <input type="checkbox" required />
         <span>Termos</span>
       </div>
-      <button type="button">Cadastrar</button>
+      <button type="button" onclick="register()">Cadastrar</button>
     </form>
   </div>
 </body>
@@ -47,6 +47,7 @@
 
 <script src="https://www.gstatic.com/firebasejs/9.6.7/firebase-app-compat.js"></script>
 <script src="https://www.gstatic.com/firebasejs/9.6.7/firebase-auth-compat.js"></script>
+
 <script src="firebase-init.js"></script>
 
 <script src="index.js"></script>

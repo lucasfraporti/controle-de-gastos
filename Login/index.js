@@ -36,6 +36,20 @@ function teste(){
   alert(form.email().value + form.password().value);
 }
 
+
+function register() {
+  const regemail = form.regemail().value;
+  const regpassword = form.regpassword1().value;
+  firebase.auth().createUserWithEmailAndPassword(
+      regemail, regpassword
+  ).then(() => {
+      window.location.href = "../../pages/home/home.html";
+  }).catch(error => {
+      alert(getErrorMessage(error));
+  })
+}
+
+
 function getErrorMessage(error) {
   if (error.code == "auth/user-not-found") {
       return "Usuário nao encontrado";
@@ -50,4 +64,7 @@ const form = {
   email: () => document.getElementById("email"),
   loginButton: () => document.getElementById("login-button"),
   password: () => document.getElementById("password"),
+  regemail: () => document.getElementById("regemail"),
+  regpassword1: () => document.getElementById("regpassword1"),
+  regpassword2: () => document.getElementById("regpassword2"),
 } 
