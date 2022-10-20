@@ -1,9 +1,12 @@
+// FIREBASE AUTH - VERIFICA SE O USER TA LOGADO, E NÃO DEIXA ENTRAR NA TELA DE LOGIN
 firebase.auth().onAuthStateChanged(user => {
   if (user) {
       window.location.href = "home.html";
   }
 })
 
+
+// CONTROLA AS ABAS DE CADASTRO E LOGIN
 var formSignin = document.querySelector('#signin')
 var formSignup = document.querySelector('#signup')
 var btnColor = document.querySelector('.btnColor')
@@ -22,6 +25,8 @@ document.querySelector('#btnSignup')
     btnColor.style.left = "110px"
 })
 
+
+// FUNCTION DE LOGAR
 function login() {
   firebase.auth().signInWithEmailAndPassword(
     form.email().value, form.password().value
@@ -36,7 +41,7 @@ function teste(){
   alert(form.email().value + form.password().value);
 }
 
-
+// FUNCTION DE CADASTRAR NOVO USER
 function register() {
   const regemail = form.regemail().value;
   const regpassword = form.regpassword1().value;
@@ -50,6 +55,8 @@ function register() {
 }
 
 
+
+// RETORNAR OS ERROS DO FIREBASE
 function getErrorMessage(error) {
   if (error.code == "auth/user-not-found") {
       return "Usuário nao encontrado";
@@ -60,6 +67,8 @@ function getErrorMessage(error) {
   return error.message;
 }
 
+
+//DECLARANDO AS CONST
 const form = {
   email: () => document.getElementById("email"),
   loginButton: () => document.getElementById("login-button"),
