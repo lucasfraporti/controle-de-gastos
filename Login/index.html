@@ -11,11 +11,11 @@
     <div class="buttonsForm">
       <div class="btnColor"></div>
       <button id="btnSignin">Login</button>
-      <button id="btnSignup">Cadastrar</button>
+      <button id="btnSignup">Cadastro</button>
     </div>
 
     <form id="signin">
-      <input type="text" placeholder="Email" id="email" required />
+      <input type="email" placeholder="Email" id="email" required />
       <i class="fas fa-envelope iEmail"></i>
       <input type="password" placeholder="Senha" id="password" required />
       <i class="fas fa-lock iPassword"></i>
@@ -27,13 +27,15 @@
     </form>
 
     <form id="signup">
-      <input type="text" placeholder="Email"  id="regemail"required />
       <label id="labelEmail" for="Email">Email</label>
-      <i class="fas fa-envelope iEmail"></i>
+      <input type="regemail" placeholder="Email"  id="regemail"required />
+      <i class="fas fa-envelope iRegEmail"></i>
+      <label id="labelPassword1" for="Senha">Senha</label>
       <input type="password" placeholder="Senha" id="regpassword1" required />
-      <i class="fas fa-lock iPassword"></i>
+      <i class="fas fa-lock iRegPassword"></i>
+      <label id="labelPassword2" for="Senha">Confirmar Senha</label>
       <input type="password" placeholder="Senha" id="regpassword2" required />
-      <i class="fas fa-lock iPassword2"></i>
+      <i class="fas fa-lock iRegPassword2"></i>
       <div class="divCheck">
         <input type="checkbox" required />
         <span>Termos</span>
