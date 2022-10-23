@@ -7,13 +7,20 @@
     <title>Document</title>
 </head>
 <body>
+
     <h1>LOGADO</h1>
     <button type="button" class="clear" onclick="logout()">
         Sair
-    </button>  
-    <button type="button" class="clear" onclick="showuser()">
-        user firebase
-    </button>   
+    </button>
+
+
+    <script>
+        setTimeout(function(){
+            showuser();
+            console.log("User ID:" + window.localStorage.getItem('id'))
+        }, 1000);
+    </script>
+
 </body>
 <script src="https://www.gstatic.com/firebasejs/9.6.7/firebase-app-compat.js"></script>
 <script src="https://www.gstatic.com/firebasejs/9.6.7/firebase-auth-compat.js"></script>
