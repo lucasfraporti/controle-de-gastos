@@ -8,12 +8,26 @@ const port = 3001;
 App.use(cors());
 App.use(express.json());
 
-const db = mysql.createConnection({
-    user: "bc9472943063a8",
-    password: "882ba330",
-    database: "heroku_a93cc896310b76b",
-    host: "us-cdbr-east-06.cleardb.net"
+var db = mysql.createPool({
+    "connectionLimit" : 1000,
+    "user" : "bc9472943063a8",
+    "password": "882ba330",
+    "database" : "heroku_a93cc896310b76b",
+    "host": "us-cdbr-east-06.cleardb.net",
+    "port": 3306
 });
+exports.execute = (query, params=[]) => {
+    return new Promise((resolve, reject) => {
+        pool.query(query, params, (error, result, fields) => {
+            if (error) {
+                reject(error);
+            } else {
+                resolve(result)
+            }
+        });
+    })
+}
+exports.pool = db;
 
 // -------------------------- LOGIN --------------------------
 
