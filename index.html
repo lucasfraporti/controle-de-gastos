@@ -9,6 +9,12 @@
 </head>
 <body>
 
+    <header>
+        <h1 id="logo">
+            PILA
+        </h1>
+    </header>
+
     <div id="atualizarGasto" class="modal">
         <div class="modalContent">
 
@@ -68,23 +74,34 @@
         </div>
     </div>
 
-    <main>
-        <div class="resume">
-            <div>
-                Entradas: R$
-                <span class="profit">0.00</span>
+    <main class="container">
+        <section id="balance">
+            <h2 class="sr-only">Balanço</h2>
+
+            <div class="card">
+                <h3>
+                    <span>Entradas</span>
+                    
+                 </h3>
+                     <p id="profit">R$ 0,00</p>
             </div>
 
-            <div>
-                Saídas: R$
-                <span class="loss">0.00</span>
+            <div class="card">
+                <h3>
+                    <span>Saídas</span>
+ 
+                 </h3>
+                 <p id="loss">R$ 0,00</p>
             </div>
 
-            <div>
-                Total: R$
-                <span class="total">0.00</span>
+            <div class="card total">
+                <h3>
+                    <span>Total</span>
+        
+                 </h3>
+                     <p id="total">R$ 0,00</p>
             </div>
-        </div>
+        </section>
 
         <div class="newItem">
             <div class="divDate">
