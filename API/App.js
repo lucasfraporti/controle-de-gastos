@@ -145,7 +145,7 @@ App.put("/update/:id", (req, res) => {
 // localhost:3001/delete/:id
 App.delete("/delete/:id", (req, res) => {
     const id = req.params.id;
-    db.query("DELETE FROM valores WHERE id = ? AND userId = ", [id], (err, result) => {
+    db.query("DELETE FROM valores WHERE id = ? ", [id], (err, result) => {
         if(err){
             res.status(500).send(err);
         }else{
