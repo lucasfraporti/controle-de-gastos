@@ -9,10 +9,10 @@ App.use(cors());
 App.use(express.json());
 
 const db = mysql.createConnection({
-    user: "root",
-    password: "",
-    database: "pila",
-    host: "localhost"
+    user: "bc9472943063a8",
+    password: "882ba330",
+    database: "heroku_a93cc896310b76b",
+    host: "us-cdbr-east-06.cleardb.net"
 });
 
 // -------------------------- LOGIN --------------------------
