@@ -59,7 +59,7 @@ btnInclude.onclick = () => {
     };
 
     const params = {
-        id_user: 1,
+        id_user: window.localStorage.getItem('id'),
         date: document.querySelector("#date").value,
         price: document.querySelector("#amount").value,
         description: document.querySelector("#desc").value,
@@ -70,6 +70,7 @@ btnInclude.onclick = () => {
     const request = new XMLHttpRequest();
     request.open("POST", "http://localhost:3001/post", false);
     request.setRequestHeader("Content-type", "application/json");
+    console.log(JSON.stringify(params))
     request.send(JSON.stringify(params));
 
     loadItens();
@@ -229,7 +230,7 @@ function filtragemTbl(idCampo, colunaTbl){
     let filtrar, tabela, tr, td, th, i;
 
     filtrar = document.getElementById(idCampo);
-    filtrar = Filtrar.value.toUpperCase();
+    filtrar = filtrar.value.toUpperCase();
 
     tabela = document.getElementById("tbl");
     tr = tabela.getElementsByTagName("tr");

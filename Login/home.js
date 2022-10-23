@@ -7,5 +7,5 @@ function logout() {
 }
 
 function showuser(){
-    alert(firebase.auth().currentUser.uid)
-}
+    localStorage.setItem('id', firebase.auth().currentUser.uid);
+};

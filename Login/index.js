@@ -115,8 +115,6 @@ function register() {
   }
 }
 
-
-
 // RETORNAR OS ERROS DO FIREBASE
 function getErrorMessage(error) {
   if (error.code == "auth/user-not-found") {
