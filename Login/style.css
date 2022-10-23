@@ -98,6 +98,19 @@ button[type="button"] {
   cursor: pointer;
 }
 
+button[type="buttonrecover"] {
+  background: #0fc82e;
+  color: white;
+  border-radius: 30px;
+  width: 100%;
+  border: none;
+  outline: none;
+  padding: 8px 0 8px 15px;
+  font-size: 15px;
+  margin-top: 40px;
+  cursor: pointer;
+}
+
 .divCheck {
   margin: 10px 0 0 5px;
   width: 80%;
