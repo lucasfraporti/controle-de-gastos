@@ -6,9 +6,9 @@ const type = document.querySelector("#type");
 const category = document.querySelector("#category");
 const btnInclude = document.querySelector("#btnInclude");
 
-const profit = document.querySelector(".profit");
-const loss = document.querySelector(".loss");
-const total = document.querySelector(".total");
+const profit = document.querySelector("#profit");
+const loss = document.querySelector("#loss");
+const total = document.querySelector("#total");
 
 const btnCSV = document.getElementById("downloadCSV");
 
@@ -32,9 +32,9 @@ function getWithIndex(url){
 };
 
 function getTotals(){
-    profit.innerHTML = getValores("http://localhost:3001/get/profit");
-    loss.innerHTML = getValores("http://localhost:3001/get/loss");
-    total.innerHTML = (profit.innerHTML - loss.innerHTML).toFixed(2);
+    profit.innerHTML =  'R$ ' + getValores("http://localhost:3001/get/profit");
+    loss.innerHTML =  'R$ ' +  getValores("http://localhost:3001/get/loss");
+    total.innerHTML =  'R$ ' +  (profit.innerHTML - loss.innerHTML).toFixed(2);
 };
 
 function loadItens(){
