@@ -6,9 +6,9 @@ const type = document.querySelector("#type");
 const category = document.querySelector("#category");
 const btnInclude = document.querySelector("#btnInclude");
 
-const profit = document.querySelector(".profit");
-const loss = document.querySelector(".loss");
-const total = document.querySelector(".total");
+const profit = document.querySelector("#profit");
+const loss = document.querySelector("#loss");
+const total = document.querySelector("#total");
 
 const btnCSV = document.getElementById("downloadCSV");
 
@@ -32,9 +32,10 @@ function getWithIndex(url){
 };
 
 function getTotals(){
-    profit.innerHTML = getValores("http://localhost:3001/get/profit");
-    loss.innerHTML = getValores("http://localhost:3001/get/loss");
-    total.innerHTML = (profit.innerHTML - loss.innerHTML).toFixed(2);
+    profit.innerHTML =  'R$ ' + getValores("http://localhost:3001/get/profit");
+    loss.innerHTML =  'R$ ' +  getValores("http://localhost:3001/get/loss");
+    total.innerHTML = 'R$ ' + ( getValores("http://localhost:3001/get/profit") - getValores("http://localhost:3001/get/loss")).toFixed(2);
+
 };
 
 function loadItens(){
@@ -45,6 +46,8 @@ function loadItens(){
     });
     getTotals();
 };
+
+
 
 // Incluir um gasto no Banco de Dados
 btnInclude.onclick = () => {
@@ -196,72 +199,72 @@ function deleteItem(index){
     };
 };
 
-// Fazer download do CSV
-function downloadCSVFile(csv_data){
-    CSVFile = new Blob(["\ufeff", csv_data], {type: "text/csv"});
-    const linkDownload = document.createElement("a");
-    linkDownload.download = "Operações_Pila.csv";
-    const url = window.URL.createObjectURL(CSVFile);
-    linkDownload.href = url;
-    linkDownload.style.display = "none";
-    document.body.appendChild(linkDownload);
-    linkDownload.click();
-    document.body.removeChild(linkDownload);
-};
+// // Fazer download do CSV
+// function downloadCSVFile(csv_data){
+//     CSVFile = new Blob(["\ufeff", csv_data], {type: "text/csv"});
+//     const linkDownload = document.createElement("a");
+//     linkDownload.download = "Operações_Pila.csv";
+//     const url = window.URL.createObjectURL(CSVFile);
+//     linkDownload.href = url;
+//     linkDownload.style.display = "none";
+//     document.body.appendChild(linkDownload);
+//     linkDownload.click();
+//     document.body.removeChild(linkDownload);
+// };
 
-// Clicar no botão, formar o CSV e fazer o download
-btnCSV.addEventListener("click", function(){
-    let csv_data = [];
-    const rows = document.getElementsByTagName("tr");
-    for(let i = 0; i < rows.length; i++){
-        const cols = rows[i].querySelectorAll("#exportarCSV");
-        const csvrow = [];
-        for(let j = 0; j < cols.length; j++){
-            csvrow.push(cols[j].innerHTML);
-        };
-        csv_data.push(csvrow.join(";"));
-    };
-    csv_data = csv_data.join("\n");
-    downloadCSVFile(csv_data);
-});
+// // Clicar no botão, formar o CSV e fazer o download
+// btnCSV.addEventListener("click", function(){
+//     let csv_data = [];
+//     const rows = document.getElementsByTagName("tr");
+//     for(let i = 0; i < rows.length; i++){
+//         const cols = rows[i].querySelectorAll("#exportarCSV");
+//         const csvrow = [];
+//         for(let j = 0; j < cols.length; j++){
+//             csvrow.push(cols[j].innerHTML);
+//         };
+//         csv_data.push(csvrow.join(";"));
+//     };
+//     csv_data = csv_data.join("\n");
+//     downloadCSVFile(csv_data);
+// });
 
-// Filtro por coluna da tabela
-function filtragemTbl(idCampo, colunaTbl){
-    let filtrar, tabela, tr, td, th, i;
+// // Filtro por coluna da tabela
+// function filtragemTbl(idCampo, colunaTbl){
+//     let filtrar, tabela, tr, td, th, i;
 
-    filtrar = document.getElementById(idCampo);
-    filtrar = filtrar.value.toUpperCase();
+//     filtrar = document.getElementById(idCampo);
+//     filtrar = filtrar.value.toUpperCase();
 
-    tabela = document.getElementById("tbl");
-    tr = tabela.getElementsByTagName("tr");
-    th = tabela.getElementsByTagName("th");
+//     tabela = document.getElementById("tbl");
+//     tr = tabela.getElementsByTagName("tr");
+//     th = tabela.getElementsByTagName("th");
 
-    for(i = 0; i < tr.length; i++){
-        td = tr[i].getElementsByTagName("td")[colunaTbl];
-        if(td){
-            if(td.innerHTML.toUpperCase().indexOf(filtrar) > -1){
-                tr[i].style.display = "";
-            }else{
-                tr[i].style.display = "none";
-            };
-        };
-    };
-};
+//     for(i = 0; i < tr.length; i++){
+//         td = tr[i].getElementsByTagName("td")[colunaTbl];
+//         if(td){
+//             if(td.innerHTML.toUpperCase().indexOf(filtrar) > -1){
+//                 tr[i].style.display = "";
+//             }else{
+//                 tr[i].style.display = "none";
+//             };
+//         };
+//     };
+// };
 
-document.getElementById("buscaDesc").addEventListener("input", function(){
-    filtragemTbl("buscaDesc", 1);
-});
+// document.getElementById("buscaDesc").addEventListener("input", function(){
+//     filtragemTbl("buscaDesc", 1);
+// });
 
-document.getElementById("buscaValor").addEventListener("input", function(){
-    filtragemTbl("buscaValor", 2);
-});
+// document.getElementById("buscaValor").addEventListener("input", function(){
+//     filtragemTbl("buscaValor", 2);
+// });
 
-document.getElementById("buscaCategoria").addEventListener("input", function(){
-    filtragemTbl("buscaCategoria", 3);
-});
+// document.getElementById("buscaCategoria").addEventListener("input", function(){
+//     filtragemTbl("buscaCategoria", 3);
+// });
 
-document.getElementById("buscaTipo").addEventListener("input", function(){
-    filtragemTbl("buscaTipo", 4);
-});
+// document.getElementById("buscaTipo").addEventListener("input", function(){
+//     filtragemTbl("buscaTipo", 4);
+// });
 
 loadItens();
