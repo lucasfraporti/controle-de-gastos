@@ -28,6 +28,36 @@ const Modal_sobre = {
     }
 }
 
+const Modal_ajuda = {
+    open() {
+    document
+    .querySelector('.modal-ajuda')
+    .classList
+    .add('active')
+    },
+    close () {
+    document
+    .querySelector('.modal-ajuda')
+    .classList
+    .remove('active')
+    }
+}
+
+const Modal_configuracoes = {
+    open() {
+    document
+    .querySelector('.modal-configuracoes')
+    .classList
+    .add('active')
+    },
+    close () {
+    document
+    .querySelector('.modal-configuracoes')
+    .classList
+    .remove('active')
+    }
+}
+
 const Storage = {
     get() {
         return JSON.parse(localStorage.getItem("finances:transactions")) || []

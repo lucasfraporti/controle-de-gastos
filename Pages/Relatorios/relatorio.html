@@ -14,134 +14,186 @@
 <body>
 
 
-    <nav>
-        <div class="sidebar-top">
-          <span class="shrink-btn">
-            <i class='bx bx-chevron-left'></i>
-          </span>
-          <img src="logo.png" class="logo" alt="">
-          <h3 class="hide">PILA</h3>
-        </div>
-    
-        <div class="search">
-          <i class='bx bx-search'></i>
-          <input type="text" class="hide" placeholder="Quick Search ...">
-        </div>
-    
-        <div class="sidebar-links">
-          <ul>
-            <div class="active-tab"></div>
-            <li class="tooltip-element" data-tooltip="0">
-              <a href="#" class="active" data-active="0">
-                <div class="icon">
-                  <i class='bx bx-tachometer'></i>
-                  <i class='bx bxs-tachometer'></i>
-                </div>
-                <span class="link hide">Controle de gastos</span>
-              </a>
-            </li>
-            <li class="tooltip-element" data-tooltip="1">
-              <a href="/Pages/Principal/index.html" data-active="1">
-                <div class="icon">
-                    <i class='bx bx-bar-chart-square'></i>
-                    <i class='bx bxs-bar-chart-square'></i>
-                </div>
-                <span class="link hide">Relatórios</span>
-              </a>
-            </li>
-            <li class="tooltip-element" data-tooltip="2">
-              <a href="#" data-active="2">
-                <div class="icon">
-                  <i class='bx bx-message-square-detail'></i>
-                  <i class='bx bxs-message-square-detail'></i>
-                </div>
-                <span class="link hide">Educacional</span>
-              </a>
-            </li>
-            <li class="tooltip-element" data-tooltip="3">
-              <a href="#" data-active="3">
-                <div class="icon">
-                  <i class='bx bx-bar-chart-square'></i>
-                  <i class='bx bxs-bar-chart-square'></i>
-                </div>
-                <span class="link hide">???</span>
-              </a>
-            </li>
-            <div class="tooltip">
-              <span class="show">Controle de gastos</span>
-              <span>Relatórios</span>
-              <span>Educacional</span>
-              <span>Analytics</span>
-            </div>
-          </ul>
-    
-          <h4 class="hide">Shortcuts</h4>
-    
-          <ul>
-            <li class="tooltip-element" data-tooltip="0">
-              <a href="#" data-active="4">
-                <div class="icon">
-                  <i class='bx bx-notepad'></i>
-                  <i class='bx bxs-notepad'></i>
-                </div>
-                <span class="link hide">Sobre</span>
-              </a>
-            </li>
-            <li class="tooltip-element" data-tooltip="1">
-              <a href="#" data-active="5">
-                <div class="icon">
-                  <i class='bx bx-help-circle'></i>
-                  <i class='bx bxs-help-circle'></i>
-                </div>
-                <span class="link hide">Ajuda</span>
-              </a>
-            </li>
-            <li class="tooltip-element" data-tooltip="2">
-              <a href="./" data-active="6">
-                <div class="icon">
-                  <i class='bx bx-cog'></i>
-                  <i class='bx bxs-cog'></i>
-                </div>
-                <span class="link hide">Configurações</span>
-              </a>
-            </li>
-            <div class="tooltip">
-              <span class="show">Sobre</span>
-              <span>Ajuda</span>
-              <span>Educacional</span>
-            </div>
-          </ul>
-        </div>
-    
-        <div class="sidebar-footer">
-          <a href="#" class="account tooltip-element" data-tooltip="0">
-            <i class='bx bx-user'></i>
-          </a>
-          
-          <div class="admin-user tooltip-element" data-tooltip="1">
-            <div class="admin-profile hide">
-              <img src="logo.png" alt="">
-              <div class="admin-info">
-                <h3>ADMIN</h3>
-              </div>
-            </div>
-            <a href="#" class="log-out">
-              <i class='bx bx-log-out'></i>
-            </a>
-          </div>
-    
-          <div class="tooltip">
-            <span class="show">PILA</span>
-            <span>Logout</span>
-          </div>
-        </div>
-    </nav>
+  <nav>
+    <div class="sidebar-top">
+      <span class="shrink-btn">
+        <i class='bx bx-chevron-left'></i>
+      </span>
+      <img src="logo.png" class="logo" alt="">
+      <h3 class="hide">PILA</h3>
+    </div>
 
-    <script src="/Firebase/firebase-init.js"></script>
-    <script src="/Firebase/auth-guard.js"></script>
+    <div class="search">
+      <i class='bx bx-search'></i>
+      <input type="text" class="hide" placeholder="Quick Search ...">
+    </div>
+
+    <div class="sidebar-links">
+      <ul>
+        <div class="active-tab"></div>
+        <li class="/Pages/Principal/index.html" data-tooltip="0">
+          <a href="#" class="active" data-active="0">
+            <div class="icon">
+              <i class='bx bx-tachometer'></i>
+              <i class='bx bxs-tachometer'></i>
+            </div>
+            <span class="link hide">Controle de gastos</span>
+          </a>
+        </li>
+        <li class="tooltip-element" data-tooltip="1">
+          <a href="/Pages/Relatorios/relatorio.html" data-active="1">
+            <div class="icon">
+                <i class='bx bx-bar-chart-square'></i>
+                <i class='bx bxs-bar-chart-square'></i>
+            </div>
+            <span class="link hide">Relatórios</span>
+          </a>
+        </li>
+        <li class="tooltip-element" data-tooltip="2">
+          <a href="/Pages/Educacional/educacional.html" data-active="2">
+            <div class="icon">
+              <i class='bx bx-message-square-detail'></i>
+              <i class='bx bxs-message-square-detail'></i>
+            </div>
+            <span class="link hide">Educacional</span>
+          </a>
+        </li>
+        <li class="tooltip-element" data-tooltip="3">
+          <a href="#" data-active="3">
+            <div class="icon">
+              <i class='bx bx-bar-chart-square'></i>
+              <i class='bx bxs-bar-chart-square'></i>
+            </div>
+            <span class="link hide">???</span>
+          </a>
+        </li>
+        <div class="tooltip">
+          <span class="show">Controle de gastos</span>
+          <span>Relatórios</span>
+          <span>Educacional</span>
+          <span>Analytics</span>
+        </div>
+      </ul>
+
+      <h4 class="hide">Shortcuts</h4>
+
+      <ul>
+        <li class="tooltip-element" data-tooltip="0">
+          <a href="#"  onclick="Modal_sobre.open()" data-active="4">
+            <div class="icon">
+              <i class='bx bx-notepad'></i>
+              <i class='bx bxs-notepad'></i>
+            </div>
+            <span class="link hide">Sobre</span>
+          </a>
+        </li>
+        <li class="tooltip-element" data-tooltip="1">
+          <a href="#"  onclick="Modal_ajuda.open()" data-active="5">
+            <div class="icon">
+              <i class='bx bx-help-circle'></i>
+              <i class='bx bxs-help-circle'></i>
+            </div>
+            <span class="link hide">Ajuda</span>
+          </a>
+        </li>
+        <li class="tooltip-element" data-tooltip="2">
+          <a href="#" onclick="Modal_configuracoes.open()" data-active="6">
+            <div class="icon">
+              <i class='bx bx-cog'></i>
+              <i class='bx bxs-cog'></i>
+            </div>
+            <span class="link hide">Configurações</span>
+          </a>
+        </li>
+        <div class="tooltip">
+          <span class="show">Sobre</span>
+          <span>Ajuda</span>
+          <span>Educacional</span>
+        </div>
+      </ul>
+    </div>
+
+    <div class="sidebar-footer">
+      <a href="#" class="account tooltip-element" data-tooltip="0">
+        <i class='bx bx-user'></i>
+      </a>
+      
+      <div class="admin-user tooltip-element" data-tooltip="1">
+        <div class="admin-profile hide">
+          <img src="logo.png" alt="">
+          <div class="admin-info">
+            <h3>ADMIN</h3>
+          </div>
+        </div>
+        <a onclick="logout()" href="#" class="log-out">
+          <i class='bx bx-log-out'></i>
+        </a>
+      </div>
+
+      <div class="tooltip">
+        <span class="show">PILA</span>
+        <span>Logout</span>
+      </div>
+    </div>
+  </nav>
+
+  <div class="modal-sobre">
+    <div class="modal">
+        <div id="form">
+          <h2>Sobre</h2>
+          <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Quas adipisci ab recusandae quo, quos hic commodi sapiente veniam laudantium? Quod quam ullam eligendi laudantium sunt vitae alias minus, aperiam porro.</p>
+            <div class="input-group actions">
+                <a 
+                onclick="Modal_sobre.close()"
+                href="#"
+                class="button cancel">Cancelar</a>
+            </div>   
+        </div>
+    </div>
+  </div>
+
+  <div class="modal-ajuda">
+    <div class="modal">
+        <div id="form">
+          <h2>Ajuda</h2>
+          <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Quas adipisci ab recusandae quo, quos hic commodi sapiente veniam laudantium? Quod quam ullam eligendi laudantium sunt vitae alias minus, aperiam porro.</p>
+            <div class="input-group actions">
+                <a 
+                onclick="Modal_ajuda.close()"
+                href="#"
+                class="button cancel">Cancelar</a>
+            </div>   
+        </div>
+    </div>
+  </div>
+
+  <div class="modal-configuracoes">
+    <div class="modal">
+        <div id="form">
+          <h2>Configurações</h2>
+          <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Quas adipisci ab recusandae quo, quos hic commodi sapiente veniam laudantium? Quod quam ullam eligendi laudantium sunt vitae alias minus, aperiam porro.</p>
+            <div class="input-group actions">
+                <a 
+                onclick="Modal_configuracoes.close()"
+                href="#"
+                class="button cancel">Cancelar</a>
+                <button>Salvar</button>
+            </div>   
+        </div>
+    </div>
+  </div>
+
+  <script src="https://www.gstatic.com/firebasejs/9.6.7/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.6.7/firebase-auth-compat.js"></script>
+
+  <script src="/Firebase/firebase-init.js"></script>
+  <script src="/Firebase/auth-guard.js"></script>
+  
     <script src="/js/index.js"></script>
     <script src="/Pages/Principal/scripts.js"></script>
     <script src="/Pages/Principal/Dashboard.js"></script>
     <script src="/Pages/Relatorios/relatorio.css"></script>
+
+    <script src="/js/logout.js"></script>
 </body>
 </html>

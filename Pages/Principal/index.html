@@ -79,7 +79,7 @@
     
           <ul>
             <li class="tooltip-element" data-tooltip="0">
-              <a href="#" data-active="4">
+              <a href="#"  onclick="Modal_sobre.open()" data-active="4">
                 <div class="icon">
                   <i class='bx bx-notepad'></i>
                   <i class='bx bxs-notepad'></i>
@@ -88,7 +88,7 @@
               </a>
             </li>
             <li class="tooltip-element" data-tooltip="1">
-              <a href="#"  onclick="Modal_sobre.open()" data-active="5">
+              <a href="#"  onclick="Modal_ajuda.open()" data-active="5">
                 <div class="icon">
                   <i class='bx bx-help-circle'></i>
                   <i class='bx bxs-help-circle'></i>
@@ -97,7 +97,7 @@
               </a>
             </li>
             <li class="tooltip-element" data-tooltip="2">
-              <a href="./" data-active="6">
+              <a href="#" onclick="Modal_configuracoes.open()" data-active="6">
                 <div class="icon">
                   <i class='bx bx-cog'></i>
                   <i class='bx bxs-cog'></i>
@@ -272,6 +272,37 @@
                       onclick="Modal_sobre.close()"
                       href="#"
                       class="button cancel">Cancelar</a>
+                  </div>   
+              </div>
+          </div>
+        </div>
+
+        <div class="modal-ajuda">
+          <div class="modal">
+              <div id="form">
+                <h2>Ajuda</h2>
+                <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Quas adipisci ab recusandae quo, quos hic commodi sapiente veniam laudantium? Quod quam ullam eligendi laudantium sunt vitae alias minus, aperiam porro.</p>
+                  <div class="input-group actions">
+                      <a 
+                      onclick="Modal_ajuda.close()"
+                      href="#"
+                      class="button cancel">Cancelar</a>
+                  </div>   
+              </div>
+          </div>
+        </div>
+
+        <div class="modal-configuracoes">
+          <div class="modal">
+              <div id="form">
+                <h2>Configurações</h2>
+                <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Quas adipisci ab recusandae quo, quos hic commodi sapiente veniam laudantium? Quod quam ullam eligendi laudantium sunt vitae alias minus, aperiam porro.</p>
+                  <div class="input-group actions">
+                      <a 
+                      onclick="Modal_configuracoes.close()"
+                      href="#"
+                      class="button cancel">Cancelar</a>
+                      <button>Salvar</button>
                   </div>   
               </div>
           </div>
