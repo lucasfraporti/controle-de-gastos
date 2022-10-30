@@ -12,6 +12,22 @@ const Modal = {
     .remove('active')
     }
 }
+
+const Modal_sobre = {
+    open() {
+    document
+    .querySelector('.modal-sobre')
+    .classList
+    .add('active')
+    },
+    close () {
+    document
+    .querySelector('.modal-sobre')
+    .classList
+    .remove('active')
+    }
+}
+
 const Storage = {
     get() {
         return JSON.parse(localStorage.getItem("finances:transactions")) || []
