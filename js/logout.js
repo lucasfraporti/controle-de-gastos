@@ -9,3 +9,8 @@ function logout() {
         alert('Erro ao fazer logout');
     })
   }
+
+//user id
+  function showuser(){
+    localStorage.setItem('id', firebase.auth().currentUser.uid);
+};

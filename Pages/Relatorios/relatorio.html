@@ -31,8 +31,8 @@
     <div class="sidebar-links">
       <ul>
         <div class="active-tab"></div>
-        <li class="/Pages/Principal/index.html" data-tooltip="0">
-          <a href="#" class="active" data-active="0">
+        <li class="tooltip-element" data-tooltip="0">
+          <a href="/Pages/Principal/index.html" class="active" data-active="0">
             <div class="icon">
               <i class='bx bx-tachometer'></i>
               <i class='bx bxs-tachometer'></i>
@@ -182,6 +182,13 @@
         </div>
     </div>
   </div>
+
+  <script>
+    setTimeout(function(){
+        showuser();
+        console.log("User ID:" + window.localStorage.getItem('id'))
+    }, 1000);
+</script>
 
   <script src="https://www.gstatic.com/firebasejs/9.6.7/firebase-app-compat.js"></script>
   <script src="https://www.gstatic.com/firebasejs/9.6.7/firebase-auth-compat.js"></script>
