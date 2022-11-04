@@ -102,6 +102,18 @@ const Transaction = {
 }
 
 
+function testealerta(){
+    swal("This modal will disappear soon!", {
+        
+        buttons: false,
+        timer: 3000,
+      });
+};
+
+
+
+
+
 const DOM = { 
 
     transactionsContainer: document.querySelector('#data-table tbody'),
