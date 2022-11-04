@@ -10,9 +10,14 @@
     <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,400;0,700;1,100;1,400;1,700&display=swap" 
     rel="stylesheet">
     <title>Pila - Controle e educação financeira</title>
+
 </head>
 <body>
+  <script src="https://www.gstatic.com/firebasejs/9.6.7/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.6.7/firebase-auth-compat.js"></script>
 
+  <script src="/Firebase/firebase-init.js"></script>
+  <script src="/Firebase/auth-guard.js"></script>
 
     <nav>
         <div class="sidebar-top">
@@ -32,7 +37,7 @@
           <ul>
             <div class="active-tab"></div>
             <li class="tooltip-element" data-tooltip="0">
-              <a href="#" class="active" data-active="0">
+              <a href="/Pages/Principal/index.html" class="active" data-active="0">
                 <div class="icon">
                   <i class='bx bx-tachometer'></i>
                   <i class='bx bxs-tachometer'></i>
@@ -41,7 +46,7 @@
               </a>
             </li>
             <li class="tooltip-element" data-tooltip="1">
-              <a href="#" data-active="1">
+              <a href="/Pages/Relatorios/relatorio.html" data-active="1">
                 <div class="icon">
                     <i class='bx bx-bar-chart-square'></i>
                     <i class='bx bxs-bar-chart-square'></i>
@@ -50,7 +55,7 @@
               </a>
             </li>
             <li class="tooltip-element" data-tooltip="2">
-              <a href="#" data-active="2">
+              <a href="/Pages/Educacional/educacional.html" data-active="2">
                 <div class="icon">
                   <i class='bx bx-message-square-detail'></i>
                   <i class='bx bxs-message-square-detail'></i>
@@ -79,7 +84,7 @@
     
           <ul>
             <li class="tooltip-element" data-tooltip="0">
-              <a href="#" data-active="4">
+              <a href="#"  onclick="Modal_sobre.open()" data-active="4">
                 <div class="icon">
                   <i class='bx bx-notepad'></i>
                   <i class='bx bxs-notepad'></i>
@@ -88,7 +93,7 @@
               </a>
             </li>
             <li class="tooltip-element" data-tooltip="1">
-              <a href="#" data-active="5">
+              <a href="#"  onclick="Modal_ajuda.open()" data-active="5">
                 <div class="icon">
                   <i class='bx bx-help-circle'></i>
                   <i class='bx bxs-help-circle'></i>
@@ -97,7 +102,7 @@
               </a>
             </li>
             <li class="tooltip-element" data-tooltip="2">
-              <a href="./" data-active="6">
+              <a href="#" onclick="Modal_configuracoes.open()" data-active="6">
                 <div class="icon">
                   <i class='bx bx-cog'></i>
                   <i class='bx bxs-cog'></i>
@@ -125,7 +130,7 @@
                 <h3>ADMIN</h3>
               </div>
             </div>
-            <a href="#" class="log-out">
+            <a onclick="logout()" href="#" class="log-out">
               <i class='bx bx-log-out'></i>
             </a>
           </div>
@@ -146,7 +151,7 @@
             <div class="card">
                 <h3>
                     <span>Entradas</span>
-                    <img src="./Vendors/img/income.svg" alt="entradas">
+                    <img src="/Vendors/img/income.svg" alt="entradas">
                  </h3>
                      <p id="profit">R$ 0,00</p>
             </div>
@@ -154,7 +159,7 @@
             <div class="card">
                 <h3>
                     <span>Saídas</span>
-                    <img src="./Vendors/img/expense.svg" alt="saídas">
+                    <img src="/Vendors/img/expense.svg" alt="saídas">
                  </h3>
                  <p id="loss">R$ 0,00</p>
             </div>
@@ -162,7 +167,7 @@
             <div class="card total">
                 <h3>
                     <span>Total</span>
-                    <img src="./Vendors/img/total.svg" alt="total">
+                    <img src="/Vendors/img/total.svg" alt="total">
                  </h3>
                      <p id="total">R$ 0,00</p>
             </div>
@@ -175,7 +180,139 @@
             + Nova Transação
         </a>
 
-        
+        <div class="modal-overlay">
+          <div class="modal">
+              
+              <div id="form">
+                  <h2>Nova Transação</h2>
+                  <form action="" onsubmit="Form.submit(event)">
+  
+                      <div class="input-group">
+                          <label 
+                          class="sr-only"
+                          for="description">Descrição</label>
+                          <input 
+                          type="text" 
+                          id="description" 
+                          name="description"
+                          placeholder="Descrição"
+                          />
+                      </div>
+  
+                      <div class="ls-custom-select">
+                        
+                          <select   class="ls-select" id="categoria">
+                              <option>Alimentação</option>
+                              <option>Assinaturas e serviços</option>
+                              <option>Bares e restaurantes</option>
+                              <option>Casa</option>
+                              <option>Compras</option>
+                              <option>Cuidados pessoais</option>
+                              <option>Dívidas e empréstimos</option>
+                              <option>Educação</option>
+                              <option>Família e filhos</option>
+                              <option>Impostos e taxas</option>
+                              <option>Investimentos</option>
+                              <option>Lazer e hobbies</option>
+                              <option>Mercado</option>
+                              <option>Pets</option>
+                              <option>Presentes e doações</option>
+                              <option>Saúde</option>
+                              <option>Trabalho</option>
+                              <option>Transporte</option>
+                              <option>Viagem</option>
+                              <option>Outros</option>
+                          </select>
+                      </div>
+  
+                      <div class="input-group">
+                          <label 
+                          class="sr-only"
+                          for="amount">Valor</label>
+                          <input 
+                          type="number" 
+                          step="0.01"
+                          id="amount" 
+                          name="amount"
+                          placeholder="0,00"
+                          />
+                          <small class="help">
+                              Use o sinal - (negativo) para despesas e , (vírgula) para casas decimais
+                          </small>
+                      </div>
+  
+                      <div class="input-group">
+                          <label 
+                          class="sr-only"
+                          for="date">Data</label>
+                          <input 
+                          type="date" 
+                          id="date" 
+                          name="date"
+                          />
+                      </div>
+                      
+                      <div class="input-group actions">
+                          <a 
+                          onclick="Modal.close()"
+                          href="#"
+                          class="button cancel">Cancelar</a>
+                          <button>Salvar</button>
+                      </div>
+  
+                  </form>
+              </div>
+  
+            
+          </div>
+        </div>
+
+        <div class="modal-sobre">
+          <div class="modal">
+              <div id="form">
+                <h2>Sobre</h2>
+                <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Quas adipisci ab recusandae quo, quos hic commodi sapiente veniam laudantium? Quod quam ullam eligendi laudantium sunt vitae alias minus, aperiam porro.</p>
+                  <div class="input-group actions">
+                      <a 
+                      onclick="Modal_sobre.close()"
+                      href="#"
+                      class="button cancel">Cancelar</a>
+                  </div>   
+              </div>
+          </div>
+        </div>
+
+        <div class="modal-ajuda">
+          <div class="modal">
+              <div id="form">
+                <h2>Ajuda</h2>
+                <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Quas adipisci ab recusandae quo, quos hic commodi sapiente veniam laudantium? Quod quam ullam eligendi laudantium sunt vitae alias minus, aperiam porro.</p>
+                  <div class="input-group actions">
+                      <a 
+                      onclick="Modal_ajuda.close()"
+                      href="#"
+                      class="button cancel">Cancelar</a>
+                  </div>   
+              </div>
+          </div>
+        </div>
+
+        <div class="modal-configuracoes">
+          <div class="modal">
+              <div id="form">
+                <h2>Configurações</h2>
+                <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Quas adipisci ab recusandae quo, quos hic commodi sapiente veniam laudantium? Quod quam ullam eligendi laudantium sunt vitae alias minus, aperiam porro.</p>
+                  <div class="input-group actions">
+                      <a 
+                      onclick="Modal_configuracoes.close()"
+                      href="#"
+                      class="button cancel">Cancelar</a>
+                      <button>Salvar</button>
+                  </div>   
+              </div>
+          </div>
+        </div>
+
         <div class="newItem">
             <div class="divDate">
                 <label for="date">Data da operação</label>
@@ -246,12 +383,19 @@
         </div>
     </main>
 
+    <script>
+      setTimeout(function(){
+          showuser();
+          console.log("User ID:" + window.localStorage.getItem('id'))
+      }, 1000);
+    </script>
 
-
-
-
-    <script src="./js/index.js"></script>
-    <!-- <script src="./scripts.js"></script> -->
+    
     <script src="Dashboard.js"></script>
+    <script src="/js/index.js"></script>
+    <script src="./scripts.js"></script>
+  
+    <script src="/js/logout.js"></script>
+    
 </body>
 </html>
