@@ -35,7 +35,6 @@ function getTotals(){
     profit.innerHTML =  'R$ ' + getValores("http://localhost:3001/get/profit");
     loss.innerHTML =  'R$ ' +  getValores("http://localhost:3001/get/loss");
     total.innerHTML = 'R$ ' + ( getValores("http://localhost:3001/get/profit") - getValores("http://localhost:3001/get/loss")).toFixed(2);
-
 };
 
 function loadItens(){
