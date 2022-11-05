@@ -845,10 +845,26 @@ nav {
     display: grid;
   }
 
+  .select-category
 
 
+.select-category select {}
 
+.select-category{
+  margin-top: 0.8rem;   
+}
 
+.select-category small {
+  opacity: 0.4;
+}
 
+.input-group.actions {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
 
-
+.input-group.actions .button,
+.input-group.actions button {
+  width: 48%;
+}  
