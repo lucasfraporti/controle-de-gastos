@@ -1,8 +1,8 @@
 const tbody = document.querySelector("tbody");
 const descItem = document.querySelector("#desc");
-const date = document.querySelector("#date");
+const date = document.querySelector("#date-input");
 const amount = document.querySelector("#amount");
-const type = document.querySelector("#type");
+// const type = document.querySelector("#type");
 const category = document.querySelector("#category");
 const btnInclude = document.querySelector("#btnInclude");
 
@@ -10,7 +10,7 @@ const profit = document.querySelector("#profit");
 const loss = document.querySelector("#loss");
 const total = document.querySelector("#total");
 
-const btnCSV = document.getElementById("downloadCSV");
+//const btnCSV = document.getElementById("downloadCSV");
 
 
 
@@ -53,20 +53,23 @@ function loadItens(){
 
 // Incluir um gasto no Banco de Dados
 btnInclude.onclick = () => {
-    if(descItem.value === "" || amount.value === ""){
+    if(desc.value === "" || amount.value === ""){
         return alert("Preencha todos os campos!");
     };
 
-    if(type.value === "Entrada"){
+    if(amount.value > 0){
         type_value = "E";
     }else{
         type_value = "S";
     };
 
+    const priceatual = document.querySelector("#amount").value;
+    const pricefinal = priceatual.replace('-','');
+
     const params = {
         id_user: window.localStorage.getItem('id'),
-        date: document.querySelector("#date").value,
-        price: document.querySelector("#amount").value,
+        date: document.querySelector("#date-input").value,
+        price: pricefinal,
         description: document.querySelector("#desc").value,
         category: document.querySelector("#category").value,
         type: type_value
@@ -80,8 +83,6 @@ btnInclude.onclick = () => {
 
     loadItens();
 
-    descItem.value = "";
-    amount.value = "";
 };
 
 // Inserir o gasto na tabela
