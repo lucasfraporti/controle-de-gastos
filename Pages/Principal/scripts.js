@@ -1,9 +1,17 @@
+//data atual ao inserir na tabela 
+const myDate = new Date().toLocaleDateString();
+console.log(myDate); // 29/07/2022 
+const myInput = document.querySelector("#date-input");
+myInput.value = myDate;
+
+
 const Modal = {
     open() {
     document
     .querySelector('.modal-overlay')
     .classList
     .add('active')
+    myInput.value = myDate;
     },
     close () {
     document

@@ -202,7 +202,7 @@
                       <div class="select-category">
                           <select   class="ls-select" id="category">
                               <option>Alimentação</option>
-                              <option>Assinaturas e serviços</option>
+                              <option>Assinaturas</option>
                               <option>Bares e restaurantes</option>
                               <option>Casa</option>
                               <option>Compras</option>
@@ -246,7 +246,7 @@
                           for="date">Data</label>
                           <input 
                           type="date" 
-                          id="date" 
+                          id="date-input" 
                           name="date"
                           />
                       </div>
@@ -328,9 +328,9 @@
                   <tr>
                       <th>Data</th>
                       <th>Descrição</th>
-                      <th>Valor</th>
+                      <th class="cor">Valor</th>
                       <th>Categoria</th>
-                      <th>Tipo</th>
+                      <th class="cor">Tipo</th>
                       <th></th>
                   </tr>
               </thead>
@@ -348,6 +348,7 @@
           showuser();
           console.log("User ID:" + window.localStorage.getItem('id'))
       }, 1000);
+
     </script>
 
     
