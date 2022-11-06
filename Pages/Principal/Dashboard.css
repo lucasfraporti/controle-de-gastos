@@ -7,16 +7,16 @@
 }
 
 :root{
-    --main-color: #0b3546;
-    --main-color-dark: #187194;
-    --main-color-light: #187194;
+    --main-color: #4fc410;
+    --main-color-dark: #05830b;
+    --main-color-light: #0af30e;
     --text-color: #fff;
 }
 
 body{
     font-family: "Poppins", sans-serif;
     overflow-x: hidden;
-    background-color: #187194;
+    background-color: #43ea1d;
     min-height: 100vh;
     display: flex;
     position: relative;

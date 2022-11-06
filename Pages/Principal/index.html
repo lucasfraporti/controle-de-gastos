@@ -9,6 +9,10 @@
     <link href='https://unpkg.com/boxicons@2.1.1/css/boxicons.min.css' rel='stylesheet'>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,400;0,700;1,100;1,400;1,700&display=swap" 
     rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+  
+    <script src="https://code.jquery.com/jquery-3.6.1.min.js" integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ=" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
     <title>Pila - Controle e educação financeira</title>
 
 </head>
@@ -199,7 +203,7 @@
                           />
                       </div>
 
-                      <div class="select-category">
+                      <div class="input-group">
                           <select   class="ls-select" id="category">
                               <option>Alimentação</option>
                               <option>Assinaturas</option>
@@ -250,6 +254,16 @@
                           name="date"
                           />
                       </div>
+
+                      <div class="input-group">
+                        <label 
+                        class="sr-only"
+                        for="type">Tipo</label> 
+                        <select id="type">
+                          <option>Entrada</option>
+                          <option>Saída</option>
+                      </select>
+                    </div>
 
                       <div class="divType">
                         <label for="type">Tipo</label>
@@ -353,6 +367,12 @@
 
     
   <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+
+  <script>
+    $(document).ready(function() {
+    $('#category').select2();
+    });
+  </script>
 
     <script src="Dashboard.js"></script>
     <script src="/js/index.js"></script>
