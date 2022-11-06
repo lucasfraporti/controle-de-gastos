@@ -12,6 +12,9 @@ const total = document.querySelector("#total");
 
 const btnCSV = document.getElementById("downloadCSV");
 
+
+
+
 function fazGet(url){
     const request = new XMLHttpRequest();
     request.open("GET", url, false);
@@ -84,9 +87,11 @@ btnInclude.onclick = () => {
 // Inserir o gasto na tabela
 function insertItem(item){
     const tr = document.createElement("tr");
+    const CSSClass = item.type === "E" ? "income" : "expense"
 
     if(item.type === "E"){
         type_new_value = "Entrada";
+        
     }else{
         type_new_value = "Saída";
     };
@@ -94,9 +99,9 @@ function insertItem(item){
     tr.innerHTML = `
     <td id="exportarCSV">${item.date.split("T")[0].split("-").reverse().join("/")}</td>
     <td id="exportarCSV">${item.description}</td>
-    <td id="exportarCSV">R$${item.price}</td>
+    <td id="exportarCSV" class="${CSSClass}">R$${item.price}</td>
     <td id="exportarCSV">${item.category}</td>
-    <td id="exportarCSV">${type_new_value}</td>
+    <td id="exportarCSV" class="${CSSClass}">${type_new_value}</td>
     </td>
     <td class="columnAction">
     <img onclick="deleteItem(${item.id})" src="/Vendors/img/recycle-bin.png" width='27'" alt="remover transação">
@@ -266,5 +271,6 @@ function deleteItem(index){
 // document.getElementById("buscaTipo").addEventListener("input", function(){
 //     filtragemTbl("buscaTipo", 4);
 // });
+
 
 loadItens();

@@ -74,7 +74,7 @@ App.post('/cadastro', (req, res) => {
 
 // localhost:3001/get
 App.get("/get", (req, res) => {
-    db.query("SELECT * FROM valores", (err, result) => {
+    db.query("SELECT * FROM valores ORDER BY date", (err, result) => {
         if(err){
             res.status(500).send(err);
         }else{
