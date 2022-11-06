@@ -1,8 +1,8 @@
 //data atual ao inserir na tabela 
-const myDate = new Date().toLocaleDateString();
-console.log(myDate); // 29/07/2022 
-const myInput = document.querySelector("#date-input");
-myInput.value = myDate;
+// const myDate = new Date().toLocaleDateString();
+// console.log(myDate); // 29/07/2022 
+// const myInput = document.querySelector("#date-input");
+// myInput.value = myDate;
 
 
 const Modal = {
@@ -11,7 +11,6 @@ const Modal = {
     .querySelector('.modal-overlay')
     .classList
     .add('active')
-    myInput.value = myDate;
     },
     close () {
     document
@@ -100,9 +99,9 @@ const Utils = {
 }
 
 const Form = {
-    description: document.querySelector('input#description'),
+    description: document.querySelector('input#desc'),
     amount: document.querySelector('input#amount'),
-    date: document.querySelector('input#date'),
+    date: document.querySelector('input#date-input'),
 
     getValues() {
         return {
@@ -144,8 +143,8 @@ const Form = {
 
         try{
             Form.validateFields()
-            const transaction = Form.formatValues()
-            Transaction.add(transaction)
+            //const transaction = Form.formatValues()
+            //Transaction.add(transaction)
             //Form.formatData()
             Form.clearFields()
             Modal.close()
