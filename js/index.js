@@ -99,8 +99,9 @@ function insertItem(item){
     <td id="exportarCSV">${type_new_value}</td>
     </td>
     <td class="columnAction">
-    <button onClick="openModal(${item.id})">Atualizar</button>
-    <button onClick="deleteItem(${item.id})">Excluir</button>
+    <img onclick="deleteItem(${item.id})" src="/Vendors/img/recycle-bin.png" width='27'" alt="remover transação">
+    <img onclick="openModal(${item.id})" src="/Vendors/img/edit.png" width='27'" alt="remover transação">
+ 
     </td>
     `;
 
