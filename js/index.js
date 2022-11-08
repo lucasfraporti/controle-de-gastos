@@ -57,42 +57,37 @@ function validainput(){
 };
 
 // Incluir um gasto no Banco de Dados
-btnInclude.onclick = () => {
-    if(desc.value === "" || amount.value === "" || date.value === ""){
-        validainput()
-        //return alert("Preencha todos os campos!");
-    }
-
-    else{
-        if(amount.value > 0){
-            type_value = "E";
-        }else{
-            type_value = "S";
-        };
-    
-        const priceatual = document.querySelector("#amount").value;
-        const pricefinal = priceatual.replace('-','');
-    
-        const params = {
-            id_user: window.localStorage.getItem('id'),
-            date: document.querySelector("#date-input").value,
-            price: pricefinal,
-            description: document.querySelector("#desc").value,
-            category: document.querySelector("#category").value,
-            type: type_value
-        };
-    
-        const request = new XMLHttpRequest();
-        request.open("POST", "http://localhost:3001/post", false);
-        request.setRequestHeader("Content-type", "application/json");
-        console.log(JSON.stringify(params))
-        request.send(JSON.stringify(params));
-    
-        loadItens();
+function incluirgasto(){
+    if(desc.value === "" || amount.value === ""){
+        return alert("Preencha todos os campos!");
     };
 
-    
+    if(amount.value > 0){
+        type_value = "E";
+    }else{
+        type_value = "S";
+    };
 
+    const priceatual = document.querySelector("#amount").value;
+    const pricefinal = priceatual.replace('-','');
+
+    const params = {
+        id_user: window.localStorage.getItem('id'),
+        date: document.querySelector("#date-input").value,
+        price: pricefinal,
+        description: document.querySelector("#desc").value,
+        category: document.querySelector("#category").value,
+        type: type_value
+    };
+
+    const request = new XMLHttpRequest();
+    request.open("POST", "http://localhost:3001/post", false);
+    request.setRequestHeader("Content-type", "application/json");
+    console.log(JSON.stringify(params))
+    request.send(JSON.stringify(params));
+
+    loadItens();
+    Modal.close();
 };
 
 // Inserir o gasto na tabela
