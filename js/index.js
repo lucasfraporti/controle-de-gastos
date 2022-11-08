@@ -56,7 +56,12 @@ function loadItens(){
     getTotals();
 };
 
-
+function validainput(){
+    swal("É necessário preencher todos os campos!", {
+    buttons: false,
+    timer: 3000,
+    });  
+};
 
 // Incluir um gasto no Banco de Dados
 function incluirgasto(){

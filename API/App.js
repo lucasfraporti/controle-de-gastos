@@ -5,6 +5,11 @@ const jwt = require("jsonwebtoken");
 const App = express();
 const port = 3001;
 
+var dataatual = new Date();
+
+var mesatual = String(dataatual.getMonth() + 1).padStart(2, '0');
+var anoatual = dataatual.getFullYear();
+
 App.use(cors());
 App.use(express.json());
 
@@ -74,7 +79,7 @@ App.post('/cadastro', (req, res) => {
 
 // localhost:3001/get
 App.get("/get", (req, res) => {
-    db.query("SELECT * FROM valores ORDER BY date", (err, result) => {
+    db.query("SELECT * FROM valores where month(date) = ? and year(date) = ? ORDER BY date", [mesatual, anoatual], (err, result) => {
         if(err){
             res.status(500).send(err);
         }else{
@@ -125,6 +130,7 @@ App.post("/post", (req, res) => {
             res.status(500).send(err);
         }else{
             res.status(201).json(result);
+            console.log('id_user dhasdhahda:', id_user)
         };
     });
 });
