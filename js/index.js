@@ -34,10 +34,17 @@ function getWithIndex(url){
     return entradas;
 };
 
+//formatar os valores
+function formatavalor(valor) {
+    const formatado = valor.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' });
+  
+    return formatado;
+  }
+
 function getTotals(){
-    profit.innerHTML =  'R$ ' + getValores("http://localhost:3001/get/profit");
-    loss.innerHTML =  'R$ ' +  getValores("http://localhost:3001/get/loss");
-    total.innerHTML = 'R$ ' + ( getValores("http://localhost:3001/get/profit") - getValores("http://localhost:3001/get/loss")).toFixed(2);
+    profit.innerHTML =  formatavalor(getValores("http://localhost:3001/get/profit"));
+    loss.innerHTML =  formatavalor(getValores("http://localhost:3001/get/loss"));
+    total.innerHTML = formatavalor((getValores("http://localhost:3001/get/profit") - getValores("http://localhost:3001/get/loss")));
 };
 
 function loadItens(){
@@ -88,6 +95,7 @@ function incluirgasto(){
 
     loadItens();
     Modal.close();
+
 };
 
 // Inserir o gasto na tabela
@@ -105,14 +113,13 @@ function insertItem(item){
     tr.innerHTML = `
     <td id="exportarCSV">${item.date.split("T")[0].split("-").reverse().join("/")}</td>
     <td id="exportarCSV">${item.description}</td>
-    <td id="exportarCSV" class="${CSSClass}">R$${item.price}</td>
+    <td id="exportarCSV" class="${CSSClass}">${formatavalor(item.price)}</td>
     <td id="exportarCSV">${item.category}</td>
     <td id="exportarCSV" class="${CSSClass}">${type_new_value}</td>
     </td>
     <td class="columnAction">
+    <img onclick="openModal(${item.id})" src="/Vendors/img/edit.png" width='27'" alt="Alterar transação">
     <img onclick="deleteItem(${item.id})" src="/Vendors/img/recycle-bin.png" width='27'" alt="remover transação">
-    <img onclick="openModal(${item.id})" src="/Vendors/img/edit.png" width='27'" alt="remover transação">
- 
     </td>
     `;
 
@@ -121,13 +128,13 @@ function insertItem(item){
 
 // Abertura do modal para atualização de um gasto
 function openModal(index){
-    location.href = "http://127.0.0.1:5500/#atualizarGasto";
+    Modal_ajuste.open();
 
     let userId;
     const dateNew = document.querySelector("#dateNew");
     const descNew = document.querySelector("#descNew");
     const amountNew = document.querySelector("#amountNew");
-    const typeNew = document.querySelector("#typeNew");
+    
     const categoryNew = document.querySelector("#categoryNew");
     const btnAtualizar = document.getElementById("btnAtualizar");
 
@@ -135,13 +142,13 @@ function openModal(index){
     items.forEach((item) => {
         dateNew.value = item.date.split("T")[0];
         descNew.value = item.description;
-        amountNew.value = item.price;
+        //amountNew.value = item.price;
         categoryNew.value = item.category;
         userId = item.id_user;
         if(item.type === "E"){
-            typeNew.value = "Entrada";
+            amountNew.value = item.price;
         }else{
-            typeNew.value = "Saída";
+            amountNew.value = '-'+item.price;
         };
     });
 
@@ -151,16 +158,18 @@ function openModal(index){
         };
         const resposta = confirm("Você tem certeza que quer atualizar esta operação?");
         if(resposta){    
-            if(typeNew.value === "Entrada"){
+            if(amountNew.value > 0){
                 type_value_new = "E";
             }else{
                 type_value_new = "S";
             };
 
+            const pricefinal = amountNew.value.replace('-','');
+
             const params = {
                 id_user: userId,
                 date: dateNew.value,
-                price: amountNew.value,
+                price: pricefinal,
                 description: descNew.value,
                 category: categoryNew.value,
                 type: type_value_new
@@ -173,9 +182,9 @@ function openModal(index){
                 const item = JSON.parse(request.responseText);
                 if(request.readyState == 4 && request.status == "200"){
                     console.table(item);
-                    alert("A operação foi atualizada com sucesso!");
-                    document.querySelector(".modalClose").click();
                     loadItens();
+                    alert("A operação foi atualizada com sucesso!");
+                    Modal_ajuste.close();
                 }else{
                     console.error(item);
                 };
@@ -183,7 +192,7 @@ function openModal(index){
             request.send(JSON.stringify(params));
         }else{
             alert("A operação não foi atualizada!");
-            document.querySelector(".modalClose").click();
+            document.querySelector(".modal_ajuste.close()").click();
         };
     });
 };

@@ -20,6 +20,21 @@ const Modal = {
     }
 }
 
+const Modal_ajuste = {
+    open() {
+    document
+    .querySelector('.modal-ajuste')
+    .classList
+    .add('active')
+    },
+    close () {
+    document
+    .querySelector('.modal-ajuste')
+    .classList
+    .remove('active')
+    }
+}
+
 const Modal_sobre = {
     open() {
     document
@@ -147,7 +162,7 @@ const Form = {
             //Transaction.add(transaction)
             //Form.formatData()
             Form.clearFields()
-            Modal.close()
+            //Modal.close()
 
         } catch (error) {
             alert(error.message)
