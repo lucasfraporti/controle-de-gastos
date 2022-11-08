@@ -49,39 +49,49 @@ function loadItens(){
     getTotals();
 };
 
-
+function validainput(){
+    swal("É necessário preencher todos os campos!", {
+    buttons: false,
+    timer: 3000,
+    });  
+};
 
 // Incluir um gasto no Banco de Dados
 btnInclude.onclick = () => {
-    if(desc.value === "" || amount.value === ""){
-        return alert("Preencha todos os campos!");
+    if(desc.value === "" || amount.value === "" || date.value === ""){
+        validainput()
+        //return alert("Preencha todos os campos!");
+    }
+
+    else{
+        if(amount.value > 0){
+            type_value = "E";
+        }else{
+            type_value = "S";
+        };
+    
+        const priceatual = document.querySelector("#amount").value;
+        const pricefinal = priceatual.replace('-','');
+    
+        const params = {
+            id_user: window.localStorage.getItem('id'),
+            date: document.querySelector("#date-input").value,
+            price: pricefinal,
+            description: document.querySelector("#desc").value,
+            category: document.querySelector("#category").value,
+            type: type_value
+        };
+    
+        const request = new XMLHttpRequest();
+        request.open("POST", "http://localhost:3001/post", false);
+        request.setRequestHeader("Content-type", "application/json");
+        console.log(JSON.stringify(params))
+        request.send(JSON.stringify(params));
+    
+        loadItens();
     };
 
-    if(amount.value > 0){
-        type_value = "E";
-    }else{
-        type_value = "S";
-    };
-
-    const priceatual = document.querySelector("#amount").value;
-    const pricefinal = priceatual.replace('-','');
-
-    const params = {
-        id_user: window.localStorage.getItem('id'),
-        date: document.querySelector("#date-input").value,
-        price: pricefinal,
-        description: document.querySelector("#desc").value,
-        category: document.querySelector("#category").value,
-        type: type_value
-    };
-
-    const request = new XMLHttpRequest();
-    request.open("POST", "http://localhost:3001/post", false);
-    request.setRequestHeader("Content-type", "application/json");
-    console.log(JSON.stringify(params))
-    request.send(JSON.stringify(params));
-
-    loadItens();
+    
 
 };
 

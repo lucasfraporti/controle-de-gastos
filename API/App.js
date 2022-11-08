@@ -130,6 +130,7 @@ App.post("/post", (req, res) => {
             res.status(500).send(err);
         }else{
             res.status(201).json(result);
+            console.log('id_user dhasdhahda:', id_user)
         };
     });
 });
