@@ -5,6 +5,7 @@ const jwt = require("jsonwebtoken");
 const App = express();
 const port = 3001;
 
+
 var dataatual = new Date();
 
 var mesatual = String(dataatual.getMonth() + 1).padStart(2, '0');
@@ -79,6 +80,7 @@ App.post('/cadastro', (req, res) => {
 
 // localhost:3001/get
 App.get("/get", (req, res) => {
+    const user_id = req.body;
     db.query("SELECT * FROM valores where month(date) = ? and year(date) = ? ORDER BY date", [mesatual, anoatual], (err, result) => {
         if(err){
             res.status(500).send(err);
@@ -102,7 +104,7 @@ App.get("/get/id/:id", (req, res) => {
 
 // localhost:3001/get/profit
 App.get("/get/profit", (req, res) => {
-    db.query("SELECT COALESCE(SUM(price), 0) AS total_sum FROM valores WHERE type = 'E'", (err, result) => {
+    db.query("SELECT COALESCE(SUM(price), 0) AS total_sum FROM valores WHERE type = 'E' and month(date) = ? and year(date) = ? ", [mesatual, anoatual], (err, result) => {
         if(err){
             res.status(500).send(err);
         }else{
@@ -113,7 +115,7 @@ App.get("/get/profit", (req, res) => {
 
 // localhost:3001/get/loss
 App.get("/get/loss", (req, res) => {
-    db.query("SELECT COALESCE(SUM(price), 0) AS total_sum FROM valores WHERE type = 'S'", (err, result) => {
+    db.query("SELECT COALESCE(SUM(price), 0) AS total_sum FROM valores WHERE type = 'S' and month(date) = ? and year(date) = ? ", [mesatual, anoatual],(err, result) => {
         if(err){
             res.status(500).send(err);
         }else{
@@ -130,7 +132,6 @@ App.post("/post", (req, res) => {
             res.status(500).send(err);
         }else{
             res.status(201).json(result);
-            console.log('id_user dhasdhahda:', id_user)
         };
     });
 });
