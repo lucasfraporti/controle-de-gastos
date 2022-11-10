@@ -10,6 +10,9 @@ const profit = document.querySelector("#profit");
 const loss = document.querySelector("#loss");
 const total = document.querySelector("#total");
 
+//id firebase
+const iduser = window.localStorage.getItem('id');
+
 //const btnCSV = document.getElementById("downloadCSV");
 
 function fazGet(url){
@@ -38,14 +41,20 @@ function formatavalor(valor) {
     return formatado;
   }
 
+function getprofit(){
+   const profit =  formatavalor(getValores("http://localhost:3001/getprofit/" + iduser));
+   return profit
+
+};
+
 function getTotals(){
-    profit.innerHTML =  formatavalor(getValores("http://localhost:3001/get/profit"));
+    profit.innerHTML =  getprofit();
     loss.innerHTML =  formatavalor(getValores("http://localhost:3001/get/loss"));
     total.innerHTML = formatavalor((getValores("http://localhost:3001/get/profit") - getValores("http://localhost:3001/get/loss")));
 };
 
 function loadItens(){
-    items = getWithIndex("http://localhost:3001/get");
+    items = getWithIndex("http://localhost:3001/gettabela/" + iduser);
     tbody.innerHTML = "";
     items.forEach((item, index) => {
         insertItem(item, index);

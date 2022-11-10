@@ -78,8 +78,9 @@ App.post('/cadastro', (req, res) => {
 });
 
 // localhost:3001/get
-App.get("/get", (req, res) => {
-    db.query("SELECT * FROM valores where month(date) = ? and year(date) = ? ORDER BY date", [mesatual, anoatual], (err, result) => {
+App.get("/gettabela/:iduser", (req, res) => {
+    const user_id = req.params.iduser;
+    db.query("SELECT * FROM valores where month(date) = ? and year(date) = ? and id_user = ? ORDER BY date", [mesatual, anoatual, user_id], (err, result) => {
         if(err){
             res.status(500).send(err);
         }else{
@@ -89,17 +90,29 @@ App.get("/get", (req, res) => {
 });
 
 
-// -->> BUSCAR AS OPERAÇÕES PELO ID DO USUÁRIO, RECEBENDO COMO PARÂMETRO
-// App.get("/getporuserid/:iduser", (req, res) => {
-//     const user_id = req.params.iduser;
-//     db.query("SELECT * FROM valores where month(date) = ? and year(date) = ? AND id_user = ? ORDER BY date", [mesatual, anoatual, user_id], (err, result) => {
-//         if(err){
-//             res.status(500).send(err);
-//         }else{
-//             res.send(result);
-//         };
-//     });
-// });
+//-->> BUSCAR AS OPERAÇÕES PELO ID DO USUÁRIO, RECEBENDO COMO PARÂMETRO
+// localhost:3001/getporuserid/:iduser
+App.get("/getprofit/:iduser", (req, res) => {
+    const user_id = req.params.iduser;
+    db.query("SELECT COALESCE(SUM(price), 0) AS total_sum FROM valores WHERE type = 'E' and month(date) = ? and year(date) = ?  and id_user = ? ", [mesatual, anoatual,user_id], (err, result) => {
+        if(err){
+            res.status(500).send(err);
+        }else{
+            res.send(result);
+        };
+    });
+});
+
+App.get("/getloss/:iduser", (req, res) => {
+    const user_id = req.params.iduser;
+    db.query("SELECT COALESCE(SUM(price), 0) AS total_sum FROM valores WHERE type = 'S' and month(date) = ? and year(date) = ?  and id_user = ? ", [mesatual, anoatual,user_id], (err, result) => {
+        if(err){
+            res.status(500).send(err);
+        }else{
+            res.send(result);
+        };
+    });
+});
 
 
 // localhost:3001/get/id/:id
