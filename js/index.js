@@ -47,10 +47,23 @@ function getprofit(){
 
 };
 
+function getloss(){
+    const loss =  formatavalor(getValores("http://localhost:3001/getloss/" + iduser));
+    return loss
+ 
+ };
+
+function getprofitandloss(){
+    const profit =  getValores("http://localhost:3001/getprofit/" + iduser);
+    const loss =  getValores("http://localhost:3001/getloss/" + iduser);
+    const total = formatavalor(profit - loss);
+    return total;
+};
+
 function getTotals(){
     profit.innerHTML =  getprofit();
-    loss.innerHTML =  formatavalor(getValores("http://localhost:3001/get/loss"));
-    total.innerHTML = formatavalor((getValores("http://localhost:3001/get/profit") - getValores("http://localhost:3001/get/loss")));
+    loss.innerHTML = getloss();
+    total.innerHTML = getprofitandloss();
 };
 
 function loadItens(){
