@@ -12,9 +12,6 @@ const total = document.querySelector("#total");
 
 //const btnCSV = document.getElementById("downloadCSV");
 
-
-
-
 function fazGet(url){
     const request = new XMLHttpRequest();
     request.open("GET", url, false);

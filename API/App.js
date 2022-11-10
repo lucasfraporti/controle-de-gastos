@@ -1,10 +1,8 @@
 const express = require("express");
 const mysql = require("mysql");
 const cors = require("cors");
-const jwt = require("jsonwebtoken");
 const App = express();
 const port = 3001;
-
 
 var dataatual = new Date();
 
@@ -22,6 +20,7 @@ var db = mysql.createPool({
     "host": "us-cdbr-east-06.cleardb.net",
     "port": 3306
 });
+
 exports.execute = (query, params=[]) => {
     return new Promise((resolve, reject) => {
         pool.query(query, params, (error, result, fields) => {
@@ -80,7 +79,6 @@ App.post('/cadastro', (req, res) => {
 
 // localhost:3001/get
 App.get("/get", (req, res) => {
-    const user_id = req.body;
     db.query("SELECT * FROM valores where month(date) = ? and year(date) = ? ORDER BY date", [mesatual, anoatual], (err, result) => {
         if(err){
             res.status(500).send(err);
@@ -89,6 +87,20 @@ App.get("/get", (req, res) => {
         };
     });
 });
+
+
+// -->> BUSCAR AS OPERAÇÕES PELO ID DO USUÁRIO, RECEBENDO COMO PARÂMETRO
+// App.get("/getporuserid/:iduser", (req, res) => {
+//     const user_id = req.params.iduser;
+//     db.query("SELECT * FROM valores where month(date) = ? and year(date) = ? AND id_user = ? ORDER BY date", [mesatual, anoatual, user_id], (err, result) => {
+//         if(err){
+//             res.status(500).send(err);
+//         }else{
+//             res.send(result);
+//         };
+//     });
+// });
+
 
 // localhost:3001/get/id/:id
 App.get("/get/id/:id", (req, res) => {
