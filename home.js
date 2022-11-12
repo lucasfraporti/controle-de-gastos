@@ -16,12 +16,13 @@ const Modal_login = {
 
 
 function limpacampos(){
-    document.getElementById("email").value='';; 
-    document.getElementById("login-button").value='';
+    document.getElementById("email").value=''; 
     document.getElementById("password").value='';
     document.getElementById("regemail").value='';
     document.getElementById("regpassword1").value='';
     document.getElementById("regpassword2").value='';
+    labelEmaillogin.setAttribute('style', 'color: black');
+    labelPasswordlogin.setAttribute('style', 'color: black');
 };
 
  

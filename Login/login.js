@@ -5,6 +5,9 @@ firebase.auth().onAuthStateChanged(user => {
   }
 })
 
+
+
+
 //DECLARANDO AS CONST
 const form = {
   email: () => document.getElementById("email"),
@@ -14,6 +17,14 @@ const form = {
   regpassword1: () => document.getElementById("regpassword1"),
   regpassword2: () => document.getElementById("regpassword2"),
 }
+
+//validar e-mail
+function validateEmail(emailteste) {
+  var re = /\S+@\S+\.\S+/;
+  return re.test(emailteste);
+}
+
+
 
 
 // CONTROLA A NAVEGAÇÃO ENTRE ABAS DE CADASTRO E LOGIN
@@ -99,16 +110,16 @@ let labePassword2 = document.querySelector('#labelPassword2')
 let validPassword2 = false
 
 regemail.addEventListener('keyup', () => {
-  if(regemail.value.length <= 2){
-    labelEmail.setAttribute('style', 'color: red')
-    labelEmail.innerHTML = 'Insira no minimo 3 caracteres'
-    regemail.setAttribute('style', 'border-color: red')
-    validEmail = false
-  } else {
+  if(validateEmail(regemail.value)){
     labelEmail.setAttribute('style', 'color: green')
     labelEmail.innerHTML = 'Email'
     regemail.setAttribute('style', 'border-color: green')
     validEmail = true
+  } else {
+    labelEmail.setAttribute('style', 'color: red')
+    labelEmail.innerHTML = 'Insira em e-mail valido'
+    regemail.setAttribute('style', 'border-color: red')
+    validEmail = false
   }
 })
 
@@ -142,10 +153,6 @@ confirmPassword.addEventListener('keyup', () => {
 
 // FUNCTION DE LOGAR
 function login() {
-  var email = form.email().value;
-  var password = form.password().value;
-  //console.log(email)
-
   if (form.email().value === "" && form.password().value === ""){
     console.log('teste')
     return labelEmaillogin.setAttribute('style', 'color: red'),labelPasswordlogin.setAttribute('style', 'color: red')
@@ -188,7 +195,12 @@ function register() {
         getErrorMessage(error);
     })
   } else {
-    alert("deu ruim gurizada");
+    labelEmail.setAttribute('style', 'color: red'),
+    labelEmail.innerHTML = 'Insira um e-mail valido',
+    labePassword1.setAttribute('style', 'color: red'),
+    labePassword1.innerHTML = 'Insira no minimo 6 caracteres',
+    labePassword2.setAttribute('style', 'color: red'),
+    labePassword2.innerHTML = 'Insira no minimo 6 caracteres'
   }
 }
 
