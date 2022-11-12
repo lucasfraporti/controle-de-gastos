@@ -5,6 +5,17 @@ firebase.auth().onAuthStateChanged(user => {
   }
 })
 
+//DECLARANDO AS CONST
+const form = {
+  email: () => document.getElementById("email"),
+  loginButton: () => document.getElementById("login-button"),
+  password: () => document.getElementById("password"),
+  regemail: () => document.getElementById("regemail"),
+  regpassword1: () => document.getElementById("regpassword1"),
+  regpassword2: () => document.getElementById("regpassword2"),
+}
+
+
 // CONTROLA A NAVEGAÇÃO ENTRE ABAS DE CADASTRO E LOGIN
 var formSignin = document.querySelector('#signin')
 var formSignup = document.querySelector('#signup')
@@ -24,6 +35,8 @@ document.querySelector('#btnSignup')
     btnColor.style.left = "110px"
 })
 
+
+//logout
 function logout() {
   firebase.auth().signOut().then(() => {
       window.location.href = "home.html";
@@ -32,26 +45,47 @@ function logout() {
   })
 }
 
-// FUNCTION DE LOGAR
-function login() {
-  firebase.auth().signInWithEmailAndPassword(
-    form.email().value, form.password().value
-  ).then(() => {
-      window.location.href = "Pages/Principal/index.html";
-      const emailuser = firebase.auth().currentUser.email;
-      var user = ((emailuser.match(/(\S+)@/) || [])[1]);
-      localStorage.setItem('user', user );
-      localStorage.setItem('id', firebase.auth().currentUser.uid);
-  }).catch(error => {
-      alert(getErrorMessage(error));
-  });
-}
 
-function teste(){
-  alert(form.email().value + form.password().value);
-}
+//login
+let labelEmaillogin = document.querySelector('#labelEmaillogin')
+let emaillogin = document.querySelector('#email')
+let validEmaillogin = false
 
-// validando novos users
+let labelPasswordlogin = document.querySelector('#labelPasswordlogin')
+let passwordlogin = document.querySelector('#password')
+let validPasswordlogin = false
+
+emaillogin.addEventListener('keyup', () => {
+  if(emaillogin.value.length < 0){
+    // labelEmaillogin.setAttribute('style', 'color: red')
+    // labelEmaillogin.innerHTML = 'Insira no minimo 3 caracteres'
+    // emaillogin.setAttribute('style', 'border-color: red')
+    // validEmaillogin = false
+  } else {
+    labelEmaillogin.setAttribute('style', 'color: black')
+    labelEmaillogin.innerHTML = 'Email'
+    emaillogin.setAttribute('style', 'border-color: green')
+    validEmaillogin = true
+  }
+})
+
+passwordlogin.addEventListener('keyup', () => {
+  if(passwordlogin.value.length < 0){
+    // labelEmaillogin.setAttribute('style', 'color: red')
+    // labelEmaillogin.innerHTML = 'Insira no minimo 3 caracteres'
+    // emaillogin.setAttribute('style', 'border-color: red')
+    // validEmaillogin = false
+  } else {
+    labelPasswordlogin.setAttribute('style', 'color: black')
+    labelPasswordlogin.innerHTML = 'Senha'
+    passwordlogin.setAttribute('style', 'border-color: green')
+    validPasswordlogin = true
+  }
+})
+
+
+
+//cadastro novo user
 let regemail = document.querySelector('#regemail')
 let labelEmail = document.querySelector('#labelEmail')
 let validEmail = false
@@ -106,6 +140,37 @@ confirmPassword.addEventListener('keyup', () => {
   }
 })
 
+// FUNCTION DE LOGAR
+function login() {
+  var email = form.email().value;
+  var password = form.password().value;
+  //console.log(email)
+
+  if (form.email().value === "" && form.password().value === ""){
+    console.log('teste')
+    return labelEmaillogin.setAttribute('style', 'color: red'),labelPasswordlogin.setAttribute('style', 'color: red')
+  }
+
+  else{
+    firebase.auth().signInWithEmailAndPassword(
+      form.email().value, form.password().value
+    ).then(() => {
+        window.location.href = "Pages/Principal/index.html";
+        const emailuser = firebase.auth().currentUser.email;
+        var user = ((emailuser.match(/(\S+)@/) || [])[1]);
+        localStorage.setItem('user', user );
+        localStorage.setItem('id', firebase.auth().currentUser.uid);
+    }).catch(error => {
+        getErrorMessage(error);
+    });
+  }
+
+}
+
+function teste(){
+  alert(form.email().value + form.password().value);
+}
+
 // FUNCTION DE CADASTRAR NOVO USER
 function register() {
   const regemail = form.regemail().value;
@@ -120,31 +185,48 @@ function register() {
         localStorage.setItem('id', firebase.auth().currentUser.uid);  
         window.location.href = "Pages/Principal/index.html";
     }).catch(error => {
-        alert(getErrorMessage(error));
+        getErrorMessage(error);
     })
   } else {
     alert("deu ruim gurizada");
   }
 }
 
+
+// FUNCTION RECUPERAR SENHA
+
+function recoverPassword() {
+  if (form.email().value === ""){
+    console.log('teste')
+    return labelEmaillogin.setAttribute('style', 'color: red'),labelEmaillogin.innerHTML = 'Preencha o campo e-mail'
+  }
+  else{
+    firebase.auth().sendPasswordResetEmail(form.email().value).then(() => {
+      alert('Email enviado com sucesso');
+  }).catch(error => {
+      getErrorMessage(error);
+  });
+  }
+
+}
+
 // RETORNAR OS ERROS DO FIREBASE
 function getErrorMessage(error) {
   if (error.code == "auth/user-not-found") {
-      return "Usuário nao encontrado";
+      return labelEmaillogin.setAttribute('style', 'color: red'),
+      labelEmaillogin.innerHTML = 'E-mail não cadastrado',
+      emaillogin.setAttribute('style', 'border-color: red');
   }
   if (error.code == "auth/wrong-password") {
-      return "Senha inválida";
+      return labelPasswordlogin.setAttribute('style', 'color: red'),
+      labelPasswordlogin.innerHTML = 'Senha incorreta',
+      passwordlogin.setAttribute('style', 'border-color: red');
+  }
+  if (error.code == "auth/email-already-in-use") {
+    return labelEmail.setAttribute('style', 'color: red'),
+    labelEmail.innerHTML = 'E-mail já cadastrado',
+    regemail.setAttribute('style', 'border-color: red');
   }
 
   return error.message;
-}
-
-//DECLARANDO AS CONST
-const form = {
-  email: () => document.getElementById("email"),
-  loginButton: () => document.getElementById("login-button"),
-  password: () => document.getElementById("password"),
-  regemail: () => document.getElementById("regemail"),
-  regpassword1: () => document.getElementById("regpassword1"),
-  regpassword2: () => document.getElementById("regpassword2"),
-}
+};
