@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Pila</title>
+
+  <link rel="stylesheet" href="home.css">
+  <link rel="preconnect" href="https://fonts.gstatic.com">
+  <link
+  href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,400;0,700;1,100;1,400;1,700&display=swap"
+  rel="stylesheet">
+  <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+</head>
+<body>
+  <div class="bank">
+    <main>
+      <section class="hero">
+        <header data-aos="fade-down">
+          <img src="" alt="">
+        </header>
+        <div class="hero-items" data-aos="fade-up">
+          <div class="hero-item-1">
+            <p>Nunca foi tão fácil<br>controlar suas <br>finanças</p>
+          </div>
+          <div class="hero-item-2" data-aos="fade-up">
+            <p>Acesse agora mesmo<br>a sua conta no Pila</p>
+            <a href="#"
+              onclick="Modal_login.open()">
+              Continuar
+              <img src="assets/arrow.svg" alt="">
+            </a>
+          </div>
+        </div>
+      </section>
+      
+  </div>
+  <div class="modal-login">
+    <div class="container">
+      <button class="fechar" id="fechar" onclick="Modal_login.close()">X</button>
+      <div class="buttonsForm">
+        <div class="btnColor"></div>
+        <button id="btnSignin">Login</button>
+        <button id="btnSignup">Cadastro</button>
+      </div>
+      
+      <form id="signin">
+        <input type="email" placeholder="Email" id="email" required />
+        <i class="fas fa-envelope iEmail"></i>
+        <input type="password" placeholder="Senha" id="password" required />
+        <i class="fas fa-lock iPassword"></i>
+        <div class="divCheck">
+          <input type="checkbox" />
+          <span>Lembrar senha</span>
+        </div>
+        <button type="button" onclick="login()">Entrar</button>
+        
+      </form>
+  
+      <form id="signup">
+        <label id="labelEmail" for="Email">Email</label>
+        <input type="regemail" placeholder="Email"  id="regemail"required />
+        <i class="fas fa-envelope iRegEmail"></i>
+        <label id="labelPassword1" for="Senha">Senha</label>
+        <input type="password" placeholder="Senha" id="regpassword1" required />
+        <i class="fas fa-lock iRegPassword"></i>
+        <label id="labelPassword2" for="Senha">Confirmar Senha</label>
+        <input type="password" placeholder="Senha" id="regpassword2" required />
+        <i class="fas fa-lock iRegPassword2"></i>
+        <div class="divCheck">
+          <input type="checkbox" required />
+          <span>Termos</span>
+        </div>
+        <button type="button" onclick="register()">Cadastrar</button>
+      </form>
+    </div>
+
+  </div>
+
+<link rel="stylesheet" href="/Login/style_login.css">
+<script src="https://kit.fontawesome.com/cf6fa412bd.js" crossorigin="anonymous"></script>
+
+<script src="https://www.gstatic.com/firebasejs/9.6.7/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/9.6.7/firebase-auth-compat.js"></script>
+
+<script src="/Firebase/firebase-init.js"></script>
+
+<script src="/Login/login.js"></script>
+<!-- <script src="scripts.js"></script> -->
+<script src="home.js"></script>
+<script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+<script>
+    AOS.init();
+  </script>
+</body>
+</html>
