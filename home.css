@@ -398,7 +398,7 @@
   .bank .hero {
     background: #3dd705;
     height: 100vh;
-    background-image: url("bg-hero.svg");
+    background-image: url("Vendors/img/bubble-gum-blue-piggy-bank-with-bitcoin-coin.gif");
     background-position: bottom center;
     background-repeat: no-repeat;
   }
@@ -839,3 +839,63 @@
             transform: translate(2rem, 50%);
   }
   /*# sourceMappingURL=styles.css.map */
+
+
+
+  
+  .container {
+      background: #F0F2f5;
+      padding: 2.4rem;
+      position: relative;
+      z-index: 1;
+  }
+
+  .modal-login {
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0,0,0, 0.7);
+    position: fixed;
+    top: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    visibility: hidden;
+    z-index: 999;
+}
+
+.modal-login.active {
+    opacity: 1;
+    visibility: visible;
+}
+
+.btn{
+  padding: 25px 60px;
+  display: inline;
+  background-color: linear-gradient(to right, #0fc82e, #13cf52);;
+  border-radius: 20px;
+  color: #fff;
+  font-size: 20px;
+  cursor: pointer;
+  transition: background-color 0.5s;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 1;
+}
+
+.fechar{
+  position: absolute;
+  top: 5px;
+  right: 5px;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  border: none;
+  background-color: #08be11;
+  color: #fff;
+  font-weight: 700;
+  font-size: 14pt;
+  cursor: pointer;
+}

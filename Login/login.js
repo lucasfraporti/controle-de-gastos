@@ -29,7 +29,7 @@ document.querySelector('#btnSignup')
 
 function logout() {
   firebase.auth().signOut().then(() => {
-      window.location.href = "login.html";
+      window.location.href = "home.html";
   }).catch(() => {
       alert('Erro ao fazer logout');
   })
