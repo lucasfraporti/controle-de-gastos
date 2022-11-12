@@ -10,10 +10,12 @@ const profit = document.querySelector("#profit");
 const loss = document.querySelector("#loss");
 const total = document.querySelector("#total");
 
+const usuario = document.querySelector("#usuario");
+
+//id firebase
+const iduser = window.localStorage.getItem('id');
+
 //const btnCSV = document.getElementById("downloadCSV");
-
-
-
 
 function fazGet(url){
     const request = new XMLHttpRequest();
@@ -34,14 +36,41 @@ function getWithIndex(url){
     return entradas;
 };
 
-function getTotals(){
-    profit.innerHTML =  'R$ ' + getValores("http://localhost:3001/get/profit");
-    loss.innerHTML =  'R$ ' +  getValores("http://localhost:3001/get/loss");
-    total.innerHTML = 'R$ ' + ( getValores("http://localhost:3001/get/profit") - getValores("http://localhost:3001/get/loss")).toFixed(2);
+//formatar os valores
+function formatavalor(valor) {
+    const formatado = valor.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' });
+  
+    return formatado;
+  }
+
+function getprofit(){
+   const profit =  formatavalor(getValores("http://localhost:3001/getprofit/" + iduser));
+   return profit
+
 };
 
+function getloss(){
+    const loss =  formatavalor(getValores("http://localhost:3001/getloss/" + iduser));
+    return loss
+ 
+ };
+
+function getprofitandloss(){
+    const profit =  getValores("http://localhost:3001/getprofit/" + iduser);
+    const loss =  getValores("http://localhost:3001/getloss/" + iduser);
+    const total = formatavalor(profit - loss);
+    return total;
+};
+
+function getTotals(){
+    profit.innerHTML =  getprofit();
+    loss.innerHTML = getloss();
+    total.innerHTML = getprofitandloss();
+};
+
+
 function loadItens(){
-    items = getWithIndex("http://localhost:3001/get");
+    items = getWithIndex("http://localhost:3001/gettabela/" + iduser);
     tbody.innerHTML = "";
     items.forEach((item, index) => {
         insertItem(item, index);
@@ -49,10 +78,15 @@ function loadItens(){
     getTotals();
 };
 
-
+function validainput(){
+    swal("É necessário preencher todos os campos!", {
+    buttons: false,
+    timer: 3000,
+    });  
+};
 
 // Incluir um gasto no Banco de Dados
-btnInclude.onclick = () => {
+function incluirgasto(){
     if(desc.value === "" || amount.value === ""){
         return alert("Preencha todos os campos!");
     };
@@ -82,6 +116,7 @@ btnInclude.onclick = () => {
     request.send(JSON.stringify(params));
 
     loadItens();
+    Modal.close();
 
 };
 
@@ -100,14 +135,13 @@ function insertItem(item){
     tr.innerHTML = `
     <td id="exportarCSV">${item.date.split("T")[0].split("-").reverse().join("/")}</td>
     <td id="exportarCSV">${item.description}</td>
-    <td id="exportarCSV" class="${CSSClass}">R$${item.price}</td>
+    <td id="exportarCSV" class="${CSSClass}">${formatavalor(item.price)}</td>
     <td id="exportarCSV">${item.category}</td>
     <td id="exportarCSV" class="${CSSClass}">${type_new_value}</td>
     </td>
     <td class="columnAction">
+    <img onclick="openModal(${item.id})" src="/Vendors/img/edit.png" width='27'" alt="Alterar transação">
     <img onclick="deleteItem(${item.id})" src="/Vendors/img/recycle-bin.png" width='27'" alt="remover transação">
-    <img onclick="openModal(${item.id})" src="/Vendors/img/edit.png" width='27'" alt="remover transação">
- 
     </td>
     `;
 
@@ -116,13 +150,13 @@ function insertItem(item){
 
 // Abertura do modal para atualização de um gasto
 function openModal(index){
-    location.href = "http://127.0.0.1:5500/#atualizarGasto";
+    Modal_ajuste.open();
 
     let userId;
     const dateNew = document.querySelector("#dateNew");
     const descNew = document.querySelector("#descNew");
     const amountNew = document.querySelector("#amountNew");
-    const typeNew = document.querySelector("#typeNew");
+    
     const categoryNew = document.querySelector("#categoryNew");
     const btnAtualizar = document.getElementById("btnAtualizar");
 
@@ -130,13 +164,13 @@ function openModal(index){
     items.forEach((item) => {
         dateNew.value = item.date.split("T")[0];
         descNew.value = item.description;
-        amountNew.value = item.price;
+        //amountNew.value = item.price;
         categoryNew.value = item.category;
         userId = item.id_user;
         if(item.type === "E"){
-            typeNew.value = "Entrada";
+            amountNew.value = item.price;
         }else{
-            typeNew.value = "Saída";
+            amountNew.value = '-'+item.price;
         };
     });
 
@@ -146,16 +180,18 @@ function openModal(index){
         };
         const resposta = confirm("Você tem certeza que quer atualizar esta operação?");
         if(resposta){    
-            if(typeNew.value === "Entrada"){
+            if(amountNew.value > 0){
                 type_value_new = "E";
             }else{
                 type_value_new = "S";
             };
 
+            const pricefinal = amountNew.value.replace('-','');
+
             const params = {
                 id_user: userId,
                 date: dateNew.value,
-                price: amountNew.value,
+                price: pricefinal,
                 description: descNew.value,
                 category: categoryNew.value,
                 type: type_value_new
@@ -168,9 +204,9 @@ function openModal(index){
                 const item = JSON.parse(request.responseText);
                 if(request.readyState == 4 && request.status == "200"){
                     console.table(item);
-                    alert("A operação foi atualizada com sucesso!");
-                    document.querySelector(".modalClose").click();
                     loadItens();
+                    alert("A operação foi atualizada com sucesso!");
+                    Modal_ajuste.close();
                 }else{
                     console.error(item);
                 };
@@ -178,7 +214,7 @@ function openModal(index){
             request.send(JSON.stringify(params));
         }else{
             alert("A operação não foi atualizada!");
-            document.querySelector(".modalClose").click();
+            document.querySelector(".modal_ajuste.close()").click();
         };
     });
 };

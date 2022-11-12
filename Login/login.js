@@ -5,7 +5,6 @@ firebase.auth().onAuthStateChanged(user => {
   }
 })
 
-
 // CONTROLA A NAVEGAÇÃO ENTRE ABAS DE CADASTRO E LOGIN
 var formSignin = document.querySelector('#signin')
 var formSignup = document.querySelector('#signup')
@@ -25,8 +24,6 @@ document.querySelector('#btnSignup')
     btnColor.style.left = "110px"
 })
 
-//logout
-
 function logout() {
   firebase.auth().signOut().then(() => {
       window.location.href = "home.html";
@@ -35,13 +32,16 @@ function logout() {
   })
 }
 
-
 // FUNCTION DE LOGAR
 function login() {
   firebase.auth().signInWithEmailAndPassword(
     form.email().value, form.password().value
   ).then(() => {
       window.location.href = "Pages/Principal/index.html";
+      const emailuser = firebase.auth().currentUser.email;
+      var user = ((emailuser.match(/(\S+)@/) || [])[1]);
+      localStorage.setItem('user', user );
+      localStorage.setItem('id', firebase.auth().currentUser.uid);
   }).catch(error => {
       alert(getErrorMessage(error));
   });
@@ -50,7 +50,6 @@ function login() {
 function teste(){
   alert(form.email().value + form.password().value);
 }
-
 
 // validando novos users
 let regemail = document.querySelector('#regemail')
@@ -111,11 +110,14 @@ confirmPassword.addEventListener('keyup', () => {
 function register() {
   const regemail = form.regemail().value;
   const regpassword = form.regpassword1().value;
-
   if(validEmail && validPassword1 && validPassword2){
     firebase.auth().createUserWithEmailAndPassword(
         regemail, regpassword
     ).then(() => {
+        const emailuser = firebase.auth().currentUser.email;
+        var user = ((emailuser.match(/(\S+)@/) || [])[1]);
+        localStorage.setItem('user', user );
+        localStorage.setItem('id', firebase.auth().currentUser.uid);  
         window.location.href = "Pages/Principal/index.html";
     }).catch(error => {
         alert(getErrorMessage(error));
@@ -137,7 +139,6 @@ function getErrorMessage(error) {
   return error.message;
 }
 
-
 //DECLARANDO AS CONST
 const form = {
   email: () => document.getElementById("email"),
@@ -146,4 +147,4 @@ const form = {
   regemail: () => document.getElementById("regemail"),
   regpassword1: () => document.getElementById("regpassword1"),
   regpassword2: () => document.getElementById("regpassword2"),
-} 
+}

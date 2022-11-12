@@ -1,9 +1,13 @@
 const express = require("express");
 const mysql = require("mysql");
 const cors = require("cors");
-const jwt = require("jsonwebtoken");
 const App = express();
 const port = 3001;
+
+var dataatual = new Date();
+
+var mesatual = String(dataatual.getMonth() + 1).padStart(2, '0');
+var anoatual = dataatual.getFullYear();
 
 App.use(cors());
 App.use(express.json());
@@ -16,6 +20,7 @@ var db = mysql.createPool({
     "host": "us-cdbr-east-06.cleardb.net",
     "port": 3306
 });
+
 exports.execute = (query, params=[]) => {
     return new Promise((resolve, reject) => {
         pool.query(query, params, (error, result, fields) => {
@@ -73,8 +78,9 @@ App.post('/cadastro', (req, res) => {
 });
 
 // localhost:3001/get
-App.get("/get", (req, res) => {
-    db.query("SELECT * FROM valores ORDER BY date", (err, result) => {
+App.get("/gettabela/:iduser", (req, res) => {
+    const user_id = req.params.iduser;
+    db.query("SELECT * FROM valores where month(date) = ? and year(date) = ? and id_user = ? ORDER BY date", [mesatual, anoatual, user_id], (err, result) => {
         if(err){
             res.status(500).send(err);
         }else{
@@ -82,6 +88,52 @@ App.get("/get", (req, res) => {
         };
     });
 });
+
+App.get("/getchart", (req, res) => {
+    db.query("SELECT * from valores", (err, result) => {
+        if(err){
+            res.status(500).send(err);
+        }else{
+            res.send(result);
+        };
+    });
+});
+//-->> BUSCAR AS OPERAÇÕES PELO ID DO USUÁRIO, RECEBENDO COMO PARÂMETRO
+// localhost:3001/getporuserid/:iduser
+App.get("/getprofit/:iduser", (req, res) => {
+    const user_id = req.params.iduser;
+    db.query("SELECT COALESCE(SUM(price), 0) AS total_sum FROM valores WHERE type = 'E' and month(date) = ? and year(date) = ?  and id_user = ? ", [mesatual, anoatual,user_id], (err, result) => {
+        if(err){
+            res.status(500).send(err);
+        }else{
+            res.send(result);
+        };
+    });
+});
+
+// buscar valores pelos dias
+App.get("/operations", (req, res) => {
+    db.query("select v.date as data_operation, sum(v.price) as preco_operation from valores v where v.type= 'S' group by date", (err, result) => {
+        if(err){
+            res.status(500).send(err);
+        }else{
+            res.send(result);
+        };
+    });
+});
+
+
+App.get("/getloss/:iduser", (req, res) => {
+    const user_id = req.params.iduser;
+    db.query("SELECT COALESCE(SUM(price), 0) AS total_sum FROM valores WHERE type = 'S' and month(date) = ? and year(date) = ?  and id_user = ? ", [mesatual, anoatual,user_id], (err, result) => {
+        if(err){
+            res.status(500).send(err);
+        }else{
+            res.send(result);
+        };
+    });
+});
+
 
 // localhost:3001/get/id/:id
 App.get("/get/id/:id", (req, res) => {
@@ -97,7 +149,7 @@ App.get("/get/id/:id", (req, res) => {
 
 // localhost:3001/get/profit
 App.get("/get/profit", (req, res) => {
-    db.query("SELECT COALESCE(SUM(price), 0) AS total_sum FROM valores WHERE type = 'E'", (err, result) => {
+    db.query("SELECT COALESCE(SUM(price), 0) AS total_sum FROM valores WHERE type = 'E' and month(date) = ? and year(date) = ? ", [mesatual, anoatual], (err, result) => {
         if(err){
             res.status(500).send(err);
         }else{
@@ -108,7 +160,7 @@ App.get("/get/profit", (req, res) => {
 
 // localhost:3001/get/loss
 App.get("/get/loss", (req, res) => {
-    db.query("SELECT COALESCE(SUM(price), 0) AS total_sum FROM valores WHERE type = 'S'", (err, result) => {
+    db.query("SELECT COALESCE(SUM(price), 0) AS total_sum FROM valores WHERE type = 'S' and month(date) = ? and year(date) = ? ", [mesatual, anoatual],(err, result) => {
         if(err){
             res.status(500).send(err);
         }else{

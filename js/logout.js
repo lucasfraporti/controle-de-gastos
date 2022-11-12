@@ -1,16 +1,11 @@
-
-
-//logout
-
 function logout() {
     firebase.auth().signOut().then(() => {
         window.location.href = "../../home.html";
+        localStorage.clear();
     }).catch(() => {
         alert('Erro ao fazer logout');
     })
-  }
+}
 
-//user id
-  function showuser(){
-    localStorage.setItem('id', firebase.auth().currentUser.uid);
-};
+console.log(usuario.innerHTML = localStorage.getItem('user'))
+
