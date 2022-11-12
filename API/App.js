@@ -90,7 +90,6 @@ App.get("/gettabela/:iduser", (req, res) => {
 });
 
 App.get("/getchart", (req, res) => {
-   
     db.query("SELECT * from valores", (err, result) => {
         if(err){
             res.status(500).send(err);
@@ -111,6 +110,18 @@ App.get("/getprofit/:iduser", (req, res) => {
         };
     });
 });
+
+// buscar valores pelos dias
+App.get("/operations", (req, res) => {
+    db.query("select v.date as data_operation, sum(v.price) as preco_operation from valores v where v.type= 'S' group by date", (err, result) => {
+        if(err){
+            res.status(500).send(err);
+        }else{
+            res.send(result);
+        };
+    });
+});
+
 
 App.get("/getloss/:iduser", (req, res) => {
     const user_id = req.params.iduser;
