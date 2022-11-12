@@ -10,6 +10,8 @@ const profit = document.querySelector("#profit");
 const loss = document.querySelector("#loss");
 const total = document.querySelector("#total");
 
+const usuario = document.querySelector("#usuario");
+
 //id firebase
 const iduser = window.localStorage.getItem('id');
 
@@ -65,6 +67,7 @@ function getTotals(){
     loss.innerHTML = getloss();
     total.innerHTML = getprofitandloss();
 };
+
 
 function loadItens(){
     items = getWithIndex("http://localhost:3001/gettabela/" + iduser);

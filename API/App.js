@@ -89,7 +89,16 @@ App.get("/gettabela/:iduser", (req, res) => {
     });
 });
 
-
+App.get("/getchart", (req, res) => {
+   
+    db.query("SELECT * from valores", (err, result) => {
+        if(err){
+            res.status(500).send(err);
+        }else{
+            res.send(result);
+        };
+    });
+});
 //-->> BUSCAR AS OPERAÇÕES PELO ID DO USUÁRIO, RECEBENDO COMO PARÂMETRO
 // localhost:3001/getporuserid/:iduser
 App.get("/getprofit/:iduser", (req, res) => {

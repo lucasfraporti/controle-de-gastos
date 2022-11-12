@@ -38,6 +38,9 @@ function login() {
     form.email().value, form.password().value
   ).then(() => {
       window.location.href = "Pages/Principal/index.html";
+      const emailuser = firebase.auth().currentUser.email;
+      var user = ((emailuser.match(/(\S+)@/) || [])[1]);
+      localStorage.setItem('user', user );
       localStorage.setItem('id', firebase.auth().currentUser.uid);
   }).catch(error => {
       alert(getErrorMessage(error));
@@ -111,6 +114,10 @@ function register() {
     firebase.auth().createUserWithEmailAndPassword(
         regemail, regpassword
     ).then(() => {
+        const emailuser = firebase.auth().currentUser.email;
+        var user = ((emailuser.match(/(\S+)@/) || [])[1]);
+        localStorage.setItem('user', user );
+        localStorage.setItem('id', firebase.auth().currentUser.uid);  
         window.location.href = "Pages/Principal/index.html";
     }).catch(error => {
         alert(getErrorMessage(error));
