@@ -177,7 +177,11 @@
             </div>
         </section>
         
-
+        <article class="date-carousel">
+          <input type="button" class="date-carousel-prev" id="dataprev" value="&lt;">
+          <input type="month" class="date-carousel-input" id="datacarousel" onchange="myFunction('MyID');">
+          <input type="button" class="date-carousel-next" id="datanext" value="&gt;">
+        </article>
         <a href="#" 
         onclick="Modal.open()"
         class="button new">
@@ -430,7 +434,6 @@
     $('#category').select2();
     });
   </script>
-
     <script src="Dashboard.js"></script>
     <script src="/js/index.js"></script>
     <script src="./scripts.js"></script>
