@@ -41,6 +41,10 @@ body {
     margin-top: 200px;
 }
 
+.date-carousel{
+  margin-top: 15px;
+}
+
 h2{
     margin-top: 3.2rem;
     margin-bottom: 0.8rem;
@@ -889,8 +893,57 @@ nav {
   width: 48%;
 }  
 
+/* chartjs */
+
 #chart {
   max-width: 760px;
   margin: 35px auto;
   opacity: 0.9;
+}
+
+/* data filtro */
+.date-carousel {
+  background-color:  #f0f2f5;
+  box-sizing: border-box;
+  display: flex;
+  height: 0.5in;
+  margin: auto;
+  position: relative;
+  width:3in;
+  margin-top: .7rem;
+  margin-bottom: .7rem;
+}
+
+.date-carousel-next,
+.date-carousel-prev,
+.date-carousel-input {
+  box-sizing: border-box;
+  position:relative;
+  border: none;
+}
+
+.date-carousel-next,
+.date-carousel-prev {
+  background-color: transparent;
+  color: black;
+  cursor: pointer;
+  font-size: larger;
+  font-weight: bold;
+  width: 0.5in;
+}
+
+.date-carousel-input {
+  color: black;
+  background-color: transparent;
+  text-align: center;
+  width: 8in;
+  font-size: 1.5rem;
+}
+
+/* Disable Native UI */
+
+.date-carousel-input::-webkit-inner-spin-button,
+.date-carousel-input::-webkit-input-placeholder{
+    display: none;
+    -webkit-appearance: none;
 }
