@@ -50,15 +50,11 @@ var util = {
 
 //pegando a troca de data do carousel  
 
-document.getElementById("dataprev").addEventListener("click", dataprev);
-document.getElementById("datanext").addEventListener("click", datanext);
+document.getElementById("dataprev").addEventListener("click", loadItens);
+document.getElementById("datanext").addEventListener("click", loadItens);
 
-function dataprev() {
-    let data = document.getElementById("datacarousel").value;
-    let dataString = data.split('-') // Retornará ['09', '2022']
-    let mes = dataString[1]
-    let ano = dataString[0]
-    console.log(mes, ano);}
+function datamanual() {
+loadItens()}
 
 function datanext() {
     let data = document.getElementById("datacarousel").value;
@@ -99,25 +95,37 @@ function formatavalor(valor) {
   }
 
 function getprofit(){
-   const profit =  formatavalor(getValores("http://localhost:3001/getprofit/" + iduser));
-   return profit
+
+    let data = document.getElementById("datacarousel").value;
+    let dataString = data.split('-') // Retornará ['09', '2022']
+    let mes = dataString[1]
+    let ano = dataString[0]
+
+    const profit =  formatavalor(getValores("http://localhost:3001/get/profit2?id_user="+iduser+"&mes="+mes+"&ano="+ano));
+    return profit
 
 };
 
-function pegartabela2(){
-    const xx = getValores("http://localhost:3001/id_user="+id_user+"&mes="+mes+"&ano="+ano);
-}
-
-
 function getloss(){
-    const loss =  formatavalor(getValores("http://localhost:3001/getloss/" + iduser));
+    
+    let data = document.getElementById("datacarousel").value;
+    let dataString = data.split('-') // Retornará ['09', '2022']
+    let mes = dataString[1]
+    let ano = dataString[0]
+
+    const loss =  formatavalor(getValores("http://localhost:3001/get/loss2?id_user="+iduser+"&mes="+mes+"&ano="+ano));
     return loss
  
  };
 
 function getprofitandloss(){
-    const profit =  getValores("http://localhost:3001/getprofit/" + iduser);
-    const loss =  getValores("http://localhost:3001/getloss/" + iduser);
+    let data = document.getElementById("datacarousel").value;
+    let dataString = data.split('-') // Retornará ['09', '2022']
+    let mes = dataString[1]
+    let ano = dataString[0]
+
+    const profit = getValores("http://localhost:3001/get/profit2?id_user="+iduser+"&mes="+mes+"&ano="+ano);
+    const loss =  getValores("http://localhost:3001/get/loss2?id_user="+iduser+"&mes="+mes+"&ano="+ano);
     const total = formatavalor(profit - loss);
     return total;
 };
@@ -129,7 +137,14 @@ function getTotals(){
 };
 
 function loadItens(){
-    items = getWithIndex("http://localhost:3001/gettabela/" + iduser);
+
+    let data = document.getElementById("datacarousel").value;
+    let dataString = data.split('-') // Retornará ['09', '2022']
+    let mes = dataString[1]
+    let ano = dataString[0]
+
+
+    items = getWithIndex("http://localhost:3001/gettabela2?id_user="+iduser+"&mes="+mes+"&ano="+ano);
     tbody.innerHTML = "";
     items.forEach((item, index) => {
         insertItem(item, index);

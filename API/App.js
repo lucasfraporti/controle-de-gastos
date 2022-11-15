@@ -171,9 +171,35 @@ App.get("/get/profit", (req, res) => {
     });
 });
 
+App.get("/get/profit2", (req, res) => {
+    const id_user = req.query.id_user;
+    const mes = req.query.mes;
+    const ano = req.query.ano;
+    db.query("SELECT COALESCE(SUM(price), 0) AS total_sum FROM valores WHERE type = 'E' and month(date) = ? and year(date) = ? and id_user = ? ORDER BY date", [mes, ano, id_user], (err, result) => {
+        if(err){
+            res.status(500).send(err);
+        }else{
+            res.send(result);
+        };
+    });
+});
+
 // localhost:3001/get/loss
 App.get("/get/loss", (req, res) => {
     db.query("SELECT COALESCE(SUM(price), 0) AS total_sum FROM valores WHERE type = 'S' and month(date) = ? and year(date) = ? ", [mesatual, anoatual],(err, result) => {
+        if(err){
+            res.status(500).send(err);
+        }else{
+            res.send(result);
+        };
+    });
+});
+
+App.get("/get/loss2", (req, res) => {
+    const id_user = req.query.id_user;
+    const mes = req.query.mes;
+    const ano = req.query.ano;
+    db.query("SELECT COALESCE(SUM(price), 0) AS total_sum FROM valores WHERE type = 'S' and month(date) = ? and year(date) = ? and id_user = ? ORDER BY date", [mes, ano, id_user], (err, result) => {
         if(err){
             res.status(500).send(err);
         }else{
