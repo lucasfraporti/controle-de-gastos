@@ -89,7 +89,18 @@ App.get("/gettabela/:iduser", (req, res) => {
     });
 });
 
-
+App.get("/gettabela2", (req, res) => {
+    const id_user = req.query.id_user;
+    const mes = req.query.mes;
+    const ano = req.query.ano;
+    db.query("SELECT * FROM valores where month(date) = ? and year(date) = ? and id_user = ? ORDER BY date", [mes, ano, id_user], (err, result) => {
+        if(err){
+            res.status(500).send(err);
+        }else{
+            res.send(result);
+        };
+    });
+});
 
 App.get("/getchart", (req, res) => {
     db.query("SELECT * from valores", (err, result) => {

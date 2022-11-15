@@ -104,6 +104,11 @@ function getprofit(){
 
 };
 
+function pegartabela2(){
+    const xx = getValores("http://localhost:3001/id_user="+id_user+"&mes="+mes+"&ano="+ano);
+}
+
+
 function getloss(){
     const loss =  formatavalor(getValores("http://localhost:3001/getloss/" + iduser));
     return loss
@@ -122,7 +127,6 @@ function getTotals(){
     loss.innerHTML = getloss();
     total.innerHTML = getprofitandloss();
 };
-
 
 function loadItens(){
     items = getWithIndex("http://localhost:3001/gettabela/" + iduser);
