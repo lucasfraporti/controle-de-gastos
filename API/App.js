@@ -89,6 +89,8 @@ App.get("/gettabela/:iduser", (req, res) => {
     });
 });
 
+
+
 App.get("/getchart", (req, res) => {
     db.query("SELECT * from valores", (err, result) => {
         if(err){

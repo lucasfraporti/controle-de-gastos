@@ -44,17 +44,30 @@ var util = {
     
     next() {
       this.input.stepUp();
-    }
+    }  
   }
-  
   util.qsa('.date-carousel').forEach(function(el){ new DateCarousel(el) });
 
-// TESTE NOVA DATA
-function myfuction(IdTag){
-    var x = document.getElementById(IdTag).value;
-    alert('The new value is: '+x);
-}
+//pegando a troca de data do carousel  
 
+document.getElementById("dataprev").addEventListener("click", dataprev);
+document.getElementById("datanext").addEventListener("click", datanext);
+
+function dataprev() {
+    let data = document.getElementById("datacarousel").value;
+    let dataString = data.split('-') // Retornará ['09', '2022']
+    let mes = dataString[1]
+    let ano = dataString[0]
+    console.log(mes, ano);}
+
+function datanext() {
+    let data = document.getElementById("datacarousel").value;
+    let dataString = data.split('-') // Retornará ['09', '2022']
+    let mes = dataString[1]
+    let ano = dataString[0]
+    console.log(mes, ano);}
+
+// TESTE NOVA DATA
 
 
 //functions da API
