@@ -410,6 +410,10 @@ td.expense {
     width: 48%;
 }  
 
+.ls-select{
+  width: 1000px;
+}
+
 
 
 footer {
@@ -571,6 +575,7 @@ nav {
     position: relative;
     display: flex;
     align-items: center;
+    margin-bottom: 25px;
   }
   
   .sidebar-top .logo {
@@ -582,7 +587,7 @@ nav {
   .sidebar-top h3 {
     padding-left: 0.5rem;
     font-weight: 600;
-    font-size: 1.15rem;
+    font-size: 1.8rem;
   }
   
   .shrink-btn {
@@ -617,9 +622,9 @@ nav {
     pointer-events: all;
   }
   
-  .search {
+  /* .search {
     min-height: 2.7rem;
-    background-color: var(--main-color-light);
+    background-color: var(--main-color);
     margin: 2rem 0.5rem 1.7rem;
     display: grid;
     grid-template-columns: 2.7rem 1fr;
@@ -642,7 +647,7 @@ nav {
   .search input::placeholder {
     color: var(--text-color);
   }
-  
+   */
   .sidebar-links ul {
     position: relative;
   }
