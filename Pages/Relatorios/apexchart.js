@@ -99,72 +99,68 @@ var options = {
     }]
     };
 
-    var options3 = {
-      series: [{
-      name: "Gasto",
-      data: values_operation
-  }],
-      chart: {
-      height: 400,
-      width: 600,
-      type: 'line',
-      zoom: {
-      enabled: false
-      }
-  },
-  dataLabels: {
-      enabled: false
+var options3 = {
+    series: [44, 55, 41, 17, 15],
+    chart: {
+    width: 380,
+    type: 'donut',
+    dropShadow: {
+      enabled: true,
+      color: '#111',
+      top: -1,
+      left: 3,
+      blur: 3,
+      opacity: 0.2
+    }
   },
   stroke: {
-      curve: 'straight'
+    width: 0,
   },
-  title: {
-      text: 'Gastos por dia',
-      align: 'left'
-  },
-  grid: {
-      row: {
-      colors: ['#f3f3f3', 'transparent'], // takes an array which will be repeated on columns
-      opacity: 0.5
-      },
-  },
-  xaxis: {
-      categories: date_operations,
-  },
-  responsive: [
-      {
-        breakpoint: 1000,
-        options: {
-          plotOptions: {
-            bar: {
-              horizontal: false
-            }
-          },
-          legend: {
-            position: "bottom"
+  plotOptions: {
+    pie: {
+      donut: {
+        labels: {
+          show: true,
+          total: {
+            showAlways: true,
+            show: true
           }
         }
       }
-    ]
-  };
-
-  var options4 = {
-    series: [44, 55, 13, 43, 22],
-    chart: {
-    width: 380,
-    type: 'pie',
+    }
   },
-  labels: ['Team A', 'Team B', 'Team C', 'Team D', 'Team E'],
+  labels: ["Comedy", "Action", "SciFi", "Drama", "Horror"],
+  dataLabels: {
+    dropShadow: {
+      blur: 3,
+      opacity: 0.8
+    }
+  },
+  fill: {
+  type: 'pattern',
+    opacity: 1,
+    pattern: {
+      enabled: true,
+      style: ['verticalLines', 'squares', 'horizontalLines', 'circles','slantedLines'],
+    },
+  },
+  states: {
+    hover: {
+      filter: 'none'
+    }
+  },
+  theme: {
+    palette: 'palette2'
+  },
+  title: {
+    text: "Favourite Movie Type"
+  },
   responsive: [{
     breakpoint: 480,
     options: {
       chart: {
-        height: 400,
-        width: 600,
-        type: 'line',
-        zoom: {
-        enabled: false
-        }},
+        width: 200
+      },
       legend: {
         position: 'bottom'
       }
@@ -174,9 +170,7 @@ var options = {
 
     var chart = new ApexCharts(document.querySelector("#spark1"), options);
     var chart2 = new ApexCharts(document.querySelector("#spark2"), options2);
-    var chart3 = new ApexCharts(document.querySelector("#spark3"), options);
-    var chart4 = new ApexCharts(document.querySelector("#spark4"), options2);
+    var chart3 = new ApexCharts(document.querySelector("#spark3"), options3);
     chart.render();
     chart2.render();
     chart3.render();
-    chart4.render();
