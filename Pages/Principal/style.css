@@ -900,11 +900,11 @@ nav {
 
 /* chartjs */
 
-#chart {
+/* #chart {
   max-width: 760px;
   margin: 35px auto;
   opacity: 0.9;
-}
+} */
 
 /* data filtro */
 .date-carousel {
@@ -951,4 +951,17 @@ nav {
 .date-carousel-input::-webkit-input-placeholder{
     display: none;
     -webkit-appearance: none;
+}
+
+
+
+.chartCard {
+  width: 80vw;
+  height: calc(100vh - 40px);
+  /* background: rgba(255, 26, 104, 0.2); */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  
 }
