@@ -204,7 +204,7 @@
                       </div>
 
                       <div class="input-group">
-                          <select class="ls-select" id="category">
+                          <select class="ls-select" id="category" >
                               <option>Alimentação</option>
                               <option>Assinaturas</option>
                               <option>Bares e restaurantes</option>
@@ -356,6 +356,7 @@
           </div>
         </div>
 
+
         <div class="modal-sobre">
           <div class="modal">
               <div id="form">
@@ -422,12 +423,17 @@
       
       </section>
 
+      <button id="btnCSV"></button>
+
     </main>    
   <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 
   <script>
     $(document).ready(function() {
     $('#category').select2();
+    });
+    $(document).ready(function() {
+    $('#categoryNew').select2();
     });
   </script>
     <script src="Dashboard.js"></script>

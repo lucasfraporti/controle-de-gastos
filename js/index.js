@@ -161,7 +161,7 @@ function validainput(){
 
 // Incluir um gasto no Banco de Dados
 function incluirgasto(){
-    if(desc.value === "" || amount.value === ""){
+    if(desc.value === "" || amount.value === "" || date.value === ""){
         return alert("Preencha todos os campos!");
     };
 
@@ -315,34 +315,39 @@ function deleteItem(index){
     };
 };
 
-// // Fazer download do CSV
-// function downloadCSVFile(csv_data){
-//     CSVFile = new Blob(["\ufeff", csv_data], {type: "text/csv"});
-//     const linkDownload = document.createElement("a");
-//     linkDownload.download = "Operações_Pila.csv";
-//     const url = window.URL.createObjectURL(CSVFile);
-//     linkDownload.href = url;
-//     linkDownload.style.display = "none";
-//     document.body.appendChild(linkDownload);
-//     linkDownload.click();
-//     document.body.removeChild(linkDownload);
-// };
+// Fazer download do CSV
+function downloadCSVFile(csv_data){
+    let data = document.getElementById("datacarousel").value;
+    let dataString = data.split('-') // Retornará ['09', '2022']
+    let mes = dataString[1]
+    let ano = dataString[0]
 
-// // Clicar no botão, formar o CSV e fazer o download
-// btnCSV.addEventListener("click", function(){
-//     let csv_data = [];
-//     const rows = document.getElementsByTagName("tr");
-//     for(let i = 0; i < rows.length; i++){
-//         const cols = rows[i].querySelectorAll("#exportarCSV");
-//         const csvrow = [];
-//         for(let j = 0; j < cols.length; j++){
-//             csvrow.push(cols[j].innerHTML);
-//         };
-//         csv_data.push(csvrow.join(";"));
-//     };
-//     csv_data = csv_data.join("\n");
-//     downloadCSVFile(csv_data);
-// });
+    CSVFile = new Blob(["\ufeff", csv_data], {type: "text/csv"});
+    const linkDownload = document.createElement("a");
+    linkDownload.download = "Pila"+mes+'-'+ano+'.csv';
+    const url = window.URL.createObjectURL(CSVFile);
+    linkDownload.href = url;
+    linkDownload.style.display = "none";
+    document.body.appendChild(linkDownload);
+    linkDownload.click();
+    document.body.removeChild(linkDownload);
+};
+
+// Clicar no botão, formar o CSV e fazer o download
+btnCSV.addEventListener("click", function(){
+    let csv_data = [];
+    const rows = document.getElementsByTagName("tr");
+    for(let i = 0; i < rows.length; i++){
+        const cols = rows[i].querySelectorAll("#exportarCSV");
+        const csvrow = [];
+        for(let j = 0; j < cols.length; j++){
+            csvrow.push(cols[j].innerHTML);
+        };
+        csv_data.push(csvrow.join(";"));
+    };
+    csv_data = csv_data.join("\n");
+    downloadCSVFile(csv_data);
+});
 
 // // Filtro por coluna da tabela
 // function filtragemTbl(idCampo, colunaTbl){
