@@ -36,7 +36,7 @@
           </a>
         </li>
         <li class="tooltip-element" data-tooltip="1">
-          <a href="/Pages/Relatorios/relatorio.html" class="active" data-active="1">
+          <a href="/Pages/Relatorios/relatorio.html" data-active="1">
             <div class="icon">
                 <i class='bx bx-bar-chart-square'></i>
                 <i class='bx bxs-bar-chart-square'></i>
@@ -45,7 +45,7 @@
           </a>
         </li>
         <li class="tooltip-element" data-tooltip="2">
-          <a href="/Pages/Educacional/educacional.html" data-active="2">
+          <a href="/Pages/Educacional/educacional.html"  class="active" data-active="2">
             <div class="icon">
               <i class='bx bx-message-square-detail'></i>
               <i class='bx bxs-message-square-detail'></i>
@@ -177,29 +177,61 @@
         </div>
     </div>
   </div>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js"></script>
-<canvas id="myChart" style="width:100px;max-width:1500px"></canvas>
+
+  <div>
+    <article class="date-carousel">
+      <input type="button" class="date-carousel-prev" id="dataprev" value="&lt;">
+      <input type="month" class="date-carousel-input" id="datacarousel" onchange="datamanual()">
+      <input type="button" class="date-carousel-next" id="datanext" value="&gt;">
+    </article>
+
+    <div class="chartCard">
+      <div class="col-md-2">
+        <div class="box box1">
+          <label >teste</label>
+          <div id="spark1"></div>
+        </div>
+      </div>
+      <div class="col-md-2">
+        <div class="box box2">
+          <label >teste</label>
+          <div id="spark2"></div>
+        </div>
+      </div>
+      <div class="col-md-2">
+        <div class="box box1">
+          <label >teste</label>
+          <div id="spark3"></div>
+        </div>
+      </div>
+      <div class="col-md-2">
+        <div class="box box2">
+          <label >teste</label>
+          <div id="spark4"></div>
+        </div>
+      </div>
+    </div>
+  
+
+  </div>
 
 
-
-
-  <div id="chart"></div>
+  
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js"></script>
+    <!-- <canvas id="myChart" style="width:100px;max-width:1500px"></canvas> -->
   <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
-  <script src="apexchart.js"></script>
-
-
+  <script src="/Pages/Relatorios/apexchart.js"></script>
 
   <script src="https://www.gstatic.com/firebasejs/9.6.7/firebase-app-compat.js"></script>
   <script src="https://www.gstatic.com/firebasejs/9.6.7/firebase-auth-compat.js"></script>
 
   <script src="/Firebase/firebase-init.js"></script>
   <script src="/Firebase/auth-guard.js"></script>
-  
-    <!-- <script src="/js/index.js"></script> -->
-    <script src="/Pages/Principal/scripts.js"></script>
-    <script src="/Pages/Principal/Dashboard.js"></script>
-    <script src="/Pages/Relatorios/relatorio.css"></script>
 
-    <script src="/js/logout.js"></script>
+  <script src="/js/index.js"></script>
+  <script src="/js/logout.js"></script>
+  <script src="/Pages/Principal/scripts.js"></script>
+  <script src="/Pages/Principal/Dashboard.js"></script>
+  <script src="/Pages/Relatorios/relatorio.css"></script>
 </body>
 </html>
