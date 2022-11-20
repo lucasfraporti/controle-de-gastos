@@ -957,7 +957,6 @@ nav {
 
 .chartCard {
   width: 80vw;
-  height: calc(100vh - 40px);
   /* background: rgba(255, 26, 104, 0.2); */
   display: flex;
   align-items: center;

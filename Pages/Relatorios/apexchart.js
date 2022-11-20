@@ -170,7 +170,86 @@ var options3 = {
 
     var chart = new ApexCharts(document.querySelector("#spark1"), options);
     var chart2 = new ApexCharts(document.querySelector("#spark2"), options2);
-    var chart3 = new ApexCharts(document.querySelector("#spark3"), options3);
     chart.render();
     chart2.render();
+
+  // mais gráficos
+
+
+    var options3 = {
+        series: [{
+        name: "Gasto",
+        data: values_operation
+    }],
+        chart: {
+        height: 400,
+        width: 600,
+        type: 'line',
+        zoom: {
+        enabled: false
+        }
+    },
+    dataLabels: {
+        enabled: false
+    },
+    stroke: {
+        curve: 'straight'
+    },
+    title: {
+        text: 'Gastos por dia',
+        align: 'left'
+    },
+    grid: {
+        row: {
+        colors: ['#f3f3f3', 'transparent'], // takes an array which will be repeated on columns
+        opacity: 0.5
+        },
+    },
+    xaxis: {
+        categories: date_operations,
+    },
+    responsive: [
+        {
+          breakpoint: 1000,
+          options: {
+            plotOptions: {
+              bar: {
+                horizontal: false
+              }
+            },
+            legend: {
+              position: "bottom"
+            }
+          }
+        }
+      ]
+    };
+
+    var options4 = {
+      series: [44, 55, 13, 43, 22],
+      chart: {
+      width: 380,
+      type: 'pie',
+    },
+    labels: ['Team A', 'Team B', 'Team C', 'Team D', 'Team E'],
+    responsive: [{
+      breakpoint: 480,
+      options: {
+        chart: {
+          height: 400,
+          width: 600,
+          type: 'line',
+          zoom: {
+          enabled: false
+          }},
+        legend: {
+          position: 'bottom'
+        }
+      }
+    }]
+    };
+
+    var chart3 = new ApexCharts(document.querySelector("#spark3"), options);
+    var chart4 = new ApexCharts(document.querySelector("#spark4"), options2);
     chart3.render();
+    chart4.render();
