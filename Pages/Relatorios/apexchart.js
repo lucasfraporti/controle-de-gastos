@@ -25,7 +25,6 @@ var valores_operacoes = fahrenheit.map(function(elem){
     values_operation.push(elem.preco_operation)
 });
 
-
 var options = {
         series: [{
         name: "Gasto",

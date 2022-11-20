@@ -13,6 +13,11 @@
   
     <script src="https://code.jquery.com/jquery-3.6.1.min.js" integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ=" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/izitoast/1.4.0/js/iziToast.min.js" 
+    integrity="sha512-Zq9o+E00xhhR/7vJ49mxFNJ0KQw1E1TMWkPTxrWcnpfEFDEXgUiwJHIKit93EW/XxE31HSI5GEOW06G6BF1AtA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/izitoast/1.4.0/css/iziToast.css" 
+    integrity="sha512-DIW4FkYTOxjCqRt7oS9BFO+nVOwDL4bzukDyDtMO7crjUZhwpyrWBFroq+IqRe6VnJkTpRAS6nhDvf0w+wHmxg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <title>Pila - Controle e educação financeira</title>
 
 </head>
@@ -106,13 +111,13 @@
                   <i class='bx bx-cog'></i>
                   <i class='bx bxs-cog'></i>
                 </div>
-                <span class="link hide">Configurações</span>
+                <span class="link hide">Sugestões</span>
               </a>
             </li>
             <div class="tooltip">
               <span class="show">Sobre</span>
               <span>Ajuda</span>
-              <span>Educacional</span>
+              <span>Sugestões</span>
             </div>
           </ul>
         </div>
@@ -395,7 +400,7 @@
                 onclick="Modal_sobre.close()"
                 href="#"
                 class="button cancel">Cancelar</a>
-            </div>   
+              </div>   
         </div>
     </div>
   </div>
@@ -404,7 +409,7 @@
       <div class="modal">
           <div id="form">
             <h2>Ajuda</h2>
-            <p>Aconteceu algum erro durante o uso da aplicação? Reporte ao nosso time de desenvolvimento.</p>
+            <p>Ficou com alguma duvida ou aconteceu algum erro durante o uso do Pila?</p>
             <div class="input-group">
               <textarea name="erro" id="ajuda" cols="65" rows="10" placeholder="Conte-nos mais como ocorreu o erro, caso necessário nossa equipe entrará em contato." ></textarea>
   
@@ -414,7 +419,7 @@
                   onclick="Modal_ajuda.close()"
                   href="#"
                   class="button cancel">Cancelar</a>
-                  <button>Enviar</button>
+                  <button onclick="sendmailhelp()">Enviar</button>
               </div>   
           </div>
       </div>
@@ -423,18 +428,21 @@
 
   <div class="modal-configuracoes">
     <div class="modal">
-        <div id="form">
-          <h2>Configurações</h2>
-          <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Quas adipisci ab recusandae quo, quos hic commodi sapiente veniam laudantium? Quod quam ullam eligendi laudantium sunt vitae alias minus, aperiam porro.</p>
-            <div class="input-group actions">
-                <a 
-                onclick="Modal_configuracoes.close()"
-                href="#"
-                class="button cancel">Cancelar</a>
-                <button>Salvar</button>
-            </div>   
+      <div id="form">
+        <h2>Sugestões</h2>
+        <p>Tem alguma ideia ou sugestão que possam tornar a usabilidade do Pila melhor? </p>
+        <div class="input-group">
+          <textarea name="erro" id="sugestão" cols="65" rows="10" placeholder="Encaminhe um email para nossa equipe de desenvolvimento, arantimos que todas as sugestão serão analisadas." ></textarea>
         </div>
-    </div>
+          <div class="input-group actions">
+              <a 
+              onclick="Modal_configuracoes.close()"
+              href="#"
+              class="button cancel">Cancelar</a>
+              <button onclick="sendmailsugestao()">Enviar</button>
+          </div>   
+      </div>
+  </div>
   </div>
   <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 
@@ -446,6 +454,11 @@
     $('#categoryNew').select2();
     });
   </script>
+
+    <script type="text/javascript"
+    src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js">
+    </script>
+    <script src="/js/emailjs.js"></script>
     <script src="Dashboard.js"></script>
     <script src="/js/index.js"></script>
     <script src="./scripts.js"></script>

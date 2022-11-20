@@ -2,10 +2,15 @@ const tbody = document.querySelector("tbody");
 const descItem = document.querySelector("#desc");
 const date = document.querySelector("#date-input");
 const amount = document.querySelector("#amount");
-// const type = document.querySelector("#type");
 const category = document.querySelector("#category");
 const btnInclude = document.querySelector("#btnInclude");
 
+//modal ajuda e sugestão
+const Ajuda = document.querySelector("#ajuda");
+const Sugestao = document.querySelector("#sugestão");
+
+
+//valores
 const profit = document.querySelector("#profit");
 const loss = document.querySelector("#loss");
 const total = document.querySelector("#total");
@@ -162,35 +167,38 @@ function validainput(){
 // Incluir um gasto no Banco de Dados
 function incluirgasto(){
     if(desc.value === "" || amount.value === "" || date.value === ""){
-        return alert("Preencha todos os campos!");
-    };
+        alertwarning('É necessário preencher todos os campos!');
+    }
+    else {
+        if(amount.value > 0){
+            type_value = "E";
+        }else{
+            type_value = "S";
+        };
 
-    if(amount.value > 0){
-        type_value = "E";
-    }else{
-        type_value = "S";
-    };
+        const priceatual = document.querySelector("#amount").value;
+        const pricefinal = priceatual.replace('-','');
 
-    const priceatual = document.querySelector("#amount").value;
-    const pricefinal = priceatual.replace('-','');
+        const params = {
+            id_user: window.localStorage.getItem('id'),
+            date: document.querySelector("#date-input").value,
+            price: pricefinal,
+            description: document.querySelector("#desc").value,
+            category: document.querySelector("#category").value,
+            type: type_value
+        };
 
-    const params = {
-        id_user: window.localStorage.getItem('id'),
-        date: document.querySelector("#date-input").value,
-        price: pricefinal,
-        description: document.querySelector("#desc").value,
-        category: document.querySelector("#category").value,
-        type: type_value
-    };
+        const request = new XMLHttpRequest();
+        request.open("POST", "http://localhost:3001/post", false);
+        request.setRequestHeader("Content-type", "application/json");
+        console.log(JSON.stringify(params))
+        request.send(JSON.stringify(params));
 
-    const request = new XMLHttpRequest();
-    request.open("POST", "http://localhost:3001/post", false);
-    request.setRequestHeader("Content-type", "application/json");
-    console.log(JSON.stringify(params))
-    request.send(JSON.stringify(params));
-
-    loadItens();
-    Modal.close();
+        loadItens();
+        Modal.close();
+        alertsuccess("Transação inserida com sucesso!")
+    }
+    
 
 };
 
@@ -215,7 +223,7 @@ function insertItem(item){
     </td>
     <td class="columnAction">
     <img onclick="openModal(${item.id})" src="/Vendors/img/edit.png" width='27'" alt="Alterar transação">
-    <img onclick="deleteItem(${item.id})" src="/Vendors/img/recycle-bin.png" width='27'" alt="remover transação">
+    <img onclick="deletarregistro(${item.id})" src="/Vendors/img/recycle-bin.png" width='27'" alt="remover transação">
     </td>
     `;
 
@@ -250,10 +258,10 @@ function openModal(index){
 
     btnAtualizar.addEventListener("click", function(){
         if(dateNew.value === "" || descNew.value === "" || amountNew.value === ""){
-            return alert("Preencha todos os campos!");
-        };
-        const resposta = confirm("Você tem certeza que quer atualizar esta operação?");
-        if(resposta){    
+            alertwarning('É necessário preencher todos os campos!');
+        }
+        else{
+                    
             if(amountNew.value > 0){
                 type_value_new = "E";
             }else{
@@ -279,40 +287,34 @@ function openModal(index){
                 if(request.readyState == 4 && request.status == "200"){
                     console.table(item);
                     loadItens();
-                    alert("A operação foi atualizada com sucesso!");
+                    alertsuccess("Transação atualizada com sucesso!");
                     Modal_ajuste.close();
                 }else{
                     console.error(item);
                 };
             };
             request.send(JSON.stringify(params));
-        }else{
-            alert("A operação não foi atualizada!");
-            document.querySelector(".modal_ajuste.close()").click();
-        };
+        }
     });
 };
 
 // Deletar um gasto
 function deleteItem(index){
-    const resposta = confirm("Você tem certeza que quer deletar esta operação?");
-    if(resposta){
-        const request = new XMLHttpRequest();
-        request.open("DELETE", "http://localhost:3001/delete/"+index, true);
-        request.onload = function (){
-            const item = JSON.parse(request.responseText);
-            if(request.readyState == 4 && request.status == "200"){
-                console.table(item);
-                alert("A operação foi deletada com sucesso!");
-                loadItens();
-            }else{
-                console.error(item);
-            };
+
+    const request = new XMLHttpRequest();
+    request.open("DELETE", "http://localhost:3001/delete/"+index, true);
+    request.onload = function (){
+        const item = JSON.parse(request.responseText);
+        if(request.readyState == 4 && request.status == "200"){
+            console.table(item);
+            alertsuccess("Transação deletada com sucesso!");
+            loadItens();
+        }else{
+            console.error(item);
         };
-        request.send(null);
-    }else{
-        alert("A operação não foi deletado!")
     };
+    request.send(null);
+
 };
 
 // Fazer download do CSV
@@ -388,7 +390,70 @@ btnCSV.addEventListener("click", function(){
 //     filtragemTbl("buscaTipo", 4);
 // });
 
+//notificacoes
 
+function alertsuccess(msg) {
+    iziToast.success({
+        title: 'Sucesso',
+        position: 'topRight',
+        message: msg,
+    }); 
+}
 
+function alerterror(msg) {
+    iziToast.error({    
+        title: 'Erro',
+        position: 'topRight',
+        message: msg,
+        });
+}
+
+function alertwarning(msg) {
+    iziToast.warning({
+        title: 'Atenção',
+        position: 'topRight',
+        message: msg,
+    });
+}
+
+function deletarregistro(item) {
+    swal("Você tem certeza que quer deletar esta operação?", {
+        dangerMode: true,
+        closeOnClickOutside: false,
+        buttons: ["Cancelar", "Deletar"],
+      }).then((result) => {
+        if (result) {
+            deleteItem(item)
+        }
+      })
+}
+
+//enviar email
+
+function sendmail() {
+    const emailuser = firebase.auth().currentUser.email;
+    emailjs.send("service_gec7wcf", "template_5cqt6sp", {
+      to_name: "Pila",
+      from_name: iduser,
+      message: Ajuda.value,
+
+    });
+    Modal_ajuda.close();
+    alertsuccess("Solicitação enviada com sucesso!");
+
+}
+
+function sendmail() {
+    const emailuser = firebase.auth().currentUser.email;
+    emailjs.send("service_gec7wcf", "template_5cqt6sp", {
+      to_name: "Pila",
+      from_name: iduser,
+      message: Sugestao.value,
+ 
+    });
+    Modal_ajuda.close();
+    alertsuccess("Sugestão enviada com sucesso!");
+
+}
 
 loadItens();
