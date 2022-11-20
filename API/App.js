@@ -112,6 +112,60 @@ App.get("/getchart", (req, res) => {
     });
 });
 
+/// gets graficos
+
+App.get("/chartentrada", (req, res) => {
+    const id_user = req.query.id_user;
+    const mes = req.query.mes;
+    const ano = req.query.ano;
+    db.query("select v.date as datas_saida, sum(v.price) as preco_operation, count(v.price) as trasacoes_dia from valores v where v.type= 'E' and month(date) = ? and year(date) = ? and id_user = ? group by date ORDER BY date", [mes, ano, id_user], (err, result) => {
+        if(err){
+            res.status(500).send(err);
+        }else{
+            res.send(result);
+        };
+    });
+});
+
+App.get("/chartsaida", (req, res) => {
+    const id_user = req.query.id_user;
+    const mes = req.query.mes;
+    const ano = req.query.ano;
+    db.query("select v.date as datas_saida, sum(v.price) as preco_operation, count(v.price) as trasacoes_dia from valores v where v.type= 'S' and month(date) = ? and year(date) = ? and id_user = ?  group by date ORDER BY date", [mes, ano, id_user], (err, result) => {
+        if(err){
+            res.status(500).send(err);
+        }else{
+            res.send(result);
+        };
+    });
+});
+
+App.get("/chartcategoryentrada", (req, res) => {
+    const id_user = req.query.id_user;
+    const mes = req.query.mes;
+    const ano = req.query.ano;
+    db.query("select category, count(category) as qtd, sum(v.price) as total_category from valores v where v.type= 'E' and month(date) = ? and year(date) = ? and id_user = ? group by v.category", [mes, ano, id_user], (err, result) => {
+        if(err){
+            res.status(500).send(err);
+        }else{
+            res.send(result);
+        };
+    });
+});
+
+App.get("/chartcategorysaida", (req, res) => {
+    const id_user = req.query.id_user;
+    const mes = req.query.mes;
+    const ano = req.query.ano;
+    db.query("select category, count(category) as qtd, sum(v.price) as total_category from valores v where v.type= 'S' and month(date) = ? and year(date) = ? and id_user = ? group by v.category", [mes, ano, id_user], (err, result) => {
+        if(err){
+            res.status(500).send(err);
+        }else{
+            res.send(result);
+        };
+    });
+});
+
 
 
 
