@@ -62,6 +62,7 @@ const Modal_ajuda = {
     .querySelector('.modal-ajuda')
     .classList
     .remove('active')
+    limpaemail()
     }
 }
 
@@ -81,6 +82,9 @@ const Modal_configuracoes = {
 }
 
 
+function limpaemail() {
+    document.getElementById("ajuda").value='';
+}
 
 
 const Utils = {
@@ -161,7 +165,7 @@ const Form = {
             //const transaction = Form.formatValues()
             //Transaction.add(transaction)
             //Form.formatData()
-            Form.clearFields()
+            //Form.clearFields()
             //Modal.close()
 
         } catch (error) {

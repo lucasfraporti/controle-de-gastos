@@ -111,6 +111,10 @@ App.get("/getchart", (req, res) => {
         };
     });
 });
+
+
+
+
 //-->> BUSCAR AS OPERAÇÕES PELO ID DO USUÁRIO, RECEBENDO COMO PARÂMETRO
 // localhost:3001/getporuserid/:iduser
 App.get("/getprofit/:iduser", (req, res) => {

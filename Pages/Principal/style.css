@@ -460,11 +460,7 @@ footer img {
         width: 50rem;
     }
 
-     thead th:nth-child(1) {
-        
-        
-    }
-    thead th:nth-child(2) {
+    
         
     }
     .descriptionDiv{
@@ -476,7 +472,7 @@ footer img {
     .div {
         width: 99%;     
     }
-}
+
 
 @media (min-width: 800px) {
     html{
@@ -886,10 +882,7 @@ nav {
     display: grid;
   }
 
-  .select-category
 
-
-.select-category select {}
 
 .select-category{
   margin-top: 0.8rem;   
@@ -962,7 +955,7 @@ nav {
 .date-carousel-input::-webkit-inner-spin-button,
 .date-carousel-input::-webkit-input-placeholder{
     display: none;
-    -webkit-appearance: none;
+
 }
 
 
@@ -976,3 +969,5 @@ nav {
   flex-wrap: wrap;
   
 }
+
+
