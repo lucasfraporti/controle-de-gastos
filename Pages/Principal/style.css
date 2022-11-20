@@ -269,9 +269,6 @@ td.expense {
 }
 
 .modal-overlay {
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0,0,0, 0.7);
     position: fixed;
     top: 0;
     display: flex;
@@ -283,14 +280,15 @@ td.expense {
 }
 
 .modal-overlay.active {
-    opacity: 1;
-    visibility: visible;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0,0,0, 0.5);
+  opacity: 1;
+  visibility: visible;
 }
 
 .modal-sobre {
-  width: 100%;
-  height: 100%;
-  /* background-color: rgba(0,0,0, 0.7); */
+
   position: fixed;
   top: 0;
   display: flex;
@@ -303,19 +301,32 @@ td.expense {
 }
 
 .modal-sobre.active {
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0,0,0, 0.5);
   opacity: 1;
   visibility: visible;
 }
 
 .modal-ajuda.active {
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0,0,0, 0.5);;
   opacity: 1;
   visibility: visible;
 }
 
-.modal-ajuda {
+#ajuda {
+  border: none;
+  border-radius: 0.2rem;
+  padding: 0.8rem;
   width: 100%;
   height: 100%;
-  /* background-color: rgba(0,0,0, 0.7); */
+  
+}
+
+.modal-ajuda {
+
   position: fixed;
   top: 0;
   display: flex;
@@ -328,9 +339,7 @@ td.expense {
 }
 
 .modal-configuracoes {
-  width: 100%;
-  height: 100%;
-  /* background-color: rgba(0,0,0, 0.7); */
+
   position: fixed;
   top: 0;
   display: flex;
@@ -343,14 +352,14 @@ td.expense {
 }
 
 .modal-ajuste.active {
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0,0,0, 0.5);
   opacity: 1;
   visibility: visible;
 }
 
 .modal-ajuste {
-  width: 100%;
-  height: 100%;
-  /* background-color: rgba(0,0,0, 0.7); */
   position: fixed;
   top: 0;
   display: flex;
@@ -363,6 +372,9 @@ td.expense {
 }
 
 .modal-configuracoes.active {
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0,0,0, 0.5);
   opacity: 1;
   visibility: visible;
 }
