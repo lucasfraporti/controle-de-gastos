@@ -430,8 +430,8 @@ function deletarregistro(item) {
 
 //enviar email
 
-function sendmail() {
-    const emailuser = firebase.auth().currentUser.email;
+function sendmailhelp() {
+
     emailjs.send("service_gec7wcf", "template_5cqt6sp", {
       to_name: "Pila",
       from_name: iduser,
@@ -443,15 +443,14 @@ function sendmail() {
 
 }
 
-function sendmail() {
-    const emailuser = firebase.auth().currentUser.email;
+function sendsugestao() {
     emailjs.send("service_gec7wcf", "template_5cqt6sp", {
       to_name: "Pila",
       from_name: iduser,
       message: Sugestao.value,
  
     });
-    Modal_ajuda.close();
+    Modal_configuracoes.close();
     alertsuccess("Sugestão enviada com sucesso!");
 
 }
