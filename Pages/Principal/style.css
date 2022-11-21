@@ -41,6 +41,11 @@ body {
     margin-top: 200px;
 }
 
+.containernoticias {
+  width: min(90vw, 850px);
+  margin-top: 0px;
+}
+
 .date-carousel{
   margin-top: 15px;
 }

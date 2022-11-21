@@ -443,7 +443,7 @@ function sendmailhelp() {
 
 }
 
-function sendsugestao() {
+function sendmailsugestao() {
     emailjs.send("service_gec7wcf", "template_5cqt6sp", {
       to_name: "Pila",
       from_name: iduser,

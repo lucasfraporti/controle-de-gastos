@@ -95,13 +95,13 @@
               <i class='bx bx-cog'></i>
               <i class='bx bxs-cog'></i>
             </div>
-            <span class="link hide">Configurações</span>
+            <span class="link hide">Sugestões</span>
           </a>
         </li>
         <div class="tooltip">
           <span class="show">Sobre</span>
           <span>Ajuda</span>
-          <span>Educacional</span>
+          <span>Sugestões</span>
         </div>
       </ul>
     </div>
@@ -130,51 +130,62 @@
     </div>
 </nav>
 
-  <div class="modal-sobre">
-    <div class="modal">
-        <div id="form">
-          <h2>Sobre</h2>
-          <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Quas adipisci ab recusandae quo, quos hic commodi sapiente veniam laudantium? Quod quam ullam eligendi laudantium sunt vitae alias minus, aperiam porro.</p>
-            <div class="input-group actions">
-                <a 
-                onclick="Modal_sobre.close()"
-                href="#"
-                class="button cancel">Cancelar</a>
+<div class="modal-sobre">
+  <div class="modal">
+      <div id="form">
+        <h2>Sobre</h2>
+        <p>O Pila nasceu no Centro Educativo Senac e tem como principal objetivo auxiliar o usuário em seu controle financeiro, 
+          sendo uma aplicação que possibilita incluir suas movimentações financeiras e se ter um controle quanto a entrada e saída de seu dinheiro.
+        </p>
+          <div class="input-group actions">
+              <a 
+              onclick="Modal_sobre.close()"
+              href="#"
+              class="button cancel">Cancelar</a>
             </div>   
-        </div>
-    </div>
+      </div>
   </div>
+</div>
 
   <div class="modal-ajuda">
     <div class="modal">
         <div id="form">
           <h2>Ajuda</h2>
-          <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Quas adipisci ab recusandae quo, quos hic commodi sapiente veniam laudantium? Quod quam ullam eligendi laudantium sunt vitae alias minus, aperiam porro.</p>
+          <p>Ficou com alguma duvida ou aconteceu algum erro durante o uso do Pila?</p>
+          <div class="input-group">
+            <textarea name="erro" id="ajuda" cols="65" rows="10" placeholder="Conte-nos mais como ocorreu o erro, caso necessário nossa equipe entrará em contato." ></textarea>
+
+          </div>
             <div class="input-group actions">
                 <a 
                 onclick="Modal_ajuda.close()"
                 href="#"
                 class="button cancel">Cancelar</a>
+                <button onclick="sendmailhelp()">Enviar</button>
             </div>   
         </div>
     </div>
   </div>
 
-  <div class="modal-configuracoes">
-    <div class="modal">
-        <div id="form">
-          <h2>Configurações</h2>
-          <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Quas adipisci ab recusandae quo, quos hic commodi sapiente veniam laudantium? Quod quam ullam eligendi laudantium sunt vitae alias minus, aperiam porro.</p>
-            <div class="input-group actions">
-                <a 
-                onclick="Modal_configuracoes.close()"
-                href="#"
-                class="button cancel">Cancelar</a>
-                <button>Salvar</button>
-            </div>   
-        </div>
+
+<div class="modal-configuracoes">
+  <div class="modal">
+    <div id="form">
+      <h2>Sugestões</h2>
+      <p>Tem alguma ideia ou sugestão que possam tornar a usabilidade do Pila melhor? </p>
+      <div class="input-group">
+        <textarea name="erro" id="sugestão" cols="65" rows="10" placeholder="Encaminhe um email para nossa equipe de desenvolvimento, arantimos que todas as sugestão serão analisadas." ></textarea>
+      </div>
+        <div class="input-group actions">
+            <a 
+            onclick="Modal_configuracoes.close()"
+            href="#"
+            class="button cancel">Cancelar</a>
+            <button onclick="sendmailsugestao()">Enviar</button>
+        </div>   
     </div>
-  </div>
+</div>
+</div>
 
   <div>
     <article class="date-carousel">
@@ -230,5 +241,10 @@
   <script src="/Pages/Principal/scripts.js"></script>
   <script src="/Pages/Principal/Dashboard.js"></script>
   <script src="/Pages/Relatorios/relatorio.css"></script>
+
+  <script type="text/javascript"
+  src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js">
+  </script>
+  <script src="/js/emailjs.js"></script>
 </body>
 </html>

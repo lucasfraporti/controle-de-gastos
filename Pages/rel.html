@@ -5,17 +5,13 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="/Pages/Principal/style.css">
-    <link rel="stylesheet" href="/Pages/Educacional/educacional.css">
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href='https://unpkg.com/boxicons@2.1.1/css/boxicons.min.css' rel='stylesheet'>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,400;0,700;1,100;1,400;1,700&display=swap" 
     rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css" >
     <title>Pila - Controle e educação financeira</title>
 </head>
 <body>
-
-
   <nav>
     <div class="sidebar-top">
       <span class="shrink-btn">
@@ -38,7 +34,7 @@
           </a>
         </li>
         <li class="tooltip-element" data-tooltip="1">
-          <a href="/Pages/Relatorios/relatorio.html" data-active="1">
+          <a href="/Pages/Relatorios/relatorio.html" class="active" data-active="1">
             <div class="icon">
                 <i class='bx bx-bar-chart-square'></i>
                 <i class='bx bxs-bar-chart-square'></i>
@@ -47,7 +43,7 @@
           </a>
         </li>
         <li class="tooltip-element" data-tooltip="2">
-          <a href="/Pages/Educacional/educacional.html"  class="active" data-active="2">
+          <a href="/Pages/Educacional/educacional.html"  data-active="2">
             <div class="icon">
               <i class='bx bx-message-square-detail'></i>
               <i class='bx bxs-message-square-detail'></i>
@@ -190,139 +186,106 @@
     </div>
 </div>
 </div>
-<main class="containernoticias">
-    <div class="container-noticias">
-      <div class="cardnoticia">
-        <div class="left-column background1-left-column">
-          <h6>Pila Blog</h6>
-          <h2>Economia</h2>
-          <i class="fa-solid fa-piggy-bank" ></i>
-        </div>
-  
-        <div class="right-column">
-  
-          <h2>Como criar uma reserva de emergência?</h2>
-          <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Harum, sintLorem ipsum dolor sit amet,
-            consectetur adipisicing elit. Harum, sint??
-            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Harum, sintLorem ipsum dolor sit amet,
-            consectetur adipisicing elit. Harum, sint??
-            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Harum, sintLorem ipsum dolor sit amet,
-            consectetur adipisicing elit. Harum, sint??</p>
-          
-        </div>
-  
-      </div>
-  
-      <div class="cardnoticia">
-        <div class="left-column background2-left-column">
-          <h6>Pila Blog</h6>
-          <h2>Finanças</h2>
-          <i class="fa-solid fa-money-bill-trend-up"></i>
-        </div>
-  
-        <div class="right-column">
-          <h2>Devo investir em Crypto?</h2>
-          <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Harum, sintLorem ipsum dolor sit amet,
-            consectetur adipisicing elit. Harum, sint??
-            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Harum, sintLorem ipsum dolor sit amet,
-            consectetur adipisicing elit. Harum, sint??
-            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Harum, sintLorem ipsum dolor sit amet,
-            consectetur adipisicing elit. Harum, sint??</p>
-            
-        </div>
-  
-      </div>
-  
-      <div class="cardnoticia">
-        <div class="left-column background2-left-column">
-          <h6>Pila Blog</h6>
-          <h2>Finanças</h2>
-          <i class="fa-solid fa-money-bill-trend-up"></i>
-        </div>
-        <div class="right-column">
-  
-          <h2>
-            Pronto para investir?
-          </h2>
-          <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Harum, sintLorem ipsum dolor sit amet,
-            consectetur adipisicing elit. Harum, sint??
-            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Harum, sintLorem ipsum dolor sit amet,
-            consectetur adipisicing elit. Harum, sint??
-            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Harum, sintLorem ipsum dolor sit amet,
-            consectetur adipisicing elit. Harum, sint??</p>
-            
-        </div>
-  
-      </div>
-  
-      <div class="cardnoticia">
-        <div class="left-column background1-left-column">
-          <h6>Pila Blog</h6>
-          <h2>Economia</h2>
-          <i class="fa-solid fa-piggy-bank" ></i>
-        </div>
-  
-        <div class="right-column">
-          <h2>Você conhece seu orçamento?</h2>
-          <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Harum, sintLorem ipsum dolor sit amet,
-            consectetur adipisicing elit. Harum, sint??
-            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Harum, sintLorem ipsum dolor sit amet,
-            consectetur adipisicing elit. Harum, sint??
-            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Harum, sintLorem ipsum dolor sit amet,
-            consectetur adipisicing elit. Harum, sint??</p>
-            
-        </div>
-  
-      </div>
 
-      <div class="cardnoticia">
-        <div class="left-column background2-left-column">
-          <h6>Pila Blog</h6>
-          <h2>Finanças</h2>
-          <i class="fa-solid fa-money-bill-trend-up"></i>
+<main class="container">
+<div id="form2">
+    <h2>Nova Transação</h2>
+    <form action="" onsubmit="Form.submit(event)">
+
+        <div class="input-group">
+            <label 
+            class="sr-only"
+            for="description">Descrição</label>
+            <input 
+            type="text" 
+            id="desc" 
+            name="description"
+            placeholder="Descrição"
+            />
         </div>
-        <div class="right-column">
-  
-          <h2>
-            Pronto para investir?
-          </h2>
-          <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Harum, sintLorem ipsum dolor sit amet,
-            consectetur adipisicing elit. Harum, sint??
-            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Harum, sintLorem ipsum dolor sit amet,
-            consectetur adipisicing elit. Harum, sint??
-            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Harum, sintLorem ipsum dolor sit amet,
-            consectetur adipisicing elit. Harum, sint??</p>
-            
+
+        <div class="input-group">
+            <select class="ls-select" id="category" >
+                <option>Alimentação</option>
+                <option>Assinaturas</option>
+                <option>Bares e restaurantes</option>
+                <option>Casa</option>
+                <option>Compras</option>
+                <option>Cuidados pessoais</option>
+                <option>Dívidas e empréstimos</option>
+                <option>Educação</option>
+                <option>Família e filhos</option>
+                <option>Impostos e taxas</option>
+                <option>Investimentos</option>
+                <option>Lazer e hobbies</option>
+                <option>Mercado</option>
+                <option>Pets</option>
+                <option>Presentes e doações</option>
+                <option>Saúde</option>
+                <option>Trabalho</option>
+                <option>Transporte</option>
+                <option>Viagem</option>
+                <option>Outros</option>
+            </select>
         </div>
-  
-      </div>
-  
-      <div class="cardnoticia">
-        <div class="left-column background1-left-column">
-          <h6>Pila Blog</h6>
-          <h2>Economia</h2>
-          <i class="fa-solid fa-piggy-bank" ></i>
+
+        <div class="input-group">
+            <label 
+            class="sr-only"
+            for="amount">Valor</label>
+            <input 
+            type="number" 
+            step="0.01"
+            id="amount" 
+            name="amount"
+            placeholder="0,00"
+            />
+            <small class="help">
+                Use o sinal - (negativo) para despesas e , (vírgula) para casas decimais
+            </small>
         </div>
-  
-        <div class="right-column">
-          <h2>Você conhece seu orçamento?</h2>
-          <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Harum, sintLorem ipsum dolor sit amet,
-            consectetur adipisicing elit. Harum, sint??
-            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Harum, sintLorem ipsum dolor sit amet,
-            consectetur adipisicing elit. Harum, sint??
-            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Harum, sintLorem ipsum dolor sit amet,
-            consectetur adipisicing elit. Harum, sint??</p>
-            
+
+        <div class="input-group">
+            <label 
+            class="sr-only"
+            for="date">Data</label>
+            <input 
+            type="date" 
+            id="date-input" 
+            name="date"
+            />
         </div>
-  
-      </div>
-    </div>
+    </form>
+</div>
 
   
+</div>
+</div>
+
+
+        <section id="transaction">
+      <h2 class="sr-only">Transações</h2>
+     
+      <table class="table" id="data-table" data-filter-control="true" data-show-search-clear-button="true">
+          <thead class="mobile">
+              <tr>
+                  <th>Data</th>
+                  <th>Descrição</th>
+                  <th class="cor">Valor</th>
+                  <th>Categoria</th>
+                  <th class="cor">Tipo</th>
+                  <th></th>
+              </tr>
+          </thead>
+          <tbody id="tbody">
+          </tbody>
+      </table>
+  
+  </section>
 
   
-  
-
+</div>
+</div>
 
   <script src="https://www.gstatic.com/firebasejs/9.6.7/firebase-app-compat.js"></script>
   <script src="https://www.gstatic.com/firebasejs/9.6.7/firebase-auth-compat.js"></script>
