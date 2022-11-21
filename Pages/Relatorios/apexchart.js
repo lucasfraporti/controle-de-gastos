@@ -11,19 +11,71 @@ function getWithIndex(url){
     return entradas;
 };
 
-var fahrenheit = getWithIndex('http://localhost:3001/operations')
+
+// gráfico 1 (linha) - saída
+var fahrenheit = getWithIndex('http://localhost:3001/chartsaida?id_user=Oz6u4xnMCNZqDhNBTwVLU7rjFOS2&mes=11&ano=2022')
 
 let values_operation = [];
 let date_operations = [];
 
 var data_operacoes = fahrenheit.map(function(elem){
-    console.log((elem.data_operation).split("T")[0].split("-").reverse().join("/"));
-    date_operations.push((elem.data_operation).split("T")[0].split("-").reverse().join("/"));
+    console.log((elem.datas_saida).split("T")[0].split("-").reverse().join("/"));
+    date_operations.push((elem.datas_saida).split("T")[0].split("-").reverse().join("/"));
 });
 
 var valores_operacoes = fahrenheit.map(function(elem){
     values_operation.push(elem.preco_operation)
 });
+
+// gráfico 3 (linha) - entrada
+var fahrenheit_enter = getWithIndex('http://localhost:3001/chartentrada?id_user=Oz6u4xnMCNZqDhNBTwVLU7rjFOS2&mes=11&ano=2022')
+console.log(fahrenheit_enter)
+
+let values_operation_enter = [];
+let date_operations_enter = [];
+
+var data_operacoes_enter = fahrenheit_enter.map(function(elem){
+  console.log((elem.datas_saida).split("T")[0].split("-").reverse().join("/"));
+  date_operations_enter.push((elem.datas_saida).split("T")[0].split("-").reverse().join("/"));
+});
+
+var valores_operacoes_enter = fahrenheit_enter.map(function(elem){
+  values_operation_enter.push(elem.preco_operation)
+});
+
+// gráfico 2 (pizza) - saída
+var pizza_exit = getWithIndex('http://localhost:3001/chartcategorysaida?id_user=Oz6u4xnMCNZqDhNBTwVLU7rjFOS2&mes=11&ano=2022')
+console.log(pizza_exit)
+
+let values_operation_pizza_exit = [];
+let category_operations_pizza_exit = [];
+
+var categoria_operacoes_pizza_exit = pizza_exit.map(function(elem){
+  category_operations_pizza_exit.push((elem.category));
+});
+
+var valores_operacoes_pizza_exit = pizza_exit.map(function(elem){
+  values_operation_pizza_exit.push(elem.qtd)
+});
+
+// gráfico 4 (pizza) - entrada
+var pizza_enter = getWithIndex('http://localhost:3001/chartcategoryentrada?id_user=Oz6u4xnMCNZqDhNBTwVLU7rjFOS2&mes=11&ano=2022')
+console.log(pizza_enter)
+
+let values_operation_pizza_enter = [];
+let category_operations_pizza_enter = [];
+
+var categoria_operacoes_pizza_enter = pizza_enter.map(function(elem){
+  category_operations_pizza_enter.push((elem.category));
+});
+
+var valores_operacoes_pizza_enter = pizza_enter.map(function(elem){
+  values_operation_pizza_enter.push(elem.qtd)
+});
+
+
+
+
 
 var options = {
         series: [{
@@ -31,8 +83,8 @@ var options = {
         data: values_operation
     }],
         chart: {
-        height: 400,
-        width: 600,
+        // height: 400,
+        // width: 600,
         type: 'line',
         zoom: {
         enabled: false
@@ -75,18 +127,18 @@ var options = {
     };
 
     var options2 = {
-      series: [44, 55, 13, 43, 22],
+      series: values_operation_pizza_exit,
       chart: {
       width: 380,
       type: 'pie',
     },
-    labels: ['Team A', 'Team B', 'Team C', 'Team D', 'Team E'],
+    labels: category_operations_pizza_exit,
     responsive: [{
       breakpoint: 480,
       options: {
         chart: {
-          height: 400,
-          width: 600,
+          // height: 400,
+          // width: 600,
           type: 'line',
           zoom: {
           enabled: false
@@ -98,75 +150,6 @@ var options = {
     }]
     };
 
-var options3 = {
-    series: [44, 55, 41, 17, 15],
-    chart: {
-    width: 380,
-    type: 'donut',
-    dropShadow: {
-      enabled: true,
-      color: '#111',
-      top: -1,
-      left: 3,
-      blur: 3,
-      opacity: 0.2
-    }
-  },
-  stroke: {
-    width: 0,
-  },
-  plotOptions: {
-    pie: {
-      donut: {
-        labels: {
-          show: true,
-          total: {
-            showAlways: true,
-            show: true
-          }
-        }
-      }
-    }
-  },
-  labels: ["Comedy", "Action", "SciFi", "Drama", "Horror"],
-  dataLabels: {
-    dropShadow: {
-      blur: 3,
-      opacity: 0.8
-    }
-  },
-  fill: {
-  type: 'pattern',
-    opacity: 1,
-    pattern: {
-      enabled: true,
-      style: ['verticalLines', 'squares', 'horizontalLines', 'circles','slantedLines'],
-    },
-  },
-  states: {
-    hover: {
-      filter: 'none'
-    }
-  },
-  theme: {
-    palette: 'palette2'
-  },
-  title: {
-    text: "Favourite Movie Type"
-  },
-  responsive: [{
-    breakpoint: 480,
-    options: {
-      chart: {
-        width: 200
-      },
-      legend: {
-        position: 'bottom'
-      }
-    }
-  }]
-  };
-
     var chart = new ApexCharts(document.querySelector("#spark1"), options);
     var chart2 = new ApexCharts(document.querySelector("#spark2"), options2);
     chart.render();
@@ -174,15 +157,14 @@ var options3 = {
 
   // mais gráficos
 
-
     var options3 = {
         series: [{
-        name: "Gasto",
-        data: values_operation
+        name: "Entrada",
+        data: values_operation_enter
     }],
         chart: {
-        height: 400,
-        width: 600,
+        // height: 400,
+        // width: 600,
         type: 'line',
         zoom: {
         enabled: false
@@ -195,7 +177,7 @@ var options3 = {
         curve: 'straight'
     },
     title: {
-        text: 'Gastos por dia',
+        text: 'Entradas por dia',
         align: 'left'
     },
     grid: {
@@ -205,7 +187,7 @@ var options3 = {
         },
     },
     xaxis: {
-        categories: date_operations,
+        categories: date_operations_enter,
     },
     responsive: [
         {
@@ -225,18 +207,18 @@ var options3 = {
     };
 
     var options4 = {
-      series: [44, 55, 13, 43, 22],
+      series: values_operation_pizza_enter,
       chart: {
       width: 380,
       type: 'pie',
     },
-    labels: ['Team A', 'Team B', 'Team C', 'Team D', 'Team E'],
+    labels: category_operations_pizza_enter,
     responsive: [{
       breakpoint: 480,
       options: {
         chart: {
-          height: 400,
-          width: 600,
+          // height: 400,
+          // width: 600,
           type: 'line',
           zoom: {
           enabled: false
@@ -248,7 +230,7 @@ var options3 = {
     }]
     };
 
-    var chart3 = new ApexCharts(document.querySelector("#spark3"), options);
-    var chart4 = new ApexCharts(document.querySelector("#spark4"), options2);
+    var chart3 = new ApexCharts(document.querySelector("#spark3"), options3);
+    var chart4 = new ApexCharts(document.querySelector("#spark4"), options4);
     chart3.render();
     chart4.render();
