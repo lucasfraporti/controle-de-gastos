@@ -1,15 +1,15 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="/Pages/Principal/style.css">
-    <link rel="preconnect" href="https://fonts.gstatic.com">
-    <link href='https://unpkg.com/boxicons@2.1.1/css/boxicons.min.css' rel='stylesheet'>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,400;0,700;1,100;1,400;1,700&display=swap" 
-    rel="stylesheet">
-    <title>Pila - Controle e educação financeira</title>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="/Pages/Principal/style.css">
+  <link rel="stylesheet" href="/Pages/Relatorios/relatorio.css">
+  <link rel="preconnect" href="https://fonts.gstatic.com">
+  <link href='https://unpkg.com/boxicons@2.1.1/css/boxicons.min.css' rel='stylesheet'>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,400;0,700;1,100;1,400;1,700&display=swap" rel="stylesheet">
+  <title>Pila - Controle e educação financeira</title>
 </head>
 <body>
   <nav>
@@ -110,10 +110,8 @@
       <a href="#" class="account tooltip-element" data-tooltip="0">
         <i class='bx bx-user'></i>
       </a>
-      
       <div class="admin-user tooltip-element" data-tooltip="1">
         <div class="admin-profile hide">
-          <!-- <img src="" alt=""> -->
           <div class="admin-info">
             <h3 id="usuario"></h3>
           </div>
@@ -122,7 +120,6 @@
           <i class='bx bx-log-out'></i>
         </a>
       </div>
-
       <div class="tooltip">
         <span class="show">PILA</span>
         <span>Logout</span>
@@ -176,20 +173,22 @@
     </div>
   </div>
 
-  <div>
+  <div style="display: flex; flex-wrap: wrap;">
     <article class="date-carousel">
       <input type="button" class="date-carousel-prev" id="dataprev" value="&lt;">
-      <input type="month" class="date-carousel-input" id="datacarouselgraficos" onchange="datamanual()">
+      <input type="month" class="date-carousel-input" id="datacarousel">
       <input type="button" class="date-carousel-next" id="datanext" value="&gt;">
     </article>
 
     <div class="chartCard">
-      <div class="col-md-2">
+      <div class="col-md-2-saida">
+        <h3 style="margin-bottom: 30px; margin-top: 30px; text-align: center;">Gastos diários sobre o mês</h3>
         <div class="box box1">
           <div id="spark1"></div>
         </div>
       </div>
-      <div class="col-md-2">
+      <div class="col-md-2-saida-2">
+        <h3 style="margin-bottom: 30px; margin-top: 30px; text-align: center;">Partição de gastos por categoria</h3>
         <div class="box box2">
           <div id="spark2"></div>
         </div>
@@ -197,38 +196,30 @@
     </div>
 
     <div class="chartCard">
-      <div class="col-md-2">
+      <div class="col-md-2-entrada">
+        <h3 style="margin-bottom: 30px; margin-top: 30px; text-align: center;">Lucros diários sobre o mês</h3>
         <div class="box box1">
           <div id="spark3"></div>
         </div>
       </div>
-      <div class="col-md-2">
+      <div class="col-md-2-entrada-2">
+        <h3 style="margin-bottom: 30px; margin-top: 30px; text-align: center;">Partição de lucros por categoria</h3>
         <div class="box box2">
           <div id="spark4"></div>
         </div>
       </div>
     </div>
-  
-
   </div>
 
-
-  
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js"></script>
-    <!-- <canvas id="myChart" style="width:100px;max-width:1500px"></canvas> -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
   <script src="/Pages/Relatorios/apexchart.js"></script>
-
   <script src="https://www.gstatic.com/firebasejs/9.6.7/firebase-app-compat.js"></script>
   <script src="https://www.gstatic.com/firebasejs/9.6.7/firebase-auth-compat.js"></script>
-
   <script src="/Firebase/firebase-init.js"></script>
   <script src="/Firebase/auth-guard.js"></script>
-
-  <script src="/js/index.js"></script>
   <script src="/js/logout.js"></script>
   <script src="/Pages/Principal/scripts.js"></script>
   <script src="/Pages/Principal/Dashboard.js"></script>
-  <script src="/Pages/Relatorios/relatorio.css"></script>
 </body>
 </html>
