@@ -1,17 +1,17 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="/Pages/Principal/style.css">
-  <link rel="stylesheet" href="/Pages/Relatorios/relatorio.css">
-  <link rel="preconnect" href="https://fonts.gstatic.com">
-  <link href='https://unpkg.com/boxicons@2.1.1/css/boxicons.min.css' rel='stylesheet'>
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,400;0,700;1,100;1,400;1,700&display=swap" rel="stylesheet">
-  <title>Pila - Controle e educação financeira</title>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/Pages/Principal/style.css">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href='https://unpkg.com/boxicons@2.1.1/css/boxicons.min.css' rel='stylesheet'>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,400;0,700;1,100;1,400;1,700&display=swap" 
+    rel="stylesheet">
+    <title>Pila - Controle e educação financeira</title>
 </head>
-<body class="shrink1">
+<body>
   <nav>
     <div class="sidebar-top">
       <span class="shrink-btn">
@@ -23,6 +23,7 @@
 
     <div class="sidebar-links">
       <ul>
+        <!-- <div class="active-tab"></div> -->
         <li class="tooltip-element" data-tooltip="0">
           <a href="/Pages/Principal/index.html" data-active="0">
             <div class="icon">
@@ -109,8 +110,10 @@
       <a href="#" class="account tooltip-element" data-tooltip="0">
         <i class='bx bx-user'></i>
       </a>
+      
       <div class="admin-user tooltip-element" data-tooltip="1">
         <div class="admin-profile hide">
+          <!-- <img src="" alt=""> -->
           <div class="admin-info">
             <h3 id="usuario"></h3>
           </div>
@@ -119,6 +122,7 @@
           <i class='bx bx-log-out'></i>
         </a>
       </div>
+
       <div class="tooltip">
         <span class="show">PILA</span>
         <span>Logout</span>
@@ -183,61 +187,121 @@
 </div>
 </div>
 
-  <div style="display: flex; flex-wrap: wrap;">
-    <article class="date-carousel">
-      <input type="button" class="date-carousel-prev" id="dataprev" value="&lt;">
-      <input type="month" class="date-carousel-input" id="datacarousel">
-      <input type="button" class="date-carousel-next" id="datanext" value="&gt;">
-    </article>
+<main class="container">
+<div id="form2">
+    <h2>Nova Transação</h2>
+    <form action="" onsubmit="Form.submit(event)">
 
-    <div class="chartCard">
-      <div class="col-md-2-saida">
-        <h3 style="margin-bottom: 30px; margin-top: 30px; text-align: center;">Gastos diários sobre o mês</h3>
-        <div class="box box1">
-          <div id="spark1"></div>
+        <div class="input-group">
+            <label 
+            class="sr-only"
+            for="description">Descrição</label>
+            <input 
+            type="text" 
+            id="desc" 
+            name="description"
+            placeholder="Descrição"
+            />
         </div>
-      </div>
-      <div class="col-md-2-saida-2">
-        <h3 style="margin-bottom: 30px; margin-top: 30px; text-align: center;">Partição de gastos por categoria</h3>
-        <div class="box box2">
-          <div id="spark2"></div>
-        </div>
-      </div>
-    </div>
 
-    <div class="chartCard">
-      <div class="col-md-2-entrada">
-        <h3 style="margin-bottom: 30px; margin-top: 30px; text-align: center;">Lucros diários sobre o mês</h3>
-        <div class="box box1">
-          <div id="spark3"></div>
+        <div class="input-group">
+            <select class="ls-select" id="category" >
+                <option>Alimentação</option>
+                <option>Assinaturas</option>
+                <option>Bares e restaurantes</option>
+                <option>Casa</option>
+                <option>Compras</option>
+                <option>Cuidados pessoais</option>
+                <option>Dívidas e empréstimos</option>
+                <option>Educação</option>
+                <option>Família e filhos</option>
+                <option>Impostos e taxas</option>
+                <option>Investimentos</option>
+                <option>Lazer e hobbies</option>
+                <option>Mercado</option>
+                <option>Pets</option>
+                <option>Presentes e doações</option>
+                <option>Saúde</option>
+                <option>Trabalho</option>
+                <option>Transporte</option>
+                <option>Viagem</option>
+                <option>Outros</option>
+            </select>
         </div>
-      </div>
-      <div class="col-md-2-entrada-2">
-        <h3 style="margin-bottom: 30px; margin-top: 30px; text-align: center;">Partição de lucros por categoria</h3>
-        <div class="box box2">
-          <div id="spark4"></div>
-        </div>
-      </div>
-    </div>
-  </div>
 
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
-  <script src="/Pages/Relatorios/apexchart.js"></script>
+        <div class="input-group">
+            <label 
+            class="sr-only"
+            for="amount">Valor</label>
+            <input 
+            type="number" 
+            step="0.01"
+            id="amount" 
+            name="amount"
+            placeholder="0,00"
+            />
+            <small class="help">
+                Use o sinal - (negativo) para despesas e , (vírgula) para casas decimais
+            </small>
+        </div>
+
+        <div class="input-group">
+            <label 
+            class="sr-only"
+            for="date">Data</label>
+            <input 
+            type="date" 
+            id="date-input" 
+            name="date"
+            />
+        </div>
+    </form>
+</div>
+
+  
+</div>
+</div>
+
+
+        <section id="transaction">
+      <h2 class="sr-only">Transações</h2>
+     
+      <table class="table" id="data-table" data-filter-control="true" data-show-search-clear-button="true">
+          <thead class="mobile">
+              <tr>
+                  <th>Data</th>
+                  <th>Descrição</th>
+                  <th class="cor">Valor</th>
+                  <th>Categoria</th>
+                  <th class="cor">Tipo</th>
+                  <th></th>
+              </tr>
+          </thead>
+          <tbody id="tbody">
+          </tbody>
+      </table>
+  
+  </section>
+
+  
+</div>
+</div>
+
   <script src="https://www.gstatic.com/firebasejs/9.6.7/firebase-app-compat.js"></script>
   <script src="https://www.gstatic.com/firebasejs/9.6.7/firebase-auth-compat.js"></script>
+
   <script src="/Firebase/firebase-init.js"></script>
   <script src="/Firebase/auth-guard.js"></script>
+
+  <script src="/js/index.js"></script>
   <script src="/js/logout.js"></script>
   <script src="/Pages/Principal/scripts.js"></script>
   <script src="/Pages/Principal/Dashboard.js"></script>
-
   <script src="/Pages/Relatorios/relatorio.css"></script>
 
   <script type="text/javascript"
   src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js">
   </script>
   <script src="/js/emailjs.js"></script>
-
 </body>
 </html>

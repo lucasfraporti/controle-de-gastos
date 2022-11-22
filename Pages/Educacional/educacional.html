@@ -5,7 +5,6 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="/Pages/Principal/style.css">
-    <link rel="stylesheet" href="/Pages/Educacional/educacional.css">
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href='https://unpkg.com/boxicons@2.1.1/css/boxicons.min.css' rel='stylesheet'>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,400;0,700;1,100;1,400;1,700&display=swap" 
@@ -13,9 +12,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css" >
     <title>Pila - Controle e educação financeira</title>
 </head>
-<body>
-
-
+<body class="shrink1">
   <nav>
     <div class="sidebar-top">
       <span class="shrink-btn">
@@ -27,7 +24,6 @@
 
     <div class="sidebar-links">
       <ul>
-        <!-- <div class="active-tab"></div> -->
         <li class="tooltip-element" data-tooltip="0">
           <a href="/Pages/Principal/index.html" data-active="0">
             <div class="icon">
@@ -99,13 +95,13 @@
               <i class='bx bx-cog'></i>
               <i class='bx bxs-cog'></i>
             </div>
-            <span class="link hide">Configurações</span>
+            <span class="link hide">Sugestões</span>
           </a>
         </li>
         <div class="tooltip">
           <span class="show">Sobre</span>
           <span>Ajuda</span>
-          <span>Educacional</span>
+          <span>Sugestões</span>
         </div>
       </ul>
     </div>
@@ -134,53 +130,63 @@
     </div>
 </nav>
 
-  <div class="modal-sobre">
-    <div class="modal">
-        <div id="form">
-          <h2>Sobre</h2>
-          <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Quas adipisci ab recusandae quo, quos hic commodi sapiente veniam laudantium? Quod quam ullam eligendi laudantium sunt vitae alias minus, aperiam porro.</p>
-            <div class="input-group actions">
-                <a 
-                onclick="Modal_sobre.close()"
-                href="#"
-                class="button cancel">Cancelar</a>
+<div class="modal-sobre">
+  <div class="modal">
+      <div id="form">
+        <h2>Sobre</h2>
+        <p>O Pila nasceu no Centro Educativo Senac e tem como principal objetivo auxiliar o usuário em seu controle financeiro, 
+          sendo uma aplicação que possibilita incluir suas movimentações financeiras e se ter um controle quanto a entrada e saída de seu dinheiro.
+        </p>
+          <div class="input-group actions">
+              <a 
+              onclick="Modal_sobre.close()"
+              href="#"
+              class="button cancel">Cancelar</a>
             </div>   
-        </div>
-    </div>
+      </div>
   </div>
+</div>
 
   <div class="modal-ajuda">
     <div class="modal">
         <div id="form">
           <h2>Ajuda</h2>
-          <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Quas adipisci ab recusandae quo, quos hic commodi sapiente veniam laudantium? Quod quam ullam eligendi laudantium sunt vitae alias minus, aperiam porro.</p>
+          <p>Ficou com alguma duvida ou aconteceu algum erro durante o uso do Pila?</p>
+          <div class="input-group">
+            <textarea name="erro" id="ajuda" cols="65" rows="10" placeholder="Conte-nos mais como ocorreu o erro, caso necessário nossa equipe entrará em contato." ></textarea>
+
+          </div>
             <div class="input-group actions">
                 <a 
                 onclick="Modal_ajuda.close()"
                 href="#"
                 class="button cancel">Cancelar</a>
+                <button onclick="sendmailhelp()">Enviar</button>
             </div>   
         </div>
     </div>
   </div>
 
-  <div class="modal-configuracoes">
-    <div class="modal">
-        <div id="form">
-          <h2>Configurações</h2>
-          <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Quas adipisci ab recusandae quo, quos hic commodi sapiente veniam laudantium? Quod quam ullam eligendi laudantium sunt vitae alias minus, aperiam porro.</p>
-            <div class="input-group actions">
-                <a 
-                onclick="Modal_configuracoes.close()"
-                href="#"
-                class="button cancel">Cancelar</a>
-                <button>Salvar</button>
-            </div>   
-        </div>
-    </div>
-  </div>
 
-  <div class="noticias">
+<div class="modal-configuracoes">
+  <div class="modal">
+    <div id="form">
+      <h2>Sugestões</h2>
+      <p>Tem alguma ideia ou sugestão que possam tornar a usabilidade do Pila melhor? </p>
+      <div class="input-group">
+        <textarea name="erro" id="sugestão" cols="65" rows="10" placeholder="Encaminhe um email para nossa equipe de desenvolvimento, arantimos que todas as sugestão serão analisadas." ></textarea>
+      </div>
+        <div class="input-group actions">
+            <a 
+            onclick="Modal_configuracoes.close()"
+            href="#"
+            class="button cancel">Cancelar</a>
+            <button onclick="sendmailsugestao()">Enviar</button>
+        </div>   
+    </div>
+</div>
+</div>
+<main class="containernoticias">
     <div class="container-noticias">
       <div class="cardnoticia">
         <div class="left-column background1-left-column">
@@ -264,52 +270,7 @@
         </div>
   
       </div>
-    </div>
 
-  </div>
-  <div class="noticias">
-    <div class="container-noticias">
-      <div class="cardnoticia">
-        <div class="left-column background1-left-column">
-          <h6>Pila Blog</h6>
-          <h2>Economia</h2>
-          <i class="fa-solid fa-piggy-bank" ></i>
-        </div>
-  
-        <div class="right-column">
-  
-          <h2>Como criar uma reserva de emergência?</h2>
-          <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Harum, sintLorem ipsum dolor sit amet,
-            consectetur adipisicing elit. Harum, sint??
-            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Harum, sintLorem ipsum dolor sit amet,
-            consectetur adipisicing elit. Harum, sint??
-            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Harum, sintLorem ipsum dolor sit amet,
-            consectetur adipisicing elit. Harum, sint??</p>
-          
-        </div>
-  
-      </div>
-  
-      <div class="cardnoticia">
-        <div class="left-column background2-left-column">
-          <h6>Pila Blog</h6>
-          <h2>Finanças</h2>
-          <i class="fa-solid fa-money-bill-trend-up"></i>
-        </div>
-  
-        <div class="right-column">
-          <h2>Devo investir em Crypto?</h2>
-          <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Harum, sintLorem ipsum dolor sit amet,
-            consectetur adipisicing elit. Harum, sint??
-            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Harum, sintLorem ipsum dolor sit amet,
-            consectetur adipisicing elit. Harum, sint??
-            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Harum, sintLorem ipsum dolor sit amet,
-            consectetur adipisicing elit. Harum, sint??</p>
-            
-        </div>
-  
-      </div>
-  
       <div class="cardnoticia">
         <div class="left-column background2-left-column">
           <h6>Pila Blog</h6>
@@ -353,7 +314,9 @@
       </div>
     </div>
 
-  </div>
+  
+
+  
   
 
 
@@ -368,5 +331,10 @@
   <script src="/Pages/Principal/scripts.js"></script>
   <script src="/Pages/Principal/Dashboard.js"></script>
   <script src="/Pages/Relatorios/relatorio.css"></script>
+
+  <script type="text/javascript"
+  src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js">
+  </script>
+  <script src="/js/emailjs.js"></script>
 </body>
 </html>
