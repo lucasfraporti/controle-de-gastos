@@ -17,17 +17,6 @@ shrink_btn.addEventListener("click", () => {
     shrink_btn.classList.remove("hovered");
   }, 500);
 });
-////////////
-
-function myFunction(x) {
-  console.log(x)
-
-  } 
-
-var x = window.matchMedia("(max-width: 800px)")
-console.log(x)
-
-
 
 // search.addEventListener("click", () => {
 //   document.body.classList.remove("shrink");
