@@ -854,38 +854,7 @@ nav {
     transition: opacity 0.3s 0.2s;
   }
   
-  body.shrink nav {
-    width: 5.4rem;
-  }
-  
-  body.shrink .hide {
-    opacity: 0;
-    pointer-events: none;
-    transition-delay: 0s;
-  }
-  
-  body.shrink .shrink-btn i {
-    transform: rotate(-180deg);
-  }
-  
-  body.shrink .sidebar-links h4 {
-    height: 10px;
-  }
-  
-  body.shrink .account {
-    opacity: 1;
-    pointer-events: all;
-    transition: opacity 0.3s 0.3s, color 0.3s 0s;
-  }
-  
-  body.shrink .admin-profile {
-    max-width: 0;
-    transition: opacity 0.3s 0s, max-width 0.7s 0s ease-in-out;
-  }
-  
-  body.shrink .tooltip {
-    display: grid;
-  }
+
 
 
 
@@ -976,3 +945,41 @@ nav {
 }
 
 
+
+
+/* mediaquery menu */
+
+@media screen and (max-width: 1100px){
+  body.shrink nav {
+    width: 5.4rem;
+  }
+  
+  body.shrink .hide {
+    opacity: 0;
+    pointer-events: none;
+    transition-delay: 0s;
+  }
+  
+  body.shrink .shrink-btn i {
+    transform: rotate(-180deg);
+  }
+  
+  body.shrink .sidebar-links h4 {
+    height: 10px;
+  }
+  
+  body.shrink .account {
+    opacity: 1;
+    pointer-events: all;
+    transition: opacity 0.3s 0.3s, color 0.3s 0s;
+  }
+  
+  body.shrink .admin-profile {
+    max-width: 0;
+    transition: opacity 0.3s 0s, max-width 0.7s 0s ease-in-out;
+  }
+  
+  body.shrink .tooltip {
+    display: grid;
+  }
+}
