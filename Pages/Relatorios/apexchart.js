@@ -80,9 +80,14 @@ function charts(){
   // gráfico 1 (linha) - saída
   var fahrenheit = getWithIndex("http://localhost:3001/chartsaida?id_user="+iduser+"&mes="+mes+"&ano="+ano)
 
+
   let values_operation = [];
-  console.log(values_operation)
   let date_operations = [];
+
+var valores_operacoes_enter = fahrenheit_enter.map(function(elem){
+  values_operation_enter.push(elem.preco_operation.toFixed())
+});
+
 
   var data_operacoes = fahrenheit.map(function(elem){
       // console.log((elem.datas_saida).split("T")[0].split("-").reverse().join("/"));
