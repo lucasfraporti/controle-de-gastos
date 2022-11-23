@@ -67,9 +67,7 @@ function datanext() {
     let dataString = data.split('-') // Retornará ['09', '2022']
     mes = dataString[1]
     ano = dataString[0]
-    console.log('func'+mes, ano);}
-    datanext()
-    console.log('apos func'+mes, ano);    
+}
 
 //functions da API
 
@@ -100,26 +98,18 @@ function formatavalor(valor) {
   }
 
 function getprofit(){
-
-
-
     const profit =  formatavalor(getValores("http://localhost:3001/get/profit2?id_user="+iduser+"&mes="+mes+"&ano="+ano));
     return profit
 
 };
 
 function getloss(){
-    
-
-
     const loss =  formatavalor(getValores("http://localhost:3001/get/loss2?id_user="+iduser+"&mes="+mes+"&ano="+ano));
     return loss
  
  };
 
 function getprofitandloss(){
-
-
     const profit = getValores("http://localhost:3001/get/profit2?id_user="+iduser+"&mes="+mes+"&ano="+ano);
     const loss =  getValores("http://localhost:3001/get/loss2?id_user="+iduser+"&mes="+mes+"&ano="+ano);
     const total = formatavalor(profit - loss);
@@ -133,10 +123,7 @@ function getTotals(){
 };
 
 function loadItens(){
-
     datanext()
-
-
     items = getWithIndex("http://localhost:3001/gettabela2?id_user="+iduser+"&mes="+mes+"&ano="+ano);
     tbody.innerHTML = "";
     items.forEach((item, index) => {
@@ -412,6 +399,5 @@ function deletarregistro(item) {
       })
 }
 
-//enviar email
 
 loadItens();
