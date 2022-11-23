@@ -1,165 +1,14 @@
-// DATA CAROUSEL
-var util = {
-  qs(sel, ctx){ 
-    return (ctx || document).querySelector(sel);
-  },
-  qsa(sel, ctx){
-    return Array.from((ctx || document).querySelectorAll(sel));
-  }
-};
-
-class DateCarousel {
-  constructor(el) {
-    this.element = el;
-    this.prevButton = util.qs(".date-carousel-prev", el);
-    this.input = util.qs(".date-carousel-input",el);
-    this.nextButton = util.qs(".date-carousel-next",el);
-    this.input.valueAsDate = new Date();
-    this.prevButton.addEventListener("click",this.prev.bind(this));
-    this.nextButton.addEventListener("click",this.next.bind(this));
-  }
-  
-  prev(){
-    this.input.stepDown();
-  }
-  
-  next() {
-    this.input.stepUp();
-  }  
-}
-util.qsa('.date-carousel').forEach(function(el){ new DateCarousel(el) });
-
-//pegando a troca de data do carousel  
-
-document.getElementById("dataprev").addEventListener("click", attchart);
-document.getElementById("datanext").addEventListener("click", attchart);
-
-
-
-var mes;
-var ano;
-
-
-
-function datanext() {
-  let data = document.getElementById("datacarousel").value;
-  let dataString = data.split('-') // Retornará ['09', '2022']
-  mes = dataString[1]
-  ano = dataString[0]
-  }
-
-
-//id firebase
-const iduser = window.localStorage.getItem('id');
-
-//gets
-
 function fazGet(url){
-  const request = new XMLHttpRequest();
-  request.open("GET", url, false);
-  request.send();
-  return request.responseText;
+    const request = new XMLHttpRequest();
+    request.open("GET", url, false);
+    request.send();
+    return request.responseText;
 };
-
 function getWithIndex(url){
-  const data = fazGet(url);
-  const entradas = JSON.parse(data);
-  return entradas;
+    const data = fazGet(url);
+    const entradas = JSON.parse(data);
+    return entradas;
 };
-
-
-//graficos
-
-function attchart(){
-  attchart1();
-  attchart3();
-}
-
-function attchart1(){
-
-  datanext();
-
-  ;
-  var chart = new ApexCharts(document.querySelector("#spark1"), options);
-  chart.render();
-
-  var fahrenheit = getWithIndex("http://localhost:3001/chartsaida?id_user="+iduser+"&mes="+mes+"&ano="+ano);
-
-
-  let values_operation = [];
-  let date_operations = [];
-
-  var valores_operacoes = fahrenheit.map(function(elem){
-    values_operation.push(elem.preco_operation)
-  });
-
-  chart.updateSeries([
-    {
-      data: values_operation
-    }
-  ]);
-
-}
-
-function attchart2(){
-
-  datanext();
-  var chart = new ApexCharts(document.querySelector("#spark3"), options);
-  chart.render();
-
-var pizza_exit = getWithIndex("http://localhost:3001/chartcategorysaida?id_user="+iduser+"&mes="+mes+"&ano="+ano);
-// console.log(pizza_exit)
-
-let values_operation_pizza_exit = [];
-let category_operations_pizza_exit = [];
-
-var categoria_operacoes_pizza_exit = pizza_exit.map(function(elem){
-  category_operations_pizza_exit.push((elem.category));
-});
-
-var valores_operacoes_pizza_exit = pizza_exit.map(function(elem){
-  values_operation_pizza_exit.push(elem.qtd)
-
-  chart.updateSeries([
-    {
-      data: values_operation_pizza_exit
-    }
-  ]);
-
-})}
-
-
-function attchart3(){
-
-  datanext();
-  var chart = new ApexCharts(document.querySelector("#spark3"), options);
-  chart.render();
-
-var fahrenheit_enter = getWithIndex("http://localhost:3001/chartentrada?id_user="+iduser+"&mes="+mes+"&ano="+ano)
-// console.log(fahrenheit_enter)
-
-let values_operation_enter = [];
-let date_operations_enter = [];
-
-var data_operacoes_enter = fahrenheit_enter.map(function(elem){
-  // console.log((elem.datas_saida).split("T")[0].split("-").reverse().join("/"));
-  date_operations_enter.push((elem.datas_saida).split("T")[0].split("-").reverse().join("/"));
-});
-
-var valores_operacoes_enter = fahrenheit_enter.map(function(elem){
-  values_operation_enter.push(elem.preco_operation.toFixed())
-});
-
-  chart.updateSeries([
-    {
-      data: values_operation_enter,
-    }
-  ]);
-
-}
-
-
-datanext();
 // gráfico 1 (linha) - saída
 var fahrenheit = getWithIndex('http://localhost:3001/chartsaida?id_user=Oz6u4xnMCNZqDhNBTwVLU7rjFOS2&mes=11&ano=2022')
 let values_operation = [];
@@ -279,7 +128,10 @@ var options = {
       }
     }]
     };
-
+    var chart = new ApexCharts(document.querySelector("#spark1"), options);
+    var chart2 = new ApexCharts(document.querySelector("#spark2"), options2);
+    chart.render();
+    chart2.render();
   // mais gráficos
     var options3 = {
         series: [{
@@ -351,24 +203,8 @@ var options = {
         }
       }
     }]
-};
-
-
-  function charts(){
-
-  datanext();
-  let chart = new ApexCharts(document.querySelector("#spark1"), options);
-  let chart2 = new ApexCharts(document.querySelector("#spark2"), options2);
-  chart.render();
-  chart2.render();
-
-  let chart3 = new ApexCharts(document.querySelector("#spark3"), options3);
-  let chart4 = new ApexCharts(document.querySelector("#spark4"), options4);
-  chart3.render();
-  chart4.render();
-
-
-}
-
-
-charts();
+    };
+    var chart3 = new ApexCharts(document.querySelector("#spark3"), options3);
+    var chart4 = new ApexCharts(document.querySelector("#spark4"), options4);
+    chart3.render();
+    chart4.render();
