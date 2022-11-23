@@ -58,18 +58,18 @@ var util = {
 document.getElementById("dataprev").addEventListener("click", loadItens);
 document.getElementById("datanext").addEventListener("click", loadItens);
 
-function datamanual() {
-loadItens()}
+// TESTE NOVA DATA
+var mes ;
+var ano;
 
 function datanext() {
     let data = document.getElementById("datacarousel").value;
     let dataString = data.split('-') // Retornará ['09', '2022']
-    let mes = dataString[1]
-    let ano = dataString[0]
-    console.log(mes, ano);}
-
-// TESTE NOVA DATA
-
+    mes = dataString[1]
+    ano = dataString[0]
+    console.log('func'+mes, ano);}
+    datanext()
+    console.log('apos func'+mes, ano);    
 
 //functions da API
 
@@ -101,10 +101,7 @@ function formatavalor(valor) {
 
 function getprofit(){
 
-    let data = document.getElementById("datacarousel").value;
-    let dataString = data.split('-') // Retornará ['09', '2022']
-    let mes = dataString[1]
-    let ano = dataString[0]
+
 
     const profit =  formatavalor(getValores("http://localhost:3001/get/profit2?id_user="+iduser+"&mes="+mes+"&ano="+ano));
     return profit
@@ -113,10 +110,7 @@ function getprofit(){
 
 function getloss(){
     
-    let data = document.getElementById("datacarousel").value;
-    let dataString = data.split('-') // Retornará ['09', '2022']
-    let mes = dataString[1]
-    let ano = dataString[0]
+
 
     const loss =  formatavalor(getValores("http://localhost:3001/get/loss2?id_user="+iduser+"&mes="+mes+"&ano="+ano));
     return loss
@@ -124,10 +118,7 @@ function getloss(){
  };
 
 function getprofitandloss(){
-    let data = document.getElementById("datacarousel").value;
-    let dataString = data.split('-') // Retornará ['09', '2022']
-    let mes = dataString[1]
-    let ano = dataString[0]
+
 
     const profit = getValores("http://localhost:3001/get/profit2?id_user="+iduser+"&mes="+mes+"&ano="+ano);
     const loss =  getValores("http://localhost:3001/get/loss2?id_user="+iduser+"&mes="+mes+"&ano="+ano);
@@ -143,10 +134,7 @@ function getTotals(){
 
 function loadItens(){
 
-    let data = document.getElementById("datacarousel").value;
-    let dataString = data.split('-') // Retornará ['09', '2022']
-    let mes = dataString[1]
-    let ano = dataString[0]
+    datanext()
 
 
     items = getWithIndex("http://localhost:3001/gettabela2?id_user="+iduser+"&mes="+mes+"&ano="+ano);
@@ -319,10 +307,6 @@ function deleteItem(index){
 
 // Fazer download do CSV
 function downloadCSVFile(csv_data){
-    let data = document.getElementById("datacarousel").value;
-    let dataString = data.split('-') // Retornará ['09', '2022']
-    let mes = dataString[1]
-    let ano = dataString[0]
 
     CSVFile = new Blob(["\ufeff", csv_data], {type: "text/csv"});
     const linkDownload = document.createElement("a");
@@ -429,30 +413,5 @@ function deletarregistro(item) {
 }
 
 //enviar email
-
-function sendmailhelp() {
-
-    emailjs.send("service_gec7wcf", "template_5cqt6sp", {
-      to_name: "Pila",
-      from_name: iduser,
-      message: Ajuda.value,
-
-    });
-    Modal_ajuda.close();
-    alertsuccess("Solicitação enviada com sucesso!");
-
-}
-
-function sendmailsugestao() {
-    emailjs.send("service_gec7wcf", "template_5cqt6sp", {
-      to_name: "Pila",
-      from_name: iduser,
-      message: Sugestao.value,
- 
-    });
-    Modal_configuracoes.close();
-    alertsuccess("Sugestão enviada com sucesso!");
-
-}
 
 loadItens();
