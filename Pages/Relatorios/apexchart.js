@@ -40,7 +40,7 @@ var data_operacoes_enter = fahrenheit_enter.map(function(elem){
 });
 
 var valores_operacoes_enter = fahrenheit_enter.map(function(elem){
-  values_operation_enter.push(elem.preco_operation)
+  values_operation_enter.push(elem.preco_operation.toFixed())
 });
 
 // gráfico 2 (pizza) - saída
