@@ -380,18 +380,24 @@ nav {
 
 /* alterando os gráficos */
 
+.apexcharts-text tspan{
+  font-size: 1rem;
+}
+
 .col-md-2-saida,
 .col-md-2-saida-2,
 .col-md-2-entrada,
 .col-md-2-entrada-2{
   margin: 10px;
   border-radius: 20px;
-  padding: 30px;
+  /* padding: 30px; */
   box-shadow: 2px 2px 2px 1px rgba(0, 0, 0, 0.5);
 }
 
 .col-md-2-saida{
   background-color: rgba(139, 160, 255, 0.425);
+  padding-left: 10px;
+  padding-right: 10px;
 }
 
 .col-md-2-saida-2{
@@ -400,6 +406,8 @@ nav {
 
 .col-md-2-entrada{
   background-color: rgba(78, 219, 177, 0.301);
+  padding-left: 10px;
+  padding-right: 10px;
 }
 
 .col-md-2-entrada-2{
@@ -415,7 +423,7 @@ nav {
 #spark2,
 #spark4{
   width: 400px;
-  height: 250px;
+  height: 200px;
 }
 
 @media only screen and (max-width: 880px){
