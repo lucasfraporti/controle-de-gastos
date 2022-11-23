@@ -84,9 +84,9 @@ function charts(){
   let values_operation = [];
   let date_operations = [];
 
-var valores_operacoes_enter = fahrenheit_enter.map(function(elem){
-  values_operation_enter.push(elem.preco_operation.toFixed())
-});
+  var valores_operacoes = fahrenheit.map(function(elem){
+    values_operation.push(elem.preco_operation)
+  });
 
 
   var data_operacoes = fahrenheit.map(function(elem){
