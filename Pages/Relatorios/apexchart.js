@@ -39,7 +39,9 @@ document.getElementById("datanext").addEventListener("click", attchart);
 var mes;
 var ano;
 
-
+// var values_operation = [];
+// var date_operations = [];
+// var valores_operacoes;
 
 function datanext() {
   let data = document.getElementById("datacarousel").value;
@@ -53,25 +55,24 @@ function datanext() {
 const iduser = window.localStorage.getItem('id');
 
 //gets
-
 function fazGet(url){
-  const request = new XMLHttpRequest();
-  request.open("GET", url, false);
-  request.send();
-  return request.responseText;
+    const request = new XMLHttpRequest();
+    request.open("GET", url, false);
+    request.send();
+    return request.responseText;
 };
 
 function getWithIndex(url){
-  const data = fazGet(url);
-  const entradas = JSON.parse(data);
-  return entradas;
+    const data = fazGet(url);
+    const entradas = JSON.parse(data);
+    return entradas;
 };
 
-
-//graficos
+//att graficos
 
 function attchart(){
   attchart1();
+  attchart2();
   attchart3();
 }
 
@@ -79,54 +80,71 @@ function attchart1(){
 
   datanext();
 
-  ;
   var chart = new ApexCharts(document.querySelector("#spark1"), options);
   chart.render();
 
-  var fahrenheit = getWithIndex("http://localhost:3001/chartsaida?id_user="+iduser+"&mes="+mes+"&ano="+ano);
-
+  var fahrenheit = getWithIndex("http://localhost:3001/chartsaida?id_user="+iduser+"&mes="+mes+"&ano="+ano)
 
   let values_operation = [];
   let date_operations = [];
 
-  var valores_operacoes = fahrenheit.map(function(elem){
-    values_operation.push(elem.preco_operation)
+  var data_operacoes = fahrenheit.map(function(elem){
+      console.log((elem.datas_saida).split("T")[0].split("-").reverse().join("/"));
+      date_operations.push((elem.datas_saida).split("T")[0].split("-").reverse().join("/"));
   });
 
-  chart.updateSeries([
-    {
-      data: values_operation
-    }
-  ]);
+  var valores_operacoes = fahrenheit.map(function(elem){
+      values_operation.push(elem.preco_operation)
+  });
 
+  chart.updateOptions({
+    series: [{
+      data: values_operation
+    }],
+    xaxis: {
+      categories: date_operations,
+  }})
 }
 
 function attchart2(){
-
   datanext();
-  var chart = new ApexCharts(document.querySelector("#spark3"), options);
+  var chart = new ApexCharts(document.querySelector("#spark2"), options2);
   chart.render();
 
-var pizza_exit = getWithIndex("http://localhost:3001/chartcategorysaida?id_user="+iduser+"&mes="+mes+"&ano="+ano);
-// console.log(pizza_exit)
+  var pizza_exit = getWithIndex("http://localhost:3001/chartcategorysaida?id_user="+iduser+"&mes="+mes+"&ano="+ano)
 
-let values_operation_pizza_exit = [];
-let category_operations_pizza_exit = [];
+  let values_operation_pizza_exit = [];
+  let category_operations_pizza_exit = [];
 
-var categoria_operacoes_pizza_exit = pizza_exit.map(function(elem){
-  category_operations_pizza_exit.push((elem.category));
-});
+  var categoria_operacoes_pizza_exit = pizza_exit.map(function(elem){
+    category_operations_pizza_exit.push((elem.category));
+  });
 
-var valores_operacoes_pizza_exit = pizza_exit.map(function(elem){
-  values_operation_pizza_exit.push(elem.qtd)
+  var valores_operacoes_pizza_exit = pizza_exit.map(function(elem){
+    values_operation_pizza_exit.push(elem.qtd)
+  });
 
-  chart.updateSeries([
-    {
-      data: values_operation_pizza_exit
-    }
-  ]);
+  chart.updateOptions({
+    series: [{
+      data: 
+      values_operation_pizza_exit
+    }],
+    labels: category_operations_pizza_exit, 
+})
 
-})}
+
+
+  // var options2 = {
+  //   series: values_operation_pizza_exit,
+  //   chart: {
+  //   width: 380,
+  //   type: 'pie',
+  // },
+  // labels: category_operations_pizza_exit,
+
+
+}
+
 
 
 function attchart3(){
@@ -135,47 +153,68 @@ function attchart3(){
   var chart = new ApexCharts(document.querySelector("#spark3"), options);
   chart.render();
 
-var fahrenheit_enter = getWithIndex("http://localhost:3001/chartentrada?id_user="+iduser+"&mes="+mes+"&ano="+ano)
-// console.log(fahrenheit_enter)
+  var fahrenheit_enter = getWithIndex("http://localhost:3001/chartentrada?id_user="+iduser+"&mes="+mes+"&ano="+ano)
+  console.log(fahrenheit_enter)
+  
+  let values_operation_enter = [];
+  let date_operations_enter = [];
+  
+  var data_operacoes_enter = fahrenheit_enter.map(function(elem){
+    console.log((elem.datas_saida).split("T")[0].split("-").reverse().join("/"));
+    date_operations_enter.push((elem.datas_saida).split("T")[0].split("-").reverse().join("/"));
+  });
+  
+  var valores_operacoes_enter = fahrenheit_enter.map(function(elem){
+    values_operation_enter.push(elem.preco_operation)
+  });
+  
+  chart.updateOptions({
+    series: [{
+      data: 
+      values_operation_enter
 
-let values_operation_enter = [];
-let date_operations_enter = [];
+    }],
+    xaxis: {
+      categories: date_operations_enter,
+  }})
 
-var data_operacoes_enter = fahrenheit_enter.map(function(elem){
-  // console.log((elem.datas_saida).split("T")[0].split("-").reverse().join("/"));
-  date_operations_enter.push((elem.datas_saida).split("T")[0].split("-").reverse().join("/"));
-});
+}
 
-var valores_operacoes_enter = fahrenheit_enter.map(function(elem){
-  values_operation_enter.push(elem.preco_operation.toFixed())
-});
 
-  chart.updateSeries([
-    {
-      data: values_operation_enter,
-    }
-  ]);
+function attchart4(){
+  datanext();
+
+  var chart = new ApexCharts(document.querySelector("#spark4"), options);
+  chart.render();
 
 }
 
 
 datanext();
+
 // gráfico 1 (linha) - saída
-var fahrenheit = getWithIndex('http://localhost:3001/chartsaida?id_user=Oz6u4xnMCNZqDhNBTwVLU7rjFOS2&mes=11&ano=2022')
+var fahrenheit = getWithIndex("http://localhost:3001/chartsaida?id_user="+iduser+"&mes="+mes+"&ano="+ano)
+
+
 let values_operation = [];
 let date_operations = [];
+
 var data_operacoes = fahrenheit.map(function(elem){
     console.log((elem.datas_saida).split("T")[0].split("-").reverse().join("/"));
     date_operations.push((elem.datas_saida).split("T")[0].split("-").reverse().join("/"));
 });
+
 var valores_operacoes = fahrenheit.map(function(elem){
     values_operation.push(elem.preco_operation)
 });
+
 // gráfico 3 (linha) - entrada
-var fahrenheit_enter = getWithIndex('http://localhost:3001/chartentrada?id_user=Oz6u4xnMCNZqDhNBTwVLU7rjFOS2&mes=11&ano=2022')
+var fahrenheit_enter = getWithIndex("http://localhost:3001/chartentrada?id_user="+iduser+"&mes="+mes+"&ano="+ano)
 console.log(fahrenheit_enter)
+
 let values_operation_enter = [];
 let date_operations_enter = [];
+
 var data_operacoes_enter = fahrenheit_enter.map(function(elem){
   console.log((elem.datas_saida).split("T")[0].split("-").reverse().join("/"));
   date_operations_enter.push((elem.datas_saida).split("T")[0].split("-").reverse().join("/"));
@@ -183,31 +222,42 @@ var data_operacoes_enter = fahrenheit_enter.map(function(elem){
 
 var valores_operacoes_enter = fahrenheit_enter.map(function(elem){
   values_operation_enter.push(elem.preco_operation)
-  values_operation_enter.push(elem.preco_operation.toFixed())
 });
 
 // gráfico 2 (pizza) - saída
-var pizza_exit = getWithIndex('http://localhost:3001/chartcategorysaida?id_user=Oz6u4xnMCNZqDhNBTwVLU7rjFOS2&mes=11&ano=2022')
+var pizza_exit = getWithIndex("http://localhost:3001/chartcategorysaida?id_user="+iduser+"&mes="+mes+"&ano="+ano)
 console.log(pizza_exit)
+
 let values_operation_pizza_exit = [];
 let category_operations_pizza_exit = [];
+
 var categoria_operacoes_pizza_exit = pizza_exit.map(function(elem){
   category_operations_pizza_exit.push((elem.category));
 });
+
 var valores_operacoes_pizza_exit = pizza_exit.map(function(elem){
   values_operation_pizza_exit.push(elem.qtd)
 });
+
 // gráfico 4 (pizza) - entrada
-var pizza_enter = getWithIndex('http://localhost:3001/chartcategoryentrada?id_user=Oz6u4xnMCNZqDhNBTwVLU7rjFOS2&mes=11&ano=2022')
+var pizza_enter = getWithIndex("http://localhost:3001/chartcategoryentrada?id_user="+iduser+"&mes="+mes+"&ano="+ano)
 console.log(pizza_enter)
+
 let values_operation_pizza_enter = [];
 let category_operations_pizza_enter = [];
+
 var categoria_operacoes_pizza_enter = pizza_enter.map(function(elem){
   category_operations_pizza_enter.push((elem.category));
 });
+
 var valores_operacoes_pizza_enter = pizza_enter.map(function(elem){
   values_operation_pizza_enter.push(elem.qtd)
 });
+
+
+
+
+
 var options = {
         series: [{
         name: "Gasto",
@@ -256,6 +306,7 @@ var options = {
         }
       ]
     };
+
     var options2 = {
       series: values_operation_pizza_exit,
       chart: {
@@ -281,6 +332,7 @@ var options = {
     };
 
   // mais gráficos
+
     var options3 = {
         series: [{
         name: "Entrada",
@@ -329,6 +381,7 @@ var options = {
         }
       ]
     };
+
     var options4 = {
       series: values_operation_pizza_enter,
       chart: {
@@ -351,24 +404,23 @@ var options = {
         }
       }
     }]
-};
-
+    };
 
   function charts(){
 
-  datanext();
-  let chart = new ApexCharts(document.querySelector("#spark1"), options);
-  let chart2 = new ApexCharts(document.querySelector("#spark2"), options2);
-  chart.render();
-  chart2.render();
-
-  let chart3 = new ApexCharts(document.querySelector("#spark3"), options3);
-  let chart4 = new ApexCharts(document.querySelector("#spark4"), options4);
-  chart3.render();
-  chart4.render();
-
-
-}
-
-
-charts();
+      datanext();
+      let chart = new ApexCharts(document.querySelector("#spark1"), options);
+      let chart2 = new ApexCharts(document.querySelector("#spark2"), options2);
+      chart.render();
+      chart2.render();
+    
+      let chart3 = new ApexCharts(document.querySelector("#spark3"), options3);
+      let chart4 = new ApexCharts(document.querySelector("#spark4"), options4);
+      chart3.render();
+      chart4.render();
+    
+    
+    }
+    
+    
+    charts();
