@@ -336,7 +336,7 @@ function downloadCSVFile(csv_data){
 };
 
 // Clicar no botão, formar o CSV e fazer o download
-btnCSV.addEventListener("click", function(){
+function exportcsv(){
     let csv_data = [];
     const rows = document.getElementsByTagName("tr");
     for(let i = 0; i < rows.length; i++){
@@ -349,7 +349,7 @@ btnCSV.addEventListener("click", function(){
     };
     csv_data = csv_data.join("\n");
     downloadCSVFile(csv_data);
-});
+}
 
 // // Filtro por coluna da tabela
 // function filtragemTbl(idCampo, colunaTbl){
