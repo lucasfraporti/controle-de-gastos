@@ -72,7 +72,7 @@ function getWithIndex(url){
 
 function attchart(){
   attchart1();
-  attchart2();
+  //attchart2();
   attchart3();
 }
 
