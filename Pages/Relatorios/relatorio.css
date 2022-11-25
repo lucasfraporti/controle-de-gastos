@@ -384,13 +384,12 @@ nav {
   font-size: 1rem;
 }
 
-.col-md-2-saida,
+/* .col-md-2-saida,
 .col-md-2-saida-2,
 .col-md-2-entrada,
 .col-md-2-entrada-2{
   margin: 10px;
   border-radius: 20px;
-  /* padding: 30px; */
   box-shadow: 2px 2px 2px 1px rgba(0, 0, 0, 0.5);
 }
 
@@ -412,9 +411,9 @@ nav {
 
 .col-md-2-entrada-2{
   background-color: rgba(41, 240, 180, 0.301);
-}
+} */
 
-#spark1,
+/* #spark1,
 #spark3{
   width: 500px;
   height: 300px;
@@ -432,4 +431,4 @@ nav {
     width: 400px;
     height: 300px
   }
-}
+} */

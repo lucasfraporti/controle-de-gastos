@@ -71,14 +71,15 @@ function getWithIndex(url){
 //att graficos
 
 function attchart(){
+  datanext();
+
   attchart1();
-  //attchart2();
+  attchart2();
   attchart3();
+  attchart4();
 }
 
 function attchart1(){
-
-  datanext();
 
   var chart = new ApexCharts(document.querySelector("#spark1"), options);
   chart.render();
@@ -107,7 +108,7 @@ function attchart1(){
 }
 
 function attchart2(){
-  datanext();
+
   var chart = new ApexCharts(document.querySelector("#spark2"), options2);
   chart.render();
 
@@ -121,27 +122,16 @@ function attchart2(){
   });
 
   var valores_operacoes_pizza_exit = pizza_exit.map(function(elem){
-    values_operation_pizza_exit.push(elem.qtd)
+    values_operation_pizza_exit.push(elem.total_category)
   });
 
   chart.updateOptions({
-    series: [{
-      data: 
-      values_operation_pizza_exit
-    }],
-    labels: category_operations_pizza_exit, 
+
+    series: values_operation_pizza_exit,
+    labels: category_operations_pizza_exit,
+    animations: {
+      enabled: false}
 })
-
-
-
-  // var options2 = {
-  //   series: values_operation_pizza_exit,
-  //   chart: {
-  //   width: 380,
-  //   type: 'pie',
-  // },
-  // labels: category_operations_pizza_exit,
-
 
 }
 
@@ -149,8 +139,7 @@ function attchart2(){
 
 function attchart3(){
 
-  datanext();
-  var chart = new ApexCharts(document.querySelector("#spark3"), options);
+  var chart = new ApexCharts(document.querySelector("#spark3"), options3);
   chart.render();
 
   var fahrenheit_enter = getWithIndex("http://localhost:3001/chartentrada?id_user="+iduser+"&mes="+mes+"&ano="+ano)
@@ -182,13 +171,34 @@ function attchart3(){
 
 
 function attchart4(){
-  datanext();
 
-  var chart = new ApexCharts(document.querySelector("#spark4"), options);
+  var chart = new ApexCharts(document.querySelector("#spark4"), options4);
   chart.render();
 
-}
+  var pizza_enter = getWithIndex("http://localhost:3001/chartcategoryentrada?id_user="+iduser+"&mes="+mes+"&ano="+ano)
+  console.log(pizza_enter)
 
+  let values_operation_pizza_enter = [];
+  let category_operations_pizza_enter = [];
+
+  var categoria_operacoes_pizza_enter = pizza_enter.map(function(elem){
+    category_operations_pizza_enter.push((elem.category));
+  });
+
+  var valores_operacoes_pizza_enter = pizza_enter.map(function(elem){
+    values_operation_pizza_enter.push(elem.total_category)
+  });
+
+  chart.updateOptions({
+
+    series: values_operation_pizza_enter,
+    labels: category_operations_pizza_enter,
+    animations: {
+      enabled: false}
+})
+
+
+}
 
 datanext();
 
@@ -208,6 +218,56 @@ var valores_operacoes = fahrenheit.map(function(elem){
     values_operation.push(elem.preco_operation)
 });
 
+var options = {
+  series: [{
+  name: "Gasto",
+  data: values_operation
+}],
+  chart: {
+  // height: 400,
+  // width: 600,
+  type: 'line',
+  zoom: {
+  enabled: false
+  }
+},
+dataLabels: {
+  enabled: false
+},
+stroke: {
+  curve: 'straight'
+},
+title: {
+  text: 'Gastos por dia',
+  align: 'left'
+},
+grid: {
+  row: {
+  colors: ['#f3f3f3', 'transparent'], // takes an array which will be repeated on columns
+  opacity: 0.5
+  },
+},
+xaxis: {
+  categories: date_operations,
+},
+responsive: [
+  {
+    breakpoint: 1000,
+    options: {
+      plotOptions: {
+        bar: {
+          horizontal: false
+        }
+      },
+      legend: {
+        position: "bottom"
+      }
+    }
+  }
+]
+};
+
+
 // gráfico 3 (linha) - entrada
 var fahrenheit_enter = getWithIndex("http://localhost:3001/chartentrada?id_user="+iduser+"&mes="+mes+"&ano="+ano)
 console.log(fahrenheit_enter)
@@ -224,6 +284,56 @@ var valores_operacoes_enter = fahrenheit_enter.map(function(elem){
   values_operation_enter.push(elem.preco_operation)
 });
 
+var options3 = {
+  series: [{
+  name: "Entrada",
+  data: values_operation_enter
+}],
+  chart: {
+  // height: 400,
+  // width: 600,
+  type: 'line',
+  zoom: {
+  enabled: false
+  }
+},
+dataLabels: {
+  enabled: false
+},
+stroke: {
+  curve: 'straight'
+},
+title: {
+  text: 'Entradas por dia',
+  align: 'left'
+},
+grid: {
+  row: {
+  colors: ['#f3f3f3', 'transparent'], // takes an array which will be repeated on columns
+  opacity: 0.5
+  },
+},
+xaxis: {
+  categories: date_operations_enter,
+},
+responsive: [
+  {
+    breakpoint: 1000,
+    options: {
+      plotOptions: {
+        bar: {
+          horizontal: false
+        }
+      },
+      legend: {
+        position: "bottom"
+      }
+    }
+  }
+]
+};
+
+
 // gráfico 2 (pizza) - saída
 var pizza_exit = getWithIndex("http://localhost:3001/chartcategorysaida?id_user="+iduser+"&mes="+mes+"&ano="+ano)
 console.log(pizza_exit)
@@ -236,8 +346,32 @@ var categoria_operacoes_pizza_exit = pizza_exit.map(function(elem){
 });
 
 var valores_operacoes_pizza_exit = pizza_exit.map(function(elem){
-  values_operation_pizza_exit.push(elem.qtd)
+  values_operation_pizza_exit.push(elem.total_category)
 });
+
+var options2 = {
+  series: values_operation_pizza_exit,
+  chart: {
+  width: 380,
+  type: 'pie',
+},
+labels: category_operations_pizza_exit,
+responsive: [{
+  breakpoint: 480,
+  options: {
+    chart: {
+      // height: 400,
+      // width: 600,
+      type: 'line',
+      zoom: {
+      enabled: false
+      }},
+    legend: {
+      position: 'bottom'
+    }
+  }
+}]
+};
 
 // gráfico 4 (pizza) - entrada
 var pizza_enter = getWithIndex("http://localhost:3001/chartcategoryentrada?id_user="+iduser+"&mes="+mes+"&ano="+ano)
@@ -251,160 +385,32 @@ var categoria_operacoes_pizza_enter = pizza_enter.map(function(elem){
 });
 
 var valores_operacoes_pizza_enter = pizza_enter.map(function(elem){
-  values_operation_pizza_enter.push(elem.qtd)
+  values_operation_pizza_enter.push(elem.total_category)
 });
 
-
-
-
-
-var options = {
-        series: [{
-        name: "Gasto",
-        data: values_operation
-    }],
-        chart: {
-        // height: 400,
-        // width: 600,
-        type: 'line',
-        zoom: {
-        enabled: false
-        }
-    },
-    dataLabels: {
-        enabled: false
-    },
-    stroke: {
-        curve: 'straight'
-    },
-    title: {
-        text: 'Gastos por dia',
-        align: 'left'
-    },
-    grid: {
-        row: {
-        colors: ['#f3f3f3', 'transparent'], // takes an array which will be repeated on columns
-        opacity: 0.5
-        },
-    },
-    xaxis: {
-        categories: date_operations,
-    },
-    responsive: [
-        {
-          breakpoint: 1000,
-          options: {
-            plotOptions: {
-              bar: {
-                horizontal: false
-              }
-            },
-            legend: {
-              position: "bottom"
-            }
-          }
-        }
-      ]
-    };
-
-    var options2 = {
-      series: values_operation_pizza_exit,
-      chart: {
-      width: 380,
-      type: 'pie',
-    },
-    labels: category_operations_pizza_exit,
-    responsive: [{
-      breakpoint: 480,
-      options: {
-        chart: {
-          // height: 400,
-          // width: 600,
-          type: 'line',
-          zoom: {
-          enabled: false
-          }},
-        legend: {
-          position: 'bottom'
-        }
-      }
-    }]
-    };
-
-  // mais gráficos
-
-    var options3 = {
-        series: [{
-        name: "Entrada",
-        data: values_operation_enter
-    }],
-        chart: {
-        // height: 400,
-        // width: 600,
-        type: 'line',
-        zoom: {
-        enabled: false
-        }
-    },
-    dataLabels: {
-        enabled: false
-    },
-    stroke: {
-        curve: 'straight'
-    },
-    title: {
-        text: 'Entradas por dia',
-        align: 'left'
-    },
-    grid: {
-        row: {
-        colors: ['#f3f3f3', 'transparent'], // takes an array which will be repeated on columns
-        opacity: 0.5
-        },
-    },
-    xaxis: {
-        categories: date_operations_enter,
-    },
-    responsive: [
-        {
-          breakpoint: 1000,
-          options: {
-            plotOptions: {
-              bar: {
-                horizontal: false
-              }
-            },
-            legend: {
-              position: "bottom"
-            }
-          }
-        }
-      ]
-    };
-
-    var options4 = {
-      series: values_operation_pizza_enter,
-      chart: {
-      width: 380,
-      type: 'pie',
-    },
-    labels: category_operations_pizza_enter,
-    responsive: [{
-      breakpoint: 480,
-      options: {
-        chart: {
-          // height: 400,
-          // width: 600,
-          type: 'line',
-          zoom: {
-          enabled: false
-          }},
-        legend: {
-          position: 'bottom'
-        }
-      }
-    }]
-    };
+var options4 = {
+  series: values_operation_pizza_enter,
+  chart: {
+  width: 380,
+  type: 'pie',
+},
+labels: category_operations_pizza_enter,
+responsive: [{
+  breakpoint: 480,
+  options: {
+    chart: {
+      // height: 400,
+      // width: 600,
+      type: 'line',
+      zoom: {
+      enabled: false
+      }},
+    legend: {
+      position: 'bottom'
+    }
+  }
+}]
+};
 
   function charts(){
 
