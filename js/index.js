@@ -154,7 +154,6 @@ function incluirgasto(){
         const request = new XMLHttpRequest();
         request.open("POST", "http://localhost:3001/post", false);
         request.setRequestHeader("Content-type", "application/json");
-        console.log(JSON.stringify(params))
         request.send(JSON.stringify(params));
         loadItens();
         Modal.close();
