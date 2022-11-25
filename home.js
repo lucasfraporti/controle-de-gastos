@@ -1,48 +1,39 @@
 const Modal_login = {
-    open() {
+  open(){
     document
     .querySelector('.modal-login')
     .classList
     .add('active')
-    },
-    close () {
+  },
+  close (){
     document
     .querySelector('.modal-login')
     .classList
     .remove('active'),
     limpacampos()
-    }
+  }
 }
 
 
 function limpacampos(){
-    document.getElementById("email").value=''; 
-    document.getElementById("password").value='';
-    document.getElementById("regemail").value='';
-    document.getElementById("regpassword1").value='';
-    document.getElementById("regpassword2").value='';
-    labelEmaillogin.setAttribute('style', 'color: black');
-    labelPasswordlogin.setAttribute('style', 'color: black');
+  document.getElementById("email").value=''; 
+  document.getElementById("password").value='';
+  document.getElementById("regemail").value='';
+  document.getElementById("regpassword1").value='';
+  document.getElementById("regpassword2").value='';
+  labelEmaillogin.setAttribute('style', 'color: black');
+  labelPasswordlogin.setAttribute('style', 'color: black');
 };
 
 document.addEventListener("keypress", function(e) {
-    if(e.key === 'Enter') {
-    
-        var btn = document.querySelector("#logar");
-      
-      btn.click();
-    
-    }
-  });
-
+  if(e.key === 'Enter') {
+    var btn = document.querySelector("#logar");
+    btn.click();
+  }
+});
   document.addEventListener("keypress", function(e) {
-    if(e.key === 'Enter') {
-    
-        var btn = document.querySelector("#cadastrar");
-      
-      btn.click();
-    
-    }
-  });
-
- 
+  if(e.key === 'Enter') {
+    var btn = document.querySelector("#cadastrar");
+    btn.click();
+  }
+});
