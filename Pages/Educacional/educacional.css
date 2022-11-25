@@ -8,7 +8,6 @@
 	background: linear-gradient(180deg,#21c8f6,#637bff);
 }
 
-
 .background2-left-column{
 	background: linear-gradient(180deg ,#6edcc4,#1aab8b);
 }
@@ -25,7 +24,6 @@
 }
 
 .cardnoticia {
-
 	background-color:var(--white-text);
 	border-radius: 1rem;
 	box-shadow: 0 1rem 1rem rgba(0, 0, 0, 0.2);
@@ -73,7 +71,6 @@
     flex-direction: column;
     align-items: start;
     justify-content: space-between;
-	
 }
 
 .right-column p{	
@@ -81,10 +78,7 @@
 	color: var(--black-text)
 }
 
-
-
 /*media queries*/
-
 @media (max-width: 1030px) {
 	.container-noticias .noticia{
 		flex-direction: column;
@@ -92,4 +86,4 @@
 		align-items: center;
 		height:auto;
 	}
-  }
+}
