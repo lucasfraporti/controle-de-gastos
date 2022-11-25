@@ -25,4 +25,24 @@ function limpacampos(){
     labelPasswordlogin.setAttribute('style', 'color: black');
 };
 
+document.addEventListener("keypress", function(e) {
+    if(e.key === 'Enter') {
+    
+        var btn = document.querySelector("#logar");
+      
+      btn.click();
+    
+    }
+  });
+
+  document.addEventListener("keypress", function(e) {
+    if(e.key === 'Enter') {
+    
+        var btn = document.querySelector("#cadastrar");
+      
+      btn.click();
+    
+    }
+  });
+
  

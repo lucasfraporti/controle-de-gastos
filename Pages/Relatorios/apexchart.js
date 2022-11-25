@@ -125,6 +125,28 @@ function attchart2(){
     values_operation_pizza_exit.push(elem.total_category)
   });
 
+//   chart.updateOptions({
+
+//     series: values_operation_pizza_exit,
+//     labels: category_operations_pizza_exit,
+//     animations: {
+//       enabled: false}
+// })
+
+if (pizza_exit.length === 0) 
+{console.log('vazio'+pizza_exit)
+chart.updateOptions({
+
+  series: [0],
+  labels: ['Sem transações'],
+  animations: {
+    enabled: false}
+})
+}
+else{
+  console.log('possui valor')
+
+  
   chart.updateOptions({
 
     series: values_operation_pizza_exit,
@@ -132,6 +154,7 @@ function attchart2(){
     animations: {
       enabled: false}
 })
+  }
 
 }
 
@@ -189,13 +212,29 @@ function attchart4(){
     values_operation_pizza_enter.push(elem.total_category)
   });
 
+
+
+
+if (pizza_enter.length === 0) 
+{
+chart.updateOptions({
+
+  series: [0],
+  labels: ['Sem transações'],
+
+})
+}
+else{
+  console.log('possui valor')
+
+  
   chart.updateOptions({
 
     series: values_operation_pizza_enter,
     labels: category_operations_pizza_enter,
-    animations: {
-      enabled: false}
+
 })
+  }
 
 
 }
@@ -352,7 +391,7 @@ var valores_operacoes_pizza_exit = pizza_exit.map(function(elem){
 var options2 = {
   series: values_operation_pizza_exit,
   chart: {
-  width: 380,
+  width: 410,
   type: 'pie',
 },
 labels: category_operations_pizza_exit,
@@ -391,7 +430,7 @@ var valores_operacoes_pizza_enter = pizza_enter.map(function(elem){
 var options4 = {
   series: values_operation_pizza_enter,
   chart: {
-  width: 380,
+  width: 410,
   type: 'pie',
 },
 labels: category_operations_pizza_enter,

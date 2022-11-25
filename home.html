@@ -28,7 +28,6 @@
             <a href="#"
               onclick="Modal_login.open()">
               Continuar
-              <img src="assets/arrow.svg" alt="">
             </a>
           </div>
         </div>
@@ -46,29 +45,29 @@
       
       <form id="signin">
         <label id="labelEmaillogin" for="Email">Email</label>
-        <input type="email" placeholder="Email" id="email" required />
+        <input type="email" placeholder="Email" id="email"  autocomplete="on" required />
         <i class="fas fa-envelope iEmail"></i>
         <label id="labelPasswordlogin" for="Email">Senha</label>
-        <input type="password" placeholder="Senha" id="password" required />
+        <input type="password" placeholder="Senha" id="password" autocomplete="on" required />
         <i class="fas fa-lock iPassword"></i>
         <div class="divCheck">
           <a href="#" onclick="recoverPassword()" id="recoverpassword" >Recuperar senha</a>
         </div>
-        <button type="button" onclick="login()">Entrar</button>
+        <button id="logar" type="button" onclick="login()">Entrar</button>
       </form>
   
       <form id="signup">
         <label id="labelEmail" for="Email">Email</label>
-        <input type="regemail" placeholder="Email"  id="regemail"required />
+        <input type="regemail" placeholder="Email"  id="regemail" autocomplete="on" required />
         <i class="fas fa-envelope iRegEmail"></i>
         <label id="labelPassword1" for="Senha">Senha</label>
-        <input type="password" placeholder="Senha" id="regpassword1" required />
+        <input type="password" placeholder="Senha" id="regpassword1"  autocomplete="on" required />
         <i class="fas fa-lock iRegPassword"></i>
         <label id="labelPassword2" for="Senha">Confirmar Senha</label>
-        <input type="password" placeholder="Senha" id="regpassword2" required />
+        <input type="password" placeholder="Senha" id="regpassword2" autocomplete="on" required />
         <i class="fas fa-lock iRegPassword2"></i>
 
-        <button type="button" onclick="register()">Cadastrar</button>
+        <button id="cadastrar" type="button" onclick="register()">Cadastrar</button>
       </form>
     </div>
 
