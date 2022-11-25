@@ -17,6 +17,7 @@ const Modal = {
     .querySelector('.modal-overlay')
     .classList
     .remove('active')
+    limpacadastro()
     }
 }
 
@@ -84,6 +85,14 @@ const Modal_configuracoes = {
 
 function limpaemail() {
     document.getElementById("ajuda").value='';
+}
+
+function limpacadastro(){
+    document.querySelector("#desc").value = '';
+    document.querySelector("#date-input").value = '';
+    document.querySelector("#amount").value = '';
+    document.querySelector("#category").value = '';
+    
 }
 
 
