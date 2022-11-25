@@ -7,20 +7,14 @@
     <link rel="stylesheet" href="./style.css">
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href='https://unpkg.com/boxicons@2.1.1/css/boxicons.min.css' rel='stylesheet'>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,400;0,700;1,100;1,400;1,700&display=swap" 
-    rel="stylesheet">
-    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
-  
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,400;0,700;1,100;1,400;1,700&display=swap" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet"/>
     <script src="https://code.jquery.com/jquery-3.6.1.min.js" integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ=" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
-
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/izitoast/1.4.0/js/iziToast.min.js" 
-    integrity="sha512-Zq9o+E00xhhR/7vJ49mxFNJ0KQw1E1TMWkPTxrWcnpfEFDEXgUiwJHIKit93EW/XxE31HSI5GEOW06G6BF1AtA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/izitoast/1.4.0/css/iziToast.css" 
-    integrity="sha512-DIW4FkYTOxjCqRt7oS9BFO+nVOwDL4bzukDyDtMO7crjUZhwpyrWBFroq+IqRe6VnJkTpRAS6nhDvf0w+wHmxg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/izitoast/1.4.0/js/iziToast.min.js" integrity="sha512-Zq9o+E00xhhR/7vJ49mxFNJ0KQw1E1TMWkPTxrWcnpfEFDEXgUiwJHIKit93EW/XxE31HSI5GEOW06G6BF1AtA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/izitoast/1.4.0/css/iziToast.css" integrity="sha512-DIW4FkYTOxjCqRt7oS9BFO+nVOwDL4bzukDyDtMO7crjUZhwpyrWBFroq+IqRe6VnJkTpRAS6nhDvf0w+wHmxg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css" >
     <title>Pila - Controle e educação financeira</title>
-
 </head>
 <body class="shrink1">
     <nav>
@@ -31,7 +25,6 @@
       <img src="/Vendors/img/total.svg" class="logo" alt="">
       <h3 class="hide">PILA</h3>
     </div>
-
     <div class="sidebar-links">
       <ul>
             <li class="tooltip-element" data-tooltip="0">
@@ -67,9 +60,7 @@
               <span>Educacional</span>
             </div>
           </ul>
-    
           <h4 class="hide">Outras informações</h4>
-              
           <ul>
             <li class="tooltip-element" data-tooltip="0">
               <a href="#"  onclick="Modal_sobre.open()" data-active="4">
@@ -105,12 +96,10 @@
             </div>
           </ul>
         </div>
-    
         <div class="sidebar-footer">
           <a href="#" class="account tooltip-element" data-tooltip="0">
             <i class='bx bx-user'></i>
           </a>
-          
           <div class="admin-user tooltip-element" data-tooltip="1">
             <div class="admin-profile hide">
               <!-- <img src="" alt=""> -->
@@ -122,62 +111,52 @@
               <i class='bx bx-log-out'></i>
             </a>
           </div>
-    
           <div class="tooltip">
             <span class="show">PILA</span>
             <span>Logout</span>
           </div>
         </div>
     </nav>
-    
-    
-   
+
     <main class="container">
         <section id="balance">
             <h2 class="sr-only">Balanço</h2>
-
             <div class="card">
                 <h3>
                     <span>Entradas</span>
                     <img src="/Vendors/img/income.svg" alt="entradas">
-                 </h3>
-                     <p id="profit">R$ 0,00</p>
+                </h3>
+                    <p id="profit">R$ 0,00</p>
             </div>
-
             <div class="card">
                 <h3>
                     <span>Saídas</span>
                     <img src="/Vendors/img/expense.svg" alt="saídas">
-                 </h3>
-                 <p id="loss">R$ 0,00</p>
+                </h3>
+                <p id="loss">R$ 0,00</p>
             </div>
-
             <div class="card total">
                 <h3>
                     <span>Total</span>
                     <img src="/Vendors/img/total.svg" alt="total">
-                 </h3>
-                     <p id="total">R$ 0,00</p>
+                </h3>
+                    <p id="total">R$ 0,00</p>
             </div>
         </section>
-        
+
         <article class="date-carousel">
           <input type="button" class="date-carousel-prev" id="dataprev" value="&lt;">
           <input type="month" class="date-carousel-input" id="datacarousel" onchange="datamanual()">
           <input type="button" class="date-carousel-next" id="datanext" value="&gt;">
         </article>
-        
+
         <a href="#" 
         onclick="Modal.open()"
         class="button new">
-            + Nova Transação
+        + Nova Transação
         </a>
-
-        
-
         <section id="transaction">
           <h2 class="sr-only">Transações</h2>
-         
           <table class="table" id="data-table" data-filter-control="true" data-show-search-clear-button="true">
               <thead class="mobile">
                   <tr>
@@ -192,32 +171,20 @@
               <tbody id="tbody">
               </tbody>
           </table>
-      
-      </section>
-
+        </section>
       <div class="export">
               <i class="fa-solid fa-file-csv"></i>
-      
-      <a href="#"
-       
-      onclick="exportcsv()"
-      class="button export">
+      <a href="#" onclick="exportcsv()" class="button export">
           Exportar para CSV!
       </a>
       </div>
-
-
-      
-
   </main>
 
   <div class="modal-overlay">
     <div class="modal">
-        
         <div id="form">
             <h2>Nova Transação</h2>
             <form action="" onsubmit="Form.submit(event)">
-
                 <div class="input-group">
                     <label 
                     class="sr-only"
@@ -226,10 +193,8 @@
                     type="text" 
                     id="desc" 
                     name="description"
-                    placeholder="Descrição"
-                    />
+                    placeholder="Descrição"/>
                 </div>
-
                 <div class="input-group">
                     <select class="ls-select" id="category" >
                         <option>Alimentação</option>
@@ -254,7 +219,6 @@
                         <option>Outros</option>
                     </select>
                 </div>
-
                 <div class="input-group">
                     <label 
                     class="sr-only"
@@ -270,7 +234,6 @@
                         Use o sinal - (negativo) para despesas e , (vírgula) para casas decimais
                     </small>
                 </div>
-
                 <div class="input-group">
                     <label 
                     class="sr-only"
@@ -281,7 +244,6 @@
                     name="date"
                     />
                 </div>
-                
                 <div class="input-group actions">
                     <a 
                     onclick="Modal.close()"
@@ -289,21 +251,17 @@
                     class="button cancel">Cancelar</a>
                     <button onclick="incluirgasto()">Salvar</button>
                 </div>
-
             </form>
         </div>
-
-      
     </div>
   </div>
-  
+
   <div class="modal-ajuste">
     <div class="modal">
         
         <div id="form">
             <h2>Nova Transação</h2>
             <form action="" onsubmit="Form.submit(event)">
-
                 <div class="input-group">
                     <label 
                     class="sr-only"
@@ -312,10 +270,8 @@
                     type="text" 
                     id="descNew" 
                     name="description"
-                    placeholder="Descrição"
-                    />
+                    placeholder="Descrição"/>
                 </div>
-
                 <div class="input-group">
                     <select class="ls-select" id="categoryNew">
                         <option>Alimentação</option>
@@ -340,7 +296,6 @@
                         <option>Outros</option>
                     </select>
                 </div>
-
                 <div class="input-group">
                     <label 
                     class="sr-only"
@@ -356,7 +311,6 @@
                         Use o sinal - (negativo) para despesas e , (vírgula) para casas decimais
                     </small>
                 </div>
-
                 <div class="input-group">
                     <label 
                     class="sr-only"
@@ -367,7 +321,6 @@
                     name="date"
                     />
                 </div>
-                
                 <div class="input-group actions">
                     <a 
                     onclick="Modal_ajuste.close()"
@@ -375,14 +328,10 @@
                     class="button cancel">Cancelar</a>
                     <button id="btnAtualizar">Atualizar</button>
                 </div>
-
             </form>
         </div>
-
-      
     </div>
   </div>
-
 
   <div class="modal-sobre">
     <div class="modal">
@@ -400,7 +349,6 @@
         </div>
     </div>
   </div>
-  
     <div class="modal-ajuda">
       <div class="modal">
           <div id="form">
@@ -408,7 +356,6 @@
             <p>Ficou com alguma duvida ou aconteceu algum erro durante o uso do Pila?</p>
             <div class="input-group">
               <textarea name="erro" id="ajuda" cols="65" rows="10" placeholder="Conte-nos mais como ocorreu o erro, caso necessário nossa equipe entrará em contato." ></textarea>
-  
             </div>
               <div class="input-group actions">
                   <a 
@@ -420,8 +367,6 @@
           </div>
       </div>
     </div>
-  
-
   <div class="modal-configuracoes">
     <div class="modal">
       <div id="form">
@@ -459,12 +404,9 @@
     <script src="/js/index.js"></script>
     <script src="./scripts.js"></script>
     <script src="/js/logout.js"></script>  
-    
     <script src="https://www.gstatic.com/firebasejs/9.6.7/firebase-app-compat.js"></script>
     <script src="https://www.gstatic.com/firebasejs/9.6.7/firebase-auth-compat.js"></script>
-  
     <script src="/Firebase/firebase-init.js"></script>
     <script src="/Firebase/auth-guard.js"></script>
-  
 </body>
 </html>

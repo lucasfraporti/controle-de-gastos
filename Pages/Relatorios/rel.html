@@ -20,10 +20,8 @@
       <img src="/Vendors/img/total.svg" class="logo" alt="">
       <h3 class="hide">PILA</h3>
     </div>
-
     <div class="sidebar-links">
       <ul>
-        <!-- <div class="active-tab"></div> -->
         <li class="tooltip-element" data-tooltip="0">
           <a href="/Pages/Principal/index.html" data-active="0">
             <div class="icon">
@@ -67,9 +65,7 @@
           <span>Analytics</span>
         </div>
       </ul>
-
       <h4 class="hide">Shortcuts</h4>
-
       <ul>
         <li class="tooltip-element" data-tooltip="0">
           <a href="#"  onclick="Modal_sobre.open()" data-active="4">
@@ -105,15 +101,12 @@
         </div>
       </ul>
     </div>
-
     <div class="sidebar-footer">
       <a href="#" class="account tooltip-element" data-tooltip="0">
         <i class='bx bx-user'></i>
       </a>
-      
       <div class="admin-user tooltip-element" data-tooltip="1">
         <div class="admin-profile hide">
-          <!-- <img src="" alt=""> -->
           <div class="admin-info">
             <h3 id="usuario"></h3>
           </div>
@@ -122,16 +115,15 @@
           <i class='bx bx-log-out'></i>
         </a>
       </div>
-
       <div class="tooltip">
         <span class="show">PILA</span>
         <span>Logout</span>
       </div>
     </div>
-</nav>
+  </nav>
 
-<div class="modal-sobre">
-  <div class="modal">
+  <div class="modal-sobre">
+    <div class="modal">
       <div id="form">
         <h2>Sobre</h2>
         <p>O Pila nasceu no Centro Educativo Senac e tem como principal objetivo auxiliar o usuário em seu controle financeiro, 
@@ -144,8 +136,8 @@
               class="button cancel">Cancelar</a>
             </div>   
       </div>
+    </div>
   </div>
-</div>
 
   <div class="modal-ajuda">
     <div class="modal">
@@ -168,30 +160,29 @@
   </div>
 
 
-<div class="modal-configuracoes">
-  <div class="modal">
-    <div id="form">
-      <h2>Sugestões</h2>
-      <p>Tem alguma ideia ou sugestão que possam tornar a usabilidade do Pila melhor? </p>
-      <div class="input-group">
-        <textarea name="erro" id="sugestão" cols="65" rows="10" placeholder="Encaminhe um email para nossa equipe de desenvolvimento, arantimos que todas as sugestão serão analisadas." ></textarea>
+  <div class="modal-configuracoes">
+    <div class="modal">
+      <div id="form">
+        <h2>Sugestões</h2>
+        <p>Tem alguma ideia ou sugestão que possam tornar a usabilidade do Pila melhor? </p>
+        <div class="input-group">
+          <textarea name="erro" id="sugestão" cols="65" rows="10" placeholder="Encaminhe um email para nossa equipe de desenvolvimento, arantimos que todas as sugestão serão analisadas." ></textarea>
+        </div>
+          <div class="input-group actions">
+              <a 
+              onclick="Modal_configuracoes.close()"
+              href="#"
+              class="button cancel">Cancelar</a>
+              <button onclick="sendmailsugestao()">Enviar</button>
+          </div>   
       </div>
-        <div class="input-group actions">
-            <a 
-            onclick="Modal_configuracoes.close()"
-            href="#"
-            class="button cancel">Cancelar</a>
-            <button onclick="sendmailsugestao()">Enviar</button>
-        </div>   
-    </div>
-</div>
-</div>
+  </div>
+  </div>
 
 <main class="container">
 <div id="form2">
     <h2>Nova Transação</h2>
     <form action="" onsubmit="Form.submit(event)">
-
         <div class="input-group">
             <label 
             class="sr-only"
@@ -200,10 +191,8 @@
             type="text" 
             id="desc" 
             name="description"
-            placeholder="Descrição"
-            />
+            placeholder="Descrição"/>
         </div>
-
         <div class="input-group">
             <select class="ls-select" id="category" >
                 <option>Alimentação</option>
@@ -228,7 +217,6 @@
                 <option>Outros</option>
             </select>
         </div>
-
         <div class="input-group">
             <label 
             class="sr-only"
@@ -244,7 +232,6 @@
                 Use o sinal - (negativo) para despesas e , (vírgula) para casas decimais
             </small>
         </div>
-
         <div class="input-group">
             <label 
             class="sr-only"
@@ -258,50 +245,37 @@
     </form>
 </div>
 
-  
 </div>
 </div>
-
-
-        <section id="transaction">
-      <h2 class="sr-only">Transações</h2>
-     
-      <table class="table" id="data-table" data-filter-control="true" data-show-search-clear-button="true">
-          <thead class="mobile">
-              <tr>
-                  <th>Data</th>
-                  <th>Descrição</th>
-                  <th class="cor">Valor</th>
-                  <th>Categoria</th>
-                  <th class="cor">Tipo</th>
-                  <th></th>
-              </tr>
-          </thead>
+  <section id="transaction">
+    <h2 class="sr-only">Transações</h2>
+    <table class="table" id="data-table" data-filter-control="true" data-show-search-clear-button="true">
+        <thead class="mobile">
+            <tr>
+              <th>Data</th>
+              <th>Descrição</th>
+              <th class="cor">Valor</th>
+              <th>Categoria</th>
+              <th class="cor">Tipo</th>
+              <th></th>
+            </tr>
+        </thead>
           <tbody id="tbody">
-          </tbody>
-      </table>
-  
+        </tbody>
+    </table>
   </section>
-
-  
 </div>
 </div>
 
   <script src="https://www.gstatic.com/firebasejs/9.6.7/firebase-app-compat.js"></script>
   <script src="https://www.gstatic.com/firebasejs/9.6.7/firebase-auth-compat.js"></script>
-
   <script src="/Firebase/firebase-init.js"></script>
   <script src="/Firebase/auth-guard.js"></script>
-
   <script src="/js/index.js"></script>
   <script src="/js/logout.js"></script>
   <script src="/Pages/Principal/scripts.js"></script>
   <script src="/Pages/Principal/Dashboard.js"></script>
-  <script src="/Pages/Relatorios/relatorio.css"></script>
-
-  <script type="text/javascript"
-  src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js">
-  </script>
+  <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
   <script src="/js/emailjs.js"></script>
 </body>
 </html>

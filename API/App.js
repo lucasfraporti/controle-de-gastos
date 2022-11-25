@@ -34,37 +34,6 @@ exports.execute = (query, params=[]) => {
 }
 exports.pool = db;
 
-// -------------------------- LOGIN --------------------------
-
-// App.post("/login", (req, res) => {
-//     const {username, password} = req.body;
-//     db.query("SELECT * FROM users WHERE username = ? AND password = ?", [username, password], (err, result) => {
-//         if(err){
-//             res.status(500).send(err);
-//         }else if(result.length == 0){
-//             res.status(404).send("Usuário ou senha incorretos.");
-//         }else{
-//             const token = jwt.sign({userId: JSON.parse(JSON.stringify(result))[0].id}, "p1l4@2022", {expiresIn: 600});
-//             return res.json({auth: true, token: token});
-//         };
-//         res.status(401).end();
-//     });
-// });
-
-// function eq, res, next){
-//     const token = req.headers["x-access-token"];
-//     jwt.verify(token, "p1l4@2022", (err, decoded) => {
-//         if(err){
-//             return res.status(401).end();
-//         }else{
-//             // Buscando o userId do payload
-//             req.userId = decoded.userId;
-//             console.log(req.userId)
-//             next();
-//         };
-//     });
-// };
-
 // localhost:3001/cadastro
 App.post('/cadastro', (req, res) => {
     const {username, password} = req.body;
@@ -113,7 +82,6 @@ App.get("/getchart", (req, res) => {
 });
 
 /// gets graficos
-
 App.get("/chartentrada", (req, res) => {
     const id_user = req.query.id_user;
     const mes = req.query.mes;
@@ -166,9 +134,6 @@ App.get("/chartcategorysaida", (req, res) => {
     });
 });
 
-
-
-
 //-->> BUSCAR AS OPERAÇÕES PELO ID DO USUÁRIO, RECEBENDO COMO PARÂMETRO
 // localhost:3001/getporuserid/:iduser
 App.get("/getprofit/:iduser", (req, res) => {
@@ -193,7 +158,6 @@ App.get("/operations", (req, res) => {
     });
 });
 
-
 App.get("/getloss/:iduser", (req, res) => {
     const user_id = req.params.iduser;
     db.query("SELECT COALESCE(SUM(price), 0) AS total_sum FROM valores WHERE type = 'S' and month(date) = ? and year(date) = ?  and id_user = ? ", [mesatual, anoatual,user_id], (err, result) => {
@@ -204,7 +168,6 @@ App.get("/getloss/:iduser", (req, res) => {
         };
     });
 });
-
 
 // localhost:3001/get/id/:id
 App.get("/get/id/:id", (req, res) => {

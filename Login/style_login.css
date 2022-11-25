@@ -1,21 +1,13 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins&family=Roboto:wght@100;300;400;500;700;900&family=Source+Sans+Pro:wght@200;300;400;600;700;900&display=swap');
 
-* {
+*{
   margin: 0;
   padding: 0;
   box-sizing: border-box;
   font-family: 'poppins', sans-serif;
 }
-/* 
-body {
-  width: 100vw;
-  height: 100vh;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-} */
 
-.container {
+.container{
   background-color: whitesmoke;
   padding: 6px;
   width: 350px;
@@ -29,7 +21,7 @@ body {
   box-shadow: 0 0 20px 0 darkgrey;
 }
 
-form {
+form{
   position: absolute;
   margin-top: 110px;
   transition: .5s;
@@ -37,15 +29,14 @@ form {
   height: 400px;
 }
 
-.buttonsForm {
+.buttonsForm{
   margin-top: 40px;
   position: relative;
   border-radius: 30px;
   box-shadow: 0 0 7px 0 rgba(62, 170, 12, 0.986);
 }
 
-
-.buttonsForm button {
+.buttonsForm button{
   cursor: pointer;
   background: transparent;
   border: none;
@@ -159,6 +150,4 @@ i {
   margin-top: 600px;
 }
 
-a:visited {color:black;} /* Visited link    */
-
-
+a:visited {color:black;} /* Visited link*/

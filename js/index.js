@@ -9,7 +9,6 @@ const btnInclude = document.querySelector("#btnInclude");
 const Ajuda = document.querySelector("#ajuda");
 const Sugestao = document.querySelector("#sugestão");
 
-
 //valores
 const profit = document.querySelector("#profit");
 const loss = document.querySelector("#loss");
@@ -25,41 +24,38 @@ const iduser = window.localStorage.getItem('id');
 //carousel data
 var util = {
     qs(sel, ctx){ 
-      return (ctx || document).querySelector(sel);
+        return (ctx || document).querySelector(sel);
     },
     qsa(sel, ctx){
-      return Array.from((ctx || document).querySelectorAll(sel));
+        return Array.from((ctx || document).querySelectorAll(sel));
     }
-  };
-  
-  class DateCarousel {
+};
+
+class DateCarousel {
     constructor(el) {
-      this.element = el;
-      this.prevButton = util.qs(".date-carousel-prev", el);
-      this.input = util.qs(".date-carousel-input",el);
-      this.nextButton = util.qs(".date-carousel-next",el);
-      this.input.valueAsDate = new Date();
-      this.prevButton.addEventListener("click",this.prev.bind(this));
-      this.nextButton.addEventListener("click",this.next.bind(this));
+    this.element = el;
+    this.prevButton = util.qs(".date-carousel-prev", el);
+    this.input = util.qs(".date-carousel-input",el);
+    this.nextButton = util.qs(".date-carousel-next",el);
+    this.input.valueAsDate = new Date();
+    this.prevButton.addEventListener("click",this.prev.bind(this));
+    this.nextButton.addEventListener("click",this.next.bind(this));
     }
-    
     prev(){
-      this.input.stepDown();
+    this.input.stepDown();
     }
-    
     next() {
-      this.input.stepUp();
+    this.input.stepUp();
     }  
-  }
-  util.qsa('.date-carousel').forEach(function(el){ new DateCarousel(el) });
+}
+util.qsa('.date-carousel').forEach(function(el){ new DateCarousel(el) });
 
 //pegando a troca de data do carousel  
-
 document.getElementById("dataprev").addEventListener("click", loadItens);
 document.getElementById("datanext").addEventListener("click", loadItens);
 
 // TESTE NOVA DATA
-var mes ;
+var mes;
 var ano;
 
 function datanext() {
@@ -70,7 +66,6 @@ function datanext() {
 }
 
 //functions da API
-
 function fazGet(url){
     const request = new XMLHttpRequest();
     request.open("GET", url, false);
@@ -93,21 +88,18 @@ function getWithIndex(url){
 //formatar os valores
 function formatavalor(valor) {
     const formatado = valor.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' });
-  
     return formatado;
-  }
+};
 
 function getprofit(){
     const profit =  formatavalor(getValores("http://localhost:3001/get/profit2?id_user="+iduser+"&mes="+mes+"&ano="+ano));
     return profit
-
 };
 
 function getloss(){
     const loss =  formatavalor(getValores("http://localhost:3001/get/loss2?id_user="+iduser+"&mes="+mes+"&ano="+ano));
     return loss
- 
- };
+};
 
 function getprofitandloss(){
     const profit = getValores("http://localhost:3001/get/profit2?id_user="+iduser+"&mes="+mes+"&ano="+ano);
@@ -143,17 +135,14 @@ function validainput(){
 function incluirgasto(){
     if(desc.value === "" || amount.value === "" || date.value === ""){
         alertwarning('É necessário preencher todos os campos!');
-    }
-    else {
+    }else{
         if(amount.value > 0){
             type_value = "E";
         }else{
             type_value = "S";
         };
-
         const priceatual = document.querySelector("#amount").value;
         const pricefinal = priceatual.replace('-','');
-
         const params = {
             id_user: window.localStorage.getItem('id'),
             date: document.querySelector("#date-input").value,
@@ -162,33 +151,27 @@ function incluirgasto(){
             category: document.querySelector("#category").value,
             type: type_value
         };
-
         const request = new XMLHttpRequest();
         request.open("POST", "http://localhost:3001/post", false);
         request.setRequestHeader("Content-type", "application/json");
         console.log(JSON.stringify(params))
         request.send(JSON.stringify(params));
-
         loadItens();
         Modal.close();
         alertsuccess("Transação inserida com sucesso!")
     }
-    
-
 };
 
 // Inserir o gasto na tabela
 function insertItem(item){
     const tr = document.createElement("tr");
     const CSSClass = item.type === "E" ? "income" : "expense"
-
     if(item.type === "E"){
         type_new_value = "Entrada";
         
     }else{
         type_new_value = "Saída";
     };
-
     tr.innerHTML = `
     <td id="exportarCSV">${item.date.split("T")[0].split("-").reverse().join("/")}</td>
     <td id="exportarCSV">${item.description}</td>
@@ -201,22 +184,18 @@ function insertItem(item){
     <img onclick="deletarregistro(${item.id})" src="/Vendors/img/recycle-bin.png" width='27'" alt="remover transação">
     </td>
     `;
-
     tbody.appendChild(tr);
 };
 
 // Abertura do modal para atualização de um gasto
 function openModal(index){
     Modal_ajuste.open();
-
     let userId;
     const dateNew = document.querySelector("#dateNew");
     const descNew = document.querySelector("#descNew");
     const amountNew = document.querySelector("#amountNew");
-    
     const categoryNew = document.querySelector("#categoryNew");
     const btnAtualizar = document.getElementById("btnAtualizar");
-
     items = getWithIndex("http://localhost:3001/get/id/"+parseInt(index));
     items.forEach((item) => {
         dateNew.value = item.date.split("T")[0];
@@ -230,21 +209,17 @@ function openModal(index){
             amountNew.value = '-'+item.price;
         };
     });
-
     btnAtualizar.addEventListener("click", function(){
         if(dateNew.value === "" || descNew.value === "" || amountNew.value === ""){
             alertwarning('É necessário preencher todos os campos!');
         }
         else{
-                    
             if(amountNew.value > 0){
                 type_value_new = "E";
             }else{
                 type_value_new = "S";
             };
-
             const pricefinal = amountNew.value.replace('-','');
-
             const params = {
                 id_user: userId,
                 date: dateNew.value,
@@ -253,7 +228,6 @@ function openModal(index){
                 category: categoryNew.value,
                 type: type_value_new
             };
-
             const request = new XMLHttpRequest();
             request.open("PUT", "http://localhost:3001/update/"+parseInt(index), true);
             request.setRequestHeader("Content-type","application/json");
@@ -275,7 +249,6 @@ function openModal(index){
 
 // Deletar um gasto
 function deleteItem(index){
-
     const request = new XMLHttpRequest();
     request.open("DELETE", "http://localhost:3001/delete/"+index, true);
     request.onload = function (){
@@ -289,12 +262,10 @@ function deleteItem(index){
         };
     };
     request.send(null);
-
 };
 
 // Fazer download do CSV
 function downloadCSVFile(csv_data){
-
     CSVFile = new Blob(["\ufeff", csv_data], {type: "text/csv"});
     const linkDownload = document.createElement("a");
     linkDownload.download = "Pila"+mes+'-'+ano+'.csv';
@@ -362,7 +333,6 @@ function exportcsv(){
 // });
 
 //notificacoes
-
 function alertsuccess(msg) {
     iziToast.success({
         title: 'Sucesso',
@@ -371,12 +341,12 @@ function alertsuccess(msg) {
     }); 
 }
 
-function alerterror(msg) {
-    iziToast.error({    
+function alerterror(msg){
+    iziToast.error({
         title: 'Erro',
         position: 'topRight',
         message: msg,
-        });
+    });
 }
 
 function alertwarning(msg) {
@@ -392,13 +362,11 @@ function deletarregistro(item) {
         dangerMode: true,
         closeOnClickOutside: false,
         buttons: ["Cancelar", "Deletar"],
-      }).then((result) => {
+    }).then((result) => {
         if (result) {
             deleteItem(item)
         }
-      })
+    })
 }
-
-
 
 loadItens();

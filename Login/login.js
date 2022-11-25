@@ -5,9 +5,6 @@ firebase.auth().onAuthStateChanged(user => {
   }
 })
 
-
-
-
 //DECLARANDO AS CONST
 const form = {
   email: () => document.getElementById("email"),
@@ -23,9 +20,6 @@ function validateEmail(emailteste) {
   var re = /\S+@\S+\.\S+/;
   return re.test(emailteste);
 }
-
-
-
 
 // CONTROLA A NAVEGAÇÃO ENTRE ABAS DE CADASTRO E LOGIN
 var formSignin = document.querySelector('#signin')
@@ -46,7 +40,6 @@ document.querySelector('#btnSignup')
     btnColor.style.left = "110px"
 })
 
-
 //logout
 function logout() {
   firebase.auth().signOut().then(() => {
@@ -55,7 +48,6 @@ function logout() {
       alert('Erro ao fazer logout');
   })
 }
-
 
 //login
 let labelEmaillogin = document.querySelector('#labelEmaillogin')
@@ -93,8 +85,6 @@ passwordlogin.addEventListener('keyup', () => {
     validPasswordlogin = true
   }
 })
-
-
 
 //cadastro novo user
 let regemail = document.querySelector('#regemail')
@@ -156,9 +146,7 @@ function login() {
   if (form.email().value === "" && form.password().value === ""){
     console.log('teste')
     return labelEmaillogin.setAttribute('style', 'color: red'),labelPasswordlogin.setAttribute('style', 'color: red')
-  }
-
-  else{
+  }else{
     firebase.auth().signInWithEmailAndPassword(
       form.email().value, form.password().value
     ).then(() => {
@@ -171,7 +159,6 @@ function login() {
         getErrorMessage(error);
     });
   }
-
 }
 
 function teste(){
@@ -194,7 +181,7 @@ function register() {
     }).catch(error => {
         getErrorMessage(error);
     })
-  } else {
+  }else{
     labelEmail.setAttribute('style', 'color: red'),
     labelEmail.innerHTML = 'Insira um e-mail valido',
     labePassword1.setAttribute('style', 'color: red'),
@@ -204,9 +191,7 @@ function register() {
   }
 }
 
-
 // FUNCTION RECUPERAR SENHA
-
 function recoverPassword() {
   if (form.email().value === ""){
     console.log('teste')
@@ -219,7 +204,6 @@ function recoverPassword() {
       getErrorMessage(error);
   });
   }
-
 }
 
 // RETORNAR OS ERROS DO FIREBASE
@@ -239,6 +223,5 @@ function getErrorMessage(error) {
     labelEmail.innerHTML = 'E-mail já cadastrado',
     regemail.setAttribute('style', 'border-color: red');
   }
-
   return error.message;
 };
