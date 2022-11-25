@@ -1077,9 +1077,9 @@ body.shrink .tooltip {
 	padding: 2rem;
 	max-width: 10rem;
 	display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: space-between;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
 }
 
 .left-column h2{
@@ -1096,7 +1096,7 @@ body.shrink .tooltip {
 	display: flex;
   flex-direction: column;
   align-items: start;
-  justify-content: space-between;
+  /* justify-content: space-between; */
 	
 }
 
@@ -1114,6 +1114,12 @@ body.shrink .tooltip {
 	letter-spacing: .1rem;
 	align-self: flex-end;
 }
+
+a.direita,
+a.esquerda{
+	margin-top: 40px;
+}
+
 
 
 /* mediaquery menu */
