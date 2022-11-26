@@ -144,6 +144,7 @@ confirmPassword.addEventListener('keyup', () => {
 // FUNCTION DE LOGAR
 function login() {
   if (form.email().value === "" && form.password().value === ""){
+    console.log('teste')
     return labelEmaillogin.setAttribute('style', 'color: red'),labelPasswordlogin.setAttribute('style', 'color: red')
   }else{
     firebase.auth().signInWithEmailAndPassword(
@@ -193,6 +194,7 @@ function register() {
 // FUNCTION RECUPERAR SENHA
 function recoverPassword() {
   if (form.email().value === ""){
+    console.log('teste')
     return labelEmaillogin.setAttribute('style', 'color: red'),labelEmaillogin.innerHTML = 'Preencha o campo e-mail'
   }
   else{
