@@ -371,13 +371,13 @@ body.shrink .tooltip {
 
 /* alterando os gráficos */
 
- .col-md-2-saida,
+.col-md-2-saida,
 .col-md-2-saida-2,
 .col-md-2-entrada,
 .col-md-2-entrada-2{
   margin: 10px;
   border-radius: 20px;
-  box-shadow: 2px 2px 2px 1px rgba(0, 0, 0, 0.5);
+  box-shadow: 1px 1px 1px 1px rgba(0, 0, 0, 0.1);
 }
 /*  
 .col-md-2-saida{
@@ -404,8 +404,8 @@ body.shrink .tooltip {
 
 #spark2,
 #spark4{
-  width: 400px;
-  height: 250px;
+  width: 450px;
+  height: 300px;
 }
 
 @media only screen and (max-width: 880px){

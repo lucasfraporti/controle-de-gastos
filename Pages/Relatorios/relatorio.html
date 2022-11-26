@@ -167,10 +167,9 @@
 </div>
 </div>
 <main>
-  
     <article class="date-carousel">
       <input type="button" class="date-carousel-prev" id="dataprev" value="&lt;">
-      <input type="month" class="date-carousel-input" id="datacarousel">
+      <input type="month" class="date-carousel-input" id="datacarousel" onchange="attchart()">
       <input type="button" class="date-carousel-next" id="datanext" value="&gt;">
     </article>
     <div class="chartCard">
@@ -201,8 +200,6 @@
         </div>
       </div>
     </div>
-
-  </main>
   </main>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
