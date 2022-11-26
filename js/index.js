@@ -280,6 +280,7 @@ function downloadCSVFile(csv_data){
 // Clicar no botão, formar o CSV e fazer o download
 function exportcsv(){
     let csv_data = [];
+    csv_data.push("Relatório de transações Pila", "Data;Descrição;Valor;Categoria;Tipo");
     const rows = document.getElementsByTagName("tr");
     for(let i = 0; i < rows.length; i++){
         const cols = rows[i].querySelectorAll("#exportarCSV");
