@@ -6,3 +6,5 @@ function logout(){
         alert('Erro ao fazer logout');
     })
 }
+
+console.log(usuario.innerHTML = localStorage.getItem('user'))
