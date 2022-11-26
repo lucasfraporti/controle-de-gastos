@@ -87,7 +87,7 @@ function getWithIndex(url){
 
 //formatar os valores
 function formatavalor(valor) {
-    const formatado = valor.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' });
+    const formatado = valor.toLocaleString('pt-BR', {style: 'currency', currency: 'BRL'});
     return formatado;
 };
 
@@ -285,7 +285,7 @@ function exportcsv(){
         const cols = rows[i].querySelectorAll("#exportarCSV");
         const csvrow = [];
         for(let j = 0; j < cols.length; j++){
-            csvrow.push(cols[j].innerHTML);
+            csvrow.push(cols[j].innerText);
         };
         csv_data.push(csvrow.join(";"));
     };
