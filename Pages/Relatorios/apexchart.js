@@ -76,7 +76,7 @@ function attchart1(){
   let values_operation = [];
   let date_operations = [];
   var data_operacoes = fahrenheit.map(function(elem){
-      console.log((elem.datas_saida).split("T")[0].split("-").reverse().join("/"));
+      // console.log((elem.datas_saida).split("T")[0].split("-").reverse().join("/"));
       date_operations.push((elem.datas_saida).split("T")[0].split("-").reverse().join("/"));
   });
   var valores_operacoes = fahrenheit.map(function(elem){
@@ -177,7 +177,7 @@ var fahrenheit = getWithIndex("http://localhost:3001/chartsaida?id_user="+iduser
 let values_operation = [];
 let date_operations = [];
 var data_operacoes = fahrenheit.map(function(elem){
-  console.log((elem.datas_saida).split("T")[0].split("-").reverse().join("/"));
+  // console.log((elem.datas_saida).split("T")[0].split("-").reverse().join("/"));
   date_operations.push((elem.datas_saida).split("T")[0].split("-").reverse().join("/"));
 });
 var valores_operacoes = fahrenheit.map(function(elem){
@@ -237,7 +237,7 @@ var fahrenheit_enter = getWithIndex("http://localhost:3001/chartentrada?id_user=
 let values_operation_enter = [];
 let date_operations_enter = [];
 var data_operacoes_enter = fahrenheit_enter.map(function(elem){
-  console.log((elem.datas_saida).split("T")[0].split("-").reverse().join("/"));
+  // console.log((elem.datas_saida).split("T")[0].split("-").reverse().join("/"));
   date_operations_enter.push((elem.datas_saida).split("T")[0].split("-").reverse().join("/"));
 });
 var valores_operacoes_enter = fahrenheit_enter.map(function(elem){
