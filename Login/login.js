@@ -153,7 +153,7 @@ function login() {
         window.location.href = "Pages/Principal/index.html";
         const emailuser = firebase.auth().currentUser.email;
         var user = ((emailuser.match(/(\S+)@/) || [])[1]);
-        localStorage.setItem('user', user );
+        localStorage.setItem('user', user.toUpperCase());
         localStorage.setItem('id', firebase.auth().currentUser.uid);
     }).catch(error => {
         getErrorMessage(error);
@@ -189,6 +189,12 @@ function register() {
     labePassword2.setAttribute('style', 'color: red'),
     labePassword2.innerHTML = 'Insira no minimo 6 caracteres'
   }
+}
+
+function clearafterenter(){
+  labelEmail.setAttribute('style', 'color: black'),
+  labePassword1.setAttribute('style', 'color: black'),
+  labePassword2.setAttribute('style', 'color: black')
 }
 
 // FUNCTION RECUPERAR SENHA

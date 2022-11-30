@@ -10,7 +10,8 @@ const Modal_login = {
     .querySelector('.modal-login')
     .classList
     .remove('active'),
-    limpacampos()
+    limpacampos(),
+    clearafterenter()
     }
 }
 
@@ -23,6 +24,12 @@ function limpacampos(){
     document.getElementById("regpassword2").value='';
     labelEmaillogin.setAttribute('style', 'color: black');
     labelPasswordlogin.setAttribute('style', 'color: black');
+    labelEmail.setAttribute('style', 'color: black'),
+    document.querySelector('#labelEmail').value='';
+    document.querySelector('#labelPassword1').value='';
+    document.querySelector('#labelPassword2').value='';
+    labePassword1.setAttribute('style', 'color: black'),
+    labePassword2.setAttribute('style', 'color: black')
 };
 
 document.addEventListener("keypress", function(e) {
@@ -44,5 +51,3 @@ document.addEventListener("keypress", function(e) {
     
     }
   });
-
- 

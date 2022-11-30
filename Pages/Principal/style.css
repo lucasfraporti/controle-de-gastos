@@ -743,6 +743,7 @@ nav:hover .shrink-btn,
   align-items: center;
   flex: 1;
   overflow: hidden;
+  
 }
 
 .admin-user img {
@@ -752,6 +753,10 @@ nav:hover .shrink-btn,
 }
 
 .admin-info {
+  padding-left: 0.3rem;
+}
+
+#usuario{
   padding-left: 0.3rem;
 }
 
@@ -1032,7 +1037,7 @@ a.esquerda{
 
 /* mediaquery menu */
 
-@media screen and (max-width: 1100px){
+@media screen and (max-width: 1400px){
   body.shrink1 nav {
     width: 5.4rem;
   }

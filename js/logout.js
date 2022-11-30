@@ -7,4 +7,4 @@ function logout(){
     })
 }
 
-// console.log(usuario.innerHTML = localStorage.getItem('user'))
+usuario.innerHTML = localStorage.getItem('user')
