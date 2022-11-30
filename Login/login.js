@@ -153,7 +153,7 @@ function login() {
         window.location.href = "Pages/Principal/index.html";
         const emailuser = firebase.auth().currentUser.email;
         var user = ((emailuser.match(/(\S+)@/) || [])[1]);
-        localStorage.setItem('user', user );
+        localStorage.setItem('user', user.toUpperCase());
         localStorage.setItem('id', firebase.auth().currentUser.uid);
     }).catch(error => {
         getErrorMessage(error);
