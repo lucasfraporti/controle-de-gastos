@@ -191,6 +191,12 @@ function register() {
   }
 }
 
+function clearafterenter(){
+  labelEmail.setAttribute('style', 'color: black'),
+  labePassword1.setAttribute('style', 'color: black'),
+  labePassword2.setAttribute('style', 'color: black')
+}
+
 // FUNCTION RECUPERAR SENHA
 function recoverPassword() {
   if (form.email().value === ""){
