@@ -139,7 +139,7 @@ font-size: 87.5%;
 .bank .hero {
 background: #3dd705;
 height: 100vh;
-background-image: url("/assets/Vendors/img/bubble-gum-blue-piggy-bank-with-bitcoin-coin.gif");
+background-image: url("/Vendors/img/bubble-gum-blue-piggy-bank-with-bitcoin-coin.gif");
 background-position: bottom center;
 background-repeat: no-repeat;
 }

@@ -1,7 +1,7 @@
 // FIREBASE AUTH - VERIFICA SE O USER TA LOGADO, E NÃO DEIXA ENTRAR NA TELA DE LOGIN
 firebase.auth().onAuthStateChanged(user => {
   if (user) {
-      window.location.href = "Pages/Principal/index.html";
+      window.location.href = "index.html";
   }
 })
 
