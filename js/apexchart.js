@@ -72,7 +72,7 @@ function attchart(){
 function attchart1(){
   var chart = new ApexCharts(document.querySelector("#spark1"), options);
   chart.render();
-  var fahrenheit = getWithIndex("http://localhost:3001/chartsaida?id_user="+iduser+"&mes="+mes+"&ano="+ano)
+  var fahrenheit = getWithIndex("https://controle-de-gastos-pila.herokuapp.com/chartsaida?id_user="+iduser+"&mes="+mes+"&ano="+ano)
   let values_operation = [];
   let date_operations = [];
   var data_operacoes = fahrenheit.map(function(elem){
@@ -94,7 +94,7 @@ function attchart1(){
 function attchart2(){
   var chart = new ApexCharts(document.querySelector("#spark2"), options2);
   chart.render();
-  var pizza_exit = getWithIndex("http://localhost:3001/chartcategorysaida?id_user="+iduser+"&mes="+mes+"&ano="+ano)
+  var pizza_exit = getWithIndex("https://controle-de-gastos-pila.herokuapp.com/chartcategorysaida?id_user="+iduser+"&mes="+mes+"&ano="+ano)
   let values_operation_pizza_exit = [];
   let category_operations_pizza_exit = [];
   var categoria_operacoes_pizza_exit = pizza_exit.map(function(elem){
@@ -125,7 +125,7 @@ function attchart2(){
 function attchart3(){
   var chart = new ApexCharts(document.querySelector("#spark3"), options3);
   chart.render();
-  var fahrenheit_enter = getWithIndex("http://localhost:3001/chartentrada?id_user="+iduser+"&mes="+mes+"&ano="+ano)
+  var fahrenheit_enter = getWithIndex("https://controle-de-gastos-pila.herokuapp.com/chartentrada?id_user="+iduser+"&mes="+mes+"&ano="+ano)
   let values_operation_enter = [];
   let date_operations_enter = [];
   var data_operacoes_enter = fahrenheit_enter.map(function(elem){
@@ -147,7 +147,7 @@ function attchart3(){
 function attchart4(){
   var chart = new ApexCharts(document.querySelector("#spark4"), options4);
   chart.render();
-  var pizza_enter = getWithIndex("http://localhost:3001/chartcategoryentrada?id_user="+iduser+"&mes="+mes+"&ano="+ano)
+  var pizza_enter = getWithIndex("https://controle-de-gastos-pila.herokuapp.com/chartcategoryentrada?id_user="+iduser+"&mes="+mes+"&ano="+ano)
   let values_operation_pizza_enter = [];
   let category_operations_pizza_enter = [];
   var categoria_operacoes_pizza_enter = pizza_enter.map(function(elem){
@@ -173,7 +173,7 @@ function attchart4(){
 datanext();
 
 // gráfico 1 (linha) - saída
-var fahrenheit = getWithIndex("http://localhost:3001/chartsaida?id_user="+iduser+"&mes="+mes+"&ano="+ano)
+var fahrenheit = getWithIndex("https://controle-de-gastos-pila.herokuapp.com/chartsaida?id_user="+iduser+"&mes="+mes+"&ano="+ano)
 let values_operation = [];
 let date_operations = [];
 var data_operacoes = fahrenheit.map(function(elem){
@@ -233,7 +233,7 @@ responsive: [
 };
 
 // gráfico 3 (linha) - entrada
-var fahrenheit_enter = getWithIndex("http://localhost:3001/chartentrada?id_user="+iduser+"&mes="+mes+"&ano="+ano)
+var fahrenheit_enter = getWithIndex("https://controle-de-gastos-pila.herokuapp.com/chartentrada?id_user="+iduser+"&mes="+mes+"&ano="+ano)
 let values_operation_enter = [];
 let date_operations_enter = [];
 var data_operacoes_enter = fahrenheit_enter.map(function(elem){
@@ -291,7 +291,7 @@ responsive: [
 };
 
 // gráfico 2 (pizza) - saída
-var pizza_exit = getWithIndex("http://localhost:3001/chartcategorysaida?id_user="+iduser+"&mes="+mes+"&ano="+ano)
+var pizza_exit = getWithIndex("https://controle-de-gastos-pila.herokuapp.com/chartcategorysaida?id_user="+iduser+"&mes="+mes+"&ano="+ano)
 let values_operation_pizza_exit = [];
 let category_operations_pizza_exit = [];
 var categoria_operacoes_pizza_exit = pizza_exit.map(function(elem){
@@ -323,7 +323,7 @@ responsive: [{
 };
 
 // gráfico 4 (pizza) - entrada
-var pizza_enter = getWithIndex("http://localhost:3001/chartcategoryentrada?id_user="+iduser+"&mes="+mes+"&ano="+ano)
+var pizza_enter = getWithIndex("https://controle-de-gastos-pila.herokuapp.com/chartcategoryentrada?id_user="+iduser+"&mes="+mes+"&ano="+ano)
 let values_operation_pizza_enter = [];
 let category_operations_pizza_enter = [];
 var categoria_operacoes_pizza_enter = pizza_enter.map(function(elem){

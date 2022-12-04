@@ -92,18 +92,18 @@ function formatavalor(valor) {
 };
 
 function getprofit(){
-    const profit =  formatavalor(getValores("http://localhost:3001/get/profit2?id_user="+iduser+"&mes="+mes+"&ano="+ano));
+    const profit =  formatavalor(getValores("https://controle-de-gastos-pila.herokuapp.com/get/profit2?id_user="+iduser+"&mes="+mes+"&ano="+ano));
     return profit
 };
 
 function getloss(){
-    const loss =  formatavalor(getValores("http://localhost:3001/get/loss2?id_user="+iduser+"&mes="+mes+"&ano="+ano));
+    const loss =  formatavalor(getValores("https://controle-de-gastos-pila.herokuapp.com/get/loss2?id_user="+iduser+"&mes="+mes+"&ano="+ano));
     return loss
 };
 
 function getprofitandloss(){
-    const profit = getValores("http://localhost:3001/get/profit2?id_user="+iduser+"&mes="+mes+"&ano="+ano);
-    const loss =  getValores("http://localhost:3001/get/loss2?id_user="+iduser+"&mes="+mes+"&ano="+ano);
+    const profit = getValores("https://controle-de-gastos-pila.herokuapp.com/get/profit2?id_user="+iduser+"&mes="+mes+"&ano="+ano);
+    const loss =  getValores("https://controle-de-gastos-pila.herokuapp.com/get/loss2?id_user="+iduser+"&mes="+mes+"&ano="+ano);
     const total = formatavalor(profit - loss);
     return total;
 };
@@ -116,7 +116,7 @@ function getTotals(){
 
 function loadItens(){
     datanext()
-    items = getWithIndex("http://localhost:3001/gettabela2?id_user="+iduser+"&mes="+mes+"&ano="+ano);
+    items = getWithIndex("https://controle-de-gastos-pila.herokuapp.com/gettabela2?id_user="+iduser+"&mes="+mes+"&ano="+ano);
     tbody.innerHTML = "";
     items.forEach((item, index) => {
         insertItem(item, index);
@@ -152,7 +152,7 @@ function incluirgasto(){
             type: type_value
         };
         const request = new XMLHttpRequest();
-        request.open("POST", "http://localhost:3001/post", false);
+        request.open("POST", "https://controle-de-gastos-pila.herokuapp.com/post", false);
         request.setRequestHeader("Content-type", "application/json");
         // console.log(JSON.stringify(params))
         request.send(JSON.stringify(params));
@@ -196,7 +196,7 @@ function openModal(index){
     const amountNew = document.querySelector("#amountNew");
     const categoryNew = document.querySelector("#categoryNew");
     const btnAtualizar = document.getElementById("btnAtualizar");
-    items = getWithIndex("http://localhost:3001/get/id/"+parseInt(index));
+    items = getWithIndex("https:controle-de-gastos-pila.herokuapp.com/get/id/"+parseInt(index));
     items.forEach((item) => {
         dateNew.value = item.date.split("T")[0];
         descNew.value = item.description;
@@ -229,7 +229,7 @@ function openModal(index){
                 type: type_value_new
             };
             const request = new XMLHttpRequest();
-            request.open("PUT", "http://localhost:3001/update/"+parseInt(index), true);
+            request.open("PUT", "https://controle-de-gastos-pila.herokuapp.com/update/"+parseInt(index), true);
             request.setRequestHeader("Content-type","application/json");
             request.onload = function(){
                 const item = JSON.parse(request.responseText);
@@ -250,7 +250,7 @@ function openModal(index){
 // Deletar um gasto
 function deleteItem(index){
     const request = new XMLHttpRequest();
-    request.open("DELETE", "http://localhost:3001/delete/"+index, true);
+    request.open("DELETE", "https://controle-de-gastos-pila.herokuapp.com/delete/"+index, true);
     request.onload = function (){
         const item = JSON.parse(request.responseText);
         if(request.readyState == 4 && request.status == "200"){

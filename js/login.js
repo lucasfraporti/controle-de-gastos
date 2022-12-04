@@ -45,7 +45,7 @@ function logout() {
   firebase.auth().signOut().then(() => {
       window.location.href = "index.html";
   }).catch(() => {
-      alert('Erro ao fazer logout');
+    alerterror('Erro ao fazer logout');
   })
 }
 
@@ -161,10 +161,6 @@ function login() {
   }
 }
 
-function teste(){
-  alert(form.email().value + form.password().value);
-}
-
 // FUNCTION DE CADASTRAR NOVO USER
 function register() {
   const regemail = form.regemail().value;
@@ -205,7 +201,7 @@ function recoverPassword() {
   }
   else{
     firebase.auth().sendPasswordResetEmail(form.email().value).then(() => {
-      alert('Email enviado com sucesso');
+      alertsuccess('Email enviado com sucesso');
   }).catch(error => {
       getErrorMessage(error);
   });
@@ -231,3 +227,28 @@ function getErrorMessage(error) {
   }
   return error.message;
 };
+
+//notificacoes
+function alertsuccess(msg) {
+  iziToast.success({
+      title: 'Sucesso',
+      position: 'topRight',
+      message: msg,
+  }); 
+}
+
+function alerterror(msg){
+  iziToast.error({
+      title: 'Erro',
+      position: 'topRight',
+      message: msg,
+  });
+}
+
+function alertwarning(msg) {
+  iziToast.warning({
+      title: 'Atenção',
+      position: 'topRight',
+      message: msg,
+  });
+}
