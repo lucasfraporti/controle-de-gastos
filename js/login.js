@@ -1,7 +1,7 @@
 // FIREBASE AUTH - VERIFICA SE O USER TA LOGADO, E NÃO DEIXA ENTRAR NA TELA DE LOGIN
 firebase.auth().onAuthStateChanged(user => {
   if (user) {
-      window.location.href = "index.html";
+      window.location.href = "principal.html";
   }
 })
 
@@ -43,7 +43,7 @@ document.querySelector('#btnSignup')
 //logout
 function logout() {
   firebase.auth().signOut().then(() => {
-      window.location.href = "home.html";
+      window.location.href = "index.html";
   }).catch(() => {
       alert('Erro ao fazer logout');
   })
@@ -150,7 +150,7 @@ function login() {
     firebase.auth().signInWithEmailAndPassword(
       form.email().value, form.password().value
     ).then(() => {
-        window.location.href = "index.html";
+        window.location.href = "principal.html";
         const emailuser = firebase.auth().currentUser.email;
         var user = ((emailuser.match(/(\S+)@/) || [])[1]);
         localStorage.setItem('user', user.toUpperCase());
@@ -177,7 +177,7 @@ function register() {
         var user = ((emailuser.match(/(\S+)@/) || [])[1]);
         localStorage.setItem('user', user );
         localStorage.setItem('id', firebase.auth().currentUser.uid);  
-        window.location.href = "index.html";
+        window.location.href = "principal.html";
     }).catch(error => {
         getErrorMessage(error);
     })
