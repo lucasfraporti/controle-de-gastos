@@ -228,8 +228,9 @@ function openModal(index){
                 category: categoryNew.value,
                 type: type_value_new
             };
-            const request = new XMLHttpRequest();
+            var request = new XMLHttpRequest();
             request.open("PUT", "https://controle-de-gastos-pila.herokuapp.com/update/"+parseInt(index), true);
+            console.log(index);
             request.setRequestHeader("Content-type","application/json");
             request.onload = function(){
                 const item = JSON.parse(request.responseText);
@@ -243,6 +244,7 @@ function openModal(index){
                 };
             };
             request.send(JSON.stringify(params));
+         index = null;
         }
     });
 };
@@ -339,6 +341,7 @@ function alertsuccess(msg) {
         title: 'Sucesso',
         position: 'topRight',
         message: msg,
+        displayMode: 1,
     }); 
 }
 
