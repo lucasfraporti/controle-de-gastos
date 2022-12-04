@@ -150,7 +150,7 @@ function login() {
     firebase.auth().signInWithEmailAndPassword(
       form.email().value, form.password().value
     ).then(() => {
-        window.location.href = "Pages/Principal/index.html";
+        window.location.href = "index.html";
         const emailuser = firebase.auth().currentUser.email;
         var user = ((emailuser.match(/(\S+)@/) || [])[1]);
         localStorage.setItem('user', user.toUpperCase());
@@ -177,7 +177,7 @@ function register() {
         var user = ((emailuser.match(/(\S+)@/) || [])[1]);
         localStorage.setItem('user', user );
         localStorage.setItem('id', firebase.auth().currentUser.uid);  
-        window.location.href = "Pages/Principal/index.html";
+        window.location.href = "index.html";
     }).catch(error => {
         getErrorMessage(error);
     })
