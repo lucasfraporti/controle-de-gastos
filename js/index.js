@@ -196,7 +196,7 @@ function openModal(index){
     const amountNew = document.querySelector("#amountNew");
     const categoryNew = document.querySelector("#categoryNew");
     const btnAtualizar = document.getElementById("btnAtualizar");
-    items = getWithIndex("https:controle-de-gastos-pila.herokuapp.com/get/id/"+parseInt(index));
+    items = getWithIndex("https://controle-de-gastos-pila.herokuapp.com/get/id/"+parseInt(index));
     items.forEach((item) => {
         dateNew.value = item.date.split("T")[0];
         descNew.value = item.description;
