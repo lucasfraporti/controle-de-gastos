@@ -453,6 +453,10 @@ td.expense {
 
 .ls-select{
   width: 500px;
+  border: none;
+  border-radius: 0.2rem;
+  padding: 0.8rem;
+  width: 100%;
 }
 
 footer {

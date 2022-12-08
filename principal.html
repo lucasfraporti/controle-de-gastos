@@ -9,9 +9,6 @@
     <link href='https://unpkg.com/boxicons@2.1.1/css/boxicons.min.css' rel='stylesheet'>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,400;0,700;1,100;1,400;1,700&display=swap" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet"/>
-    <script src="https://code.jquery.com/jquery-3.6.1.min.js" integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ=" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/izitoast/1.4.0/js/iziToast.min.js" integrity="sha512-Zq9o+E00xhhR/7vJ49mxFNJ0KQw1E1TMWkPTxrWcnpfEFDEXgUiwJHIKit93EW/XxE31HSI5GEOW06G6BF1AtA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/izitoast/1.4.0/css/iziToast.css" integrity="sha512-DIW4FkYTOxjCqRt7oS9BFO+nVOwDL4bzukDyDtMO7crjUZhwpyrWBFroq+IqRe6VnJkTpRAS6nhDvf0w+wHmxg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css" >
     <title>Pila - Controle e educação financeira</title>
@@ -60,7 +57,7 @@
               <span>Educacional</span>
             </div>
           </ul>
-          <h4 class="hide">Outras informações</h4>
+          <h4 class="hide">Informações</h4>
           <ul>
             <li class="tooltip-element" data-tooltip="0">
               <a href="#"  onclick="Modal_sobre.open()" data-active="4">
@@ -83,8 +80,8 @@
             <li class="tooltip-element" data-tooltip="2">
               <a href="#" onclick="Modal_configuracoes.open()" data-active="6">
                 <div class="icon">
-                  <i class='bx bx-cog'></i>
-                  <i class='bx bxs-cog'></i>
+                  <i class="fa-regular fa-lightbulb"></i>
+                  <i class="fa-light fa-seal-question"></i>
                 </div>
                 <span class="link hide">Sugestões</span>
               </a>
@@ -274,26 +271,26 @@
                 </div>
                 <div class="input-group">
                     <select class="ls-select" id="categoryNew">
-                        <option>Alimentação</option>
-                        <option>Assinaturas</option>
-                        <option>Bares e restaurantes</option>
-                        <option>Casa</option>
-                        <option>Compras</option>
-                        <option>Cuidados pessoais</option>
-                        <option>Dívidas e empréstimos</option>
-                        <option>Educação</option>
-                        <option>Família e filhos</option>
-                        <option>Impostos e taxas</option>
-                        <option>Investimentos</option>
-                        <option>Lazer e hobbies</option>
-                        <option>Mercado</option>
-                        <option>Pets</option>
-                        <option>Presentes e doações</option>
-                        <option>Saúde</option>
-                        <option>Trabalho</option>
-                        <option>Transporte</option>
-                        <option>Viagem</option>
-                        <option>Outros</option>
+                      <option value="Alimentação">Alimentação</option>
+                      <option value="Assinaturas">Assinaturas</option>
+                      <option value="Bares e restaurantes">Bares e restaurantes</option>
+                      <option value="Casa">Casa</option>
+                      <option value="Compras">Compras</option>
+                      <option value="Cuidados pessoais">Cuidados pessoais</option>
+                      <option value="Dívidas e empréstimos">Dívidas e empréstimos</option>
+                      <option value="Educação">Educação</option>
+                      <option value="Família e filhos">Família e filhos</option>
+                      <option value="Impostos e taxas">Impostos e taxas</option>
+                      <option value="Investimentos">Investimentos</option>
+                      <option value="Lazer e hobbies">Lazer e hobbies</option>
+                      <option value="Mercado">Mercado</option>
+                      <option value="Pets">Pets</option>
+                      <option value="Presentes e doações">Presentes e doações</option>
+                      <option value="Saúde">Saúde</option>
+                      <option value="Trabalho">Trabalho</option>
+                      <option value="Transporte">Transporte</option>
+                      <option value="Viagem">Viagem</option>
+                      <option value="Outros">Outros</option>
                     </select>
                 </div>
                 <div class="input-group">
@@ -386,6 +383,10 @@
   </div>
   </div>
   <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+
+  <script src="https://code.jquery.com/jquery-3.6.1.min.js" integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ=" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/izitoast/1.4.0/js/iziToast.min.js" integrity="sha512-Zq9o+E00xhhR/7vJ49mxFNJ0KQw1E1TMWkPTxrWcnpfEFDEXgUiwJHIKit93EW/XxE31HSI5GEOW06G6BF1AtA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 
   <script>
     $(document).ready(function() {
