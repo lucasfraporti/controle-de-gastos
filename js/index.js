@@ -187,6 +187,14 @@ function insertItem(item){
     tbody.appendChild(tr);
 };
 
+//mudar categoria
+function changecategory(categoria){
+    $('#categoryNew').val(categoria);
+    $('#categoryNew').select2().trigger('change');
+
+}
+
+
 // Abertura do modal para atualização de um gasto
 function openModal(index){
     Modal_ajuste.open();
@@ -201,7 +209,8 @@ function openModal(index){
         dateNew.value = item.date.split("T")[0];
         descNew.value = item.description;
         //amountNew.value = item.price;
-        categoryNew.value = item.category;
+        changecategory(item.category)
+        // categoryNew.value = item.category;
         userId = item.id_user;
         if(item.type === "E"){
             amountNew.value = item.price;
