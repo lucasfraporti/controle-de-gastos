@@ -1,413 +1,93 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-br">
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="CSS/style.css">
-    <link rel="preconnect" href="https://fonts.gstatic.com">
-    <link href='https://unpkg.com/boxicons@2.1.1/css/boxicons.min.css' rel='stylesheet'>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,400;0,700;1,100;1,400;1,700&display=swap" rel="stylesheet">
-    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet"/>
-    <script src="https://code.jquery.com/jquery-3.6.1.min.js" integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ=" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/izitoast/1.4.0/js/iziToast.min.js" integrity="sha512-Zq9o+E00xhhR/7vJ49mxFNJ0KQw1E1TMWkPTxrWcnpfEFDEXgUiwJHIKit93EW/XxE31HSI5GEOW06G6BF1AtA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/izitoast/1.4.0/css/iziToast.css" integrity="sha512-DIW4FkYTOxjCqRt7oS9BFO+nVOwDL4bzukDyDtMO7crjUZhwpyrWBFroq+IqRe6VnJkTpRAS6nhDvf0w+wHmxg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css" >
-    <title>Pila - Controle e educação financeira</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Pila</title>
+
+  <link rel="stylesheet" href="CSS/home.css">
+  <link rel="preconnect" href="https://fonts.gstatic.com">
+  <link
+  href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,400;0,700;1,100;1,400;1,700&display=swap"
+  rel="stylesheet">
+  <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/izitoast/1.4.0/js/iziToast.min.js" integrity="sha512-Zq9o+E00xhhR/7vJ49mxFNJ0KQw1E1TMWkPTxrWcnpfEFDEXgUiwJHIKit93EW/XxE31HSI5GEOW06G6BF1AtA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/izitoast/1.4.0/css/iziToast.css" integrity="sha512-DIW4FkYTOxjCqRt7oS9BFO+nVOwDL4bzukDyDtMO7crjUZhwpyrWBFroq+IqRe6VnJkTpRAS6nhDvf0w+wHmxg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 </head>
-<body class="shrink1">
-    <nav>
-    <div class="sidebar-top">
-      <span class="shrink-btn">
-        <i class='bx bx-chevron-left'></i>
-      </span>
-      <img src="/Vendors/img/total.svg" class="logo" alt="">
-      <h3 class="hide">PILA</h3>
-    </div>
-    <div class="sidebar-links">
-      <ul>
-            <li class="tooltip-element" data-tooltip="0">
-              <a href="index.html" class="active" data-active="0">
-                <div class="icon">
-                  <i class='bx bx-tachometer'></i>
-                  <i class='bx bxs-tachometer'></i>
-                </div>
-                <span class="link hide">Controle de gastos</span>
-              </a>
-            </li>
-            <li class="tooltip-element" data-tooltip="1">
-              <a href="relatorio.html" data-active="1">
-                <div class="icon">
-                    <i class='bx bx-bar-chart-square'></i>
-                    <i class='bx bxs-bar-chart-square'></i>
-                </div>
-                <span class="link hide">Relatórios</span>
-              </a>
-            </li>
-            <li class="tooltip-element" data-tooltip="2">
-              <a href="educacional.html" data-active="2">
-                <div class="icon">
-                  <i class='bx bx-message-square-detail'></i>
-                  <i class='bx bxs-message-square-detail'></i>
-                </div>
-                <span class="link hide">Educacional</span>
-              </a>
-            </li>
-            <div class="tooltip">
-              <span class="show">Controle de gastos</span>
-              <span>Relatórios</span>
-              <span>Educacional</span>
-            </div>
-          </ul>
-          <h4 class="hide">Outras informações</h4>
-          <ul>
-            <li class="tooltip-element" data-tooltip="0">
-              <a href="#"  onclick="Modal_sobre.open()" data-active="4">
-                <div class="icon">
-                  <i class='bx bx-notepad'></i>
-                  <i class='bx bxs-notepad'></i>
-                </div>
-                <span class="link hide">Sobre</span>
-              </a>
-            </li>
-            <li class="tooltip-element" data-tooltip="1">
-              <a href="#"  onclick="Modal_ajuda.open()" data-active="5">
-                <div class="icon">
-                  <i class='bx bx-help-circle'></i>
-                  <i class='bx bxs-help-circle'></i>
-                </div>
-                <span class="link hide">Ajuda</span>
-              </a>
-            </li>
-            <li class="tooltip-element" data-tooltip="2">
-              <a href="#" onclick="Modal_configuracoes.open()" data-active="6">
-                <div class="icon">
-                  <i class='bx bx-cog'></i>
-                  <i class='bx bxs-cog'></i>
-                </div>
-                <span class="link hide">Sugestões</span>
-              </a>
-            </li>
-            <div class="tooltip">
-              <span class="show">Sobre</span>
-              <span>Ajuda</span>
-              <span>Sugestões</span>
-            </div>
-          </ul>
-        </div>
-        <div class="sidebar-footer">
-          <a href="#" class="account tooltip-element" data-tooltip="0">
-            <i class='bx bx-user'></i>
-          </a>
-          <div class="admin-user tooltip-element" data-tooltip="1">
-            <div class="admin-profile hide">
-              <!-- <img src="" alt=""> -->
-              <div class="admin-info">
-                <h3 id="usuario"></h3>
-              </div>
-            </div>
-            <a onclick="logout()" href="#" class="log-out">
-              <i class='bx bx-log-out'></i>
+<body>
+  <div class="bank">
+    <main>
+      <section class="hero">
+        <header data-aos="fade-down">
+          <img src="" alt="">
+        </header>
+        <div class="hero-items" data-aos="fade-up">
+          <div class="hero-item-1">
+            <p>Nunca foi tão fácil<br>controlar suas <br>finanças</p>
+          </div>
+          <div class="hero-item-2" data-aos="fade-up">
+            <p>Acesse agora mesmo<br>a sua conta no Pila</p>
+            <a href="#"
+              onclick="Modal_login.open()">
+              Continuar
             </a>
           </div>
-          <div class="tooltip">
-            <span class="show">PILA</span>
-            <span>Logout</span>
-          </div>
         </div>
-    </nav>
-
-    <main class="container">
-        <section id="balance">
-            <h2 class="sr-only">Balanço</h2>
-            <div class="card">
-                <h3>
-                    <span>Entradas</span>
-                    <img src="/Vendors/img/income.svg" alt="entradas">
-                </h3>
-                    <p id="profit">R$ 0,00</p>
-            </div>
-            <div class="card">
-                <h3>
-                    <span>Saídas</span>
-                    <img src="/Vendors/img/expense.svg" alt="saídas">
-                </h3>
-                <p id="loss">R$ 0,00</p>
-            </div>
-            <div class="card total">
-                <h3>
-                    <span>Total</span>
-                    <img src="/Vendors/img/total.svg" alt="total">
-                </h3>
-                    <p id="total">R$ 0,00</p>
-            </div>
-        </section>
-
-        <article class="date-carousel">
-          <input type="button" class="date-carousel-prev" id="dataprev" value="&#10094;">
-          <input type="month" class="date-carousel-input" id="datacarousel" onchange="loadItens()">
-          <input type="button" class="date-carousel-next" id="datanext" value="&#10095;">
-        </article>
-
-        <a href="#" 
-        onclick="Modal.open()"
-        class="button new">
-        + Nova Transação
-        </a>
-        <section id="transaction">
-          <h2 class="sr-only">Transações</h2>
-          <table class="table" id="data-table" data-filter-control="true" data-show-search-clear-button="true">
-              <thead class="mobile">
-                  <tr>
-                      <th>Data</th>
-                      <th>Descrição</th>
-                      <th class="cor">Valor</th>
-                      <th>Categoria</th>
-                      <th class="cor">Tipo</th>
-                      <th></th>
-                  </tr>
-              </thead>
-              <tbody id="tbody">
-              </tbody>
-          </table>
-        </section>
-      <div class="export">
-              <i class="fa-solid fa-file-csv"></i>
-      <a href="#" onclick="exportcsv()" class="button export">
-          Exportar para CSV!
-      </a>
+      </section>
+      
+  </div>
+  <div class="modal-login">
+    <div class="container">
+      <button class="fechar" id="fechar" onclick="Modal_login.close()">X</button>
+      <div class="buttonsForm">
+        <div class="btnColor"></div>
+        <button id="btnSignin">Login</button>
+        <button id="btnSignup">Cadastro</button>
       </div>
-  </main>
-
-  <div class="modal-overlay">
-    <div class="modal">
-        <div id="form">
-            <h2>Nova Transação</h2>
-            <form action="" onsubmit="Form.submit(event)">
-                <div class="input-group">
-                    <label 
-                    class="sr-only"
-                    for="description">Descrição</label>
-                    <input 
-                    type="text" 
-                    id="desc" 
-                    name="description"
-                    placeholder="Descrição"/>
-                </div>
-                <div class="input-group">
-                    <select class="ls-select" id="category" >
-                        <option>Alimentação</option>
-                        <option>Assinaturas</option>
-                        <option>Bares e restaurantes</option>
-                        <option>Casa</option>
-                        <option>Compras</option>
-                        <option>Cuidados pessoais</option>
-                        <option>Dívidas e empréstimos</option>
-                        <option>Educação</option>
-                        <option>Família e filhos</option>
-                        <option>Impostos e taxas</option>
-                        <option>Investimentos</option>
-                        <option>Lazer e hobbies</option>
-                        <option>Mercado</option>
-                        <option>Pets</option>
-                        <option>Presentes e doações</option>
-                        <option>Saúde</option>
-                        <option>Trabalho</option>
-                        <option>Transporte</option>
-                        <option>Viagem</option>
-                        <option>Outros</option>
-                    </select>
-                </div>
-                <div class="input-group">
-                    <label 
-                    class="sr-only"
-                    for="amount">Valor</label>
-                    <input 
-                    type="number" 
-                    step="0.01"
-                    id="amount" 
-                    name="amount"
-                    placeholder="0,00"
-                    />
-                    <small class="help">
-                        Use o sinal - (negativo) para despesas e , (vírgula) para casas decimais
-                    </small>
-                </div>
-                <div class="input-group">
-                    <label 
-                    class="sr-only"
-                    for="date">Data</label>
-                    <input 
-                    type="date" 
-                    id="date-input" 
-                    name="date"
-                    />
-                </div>
-                <div class="input-group actions">
-                    <a 
-                    onclick="Modal.close()"
-                    href="#"
-                    class="button cancel">Cancelar</a>
-                    <button onclick="incluirgasto()">Salvar</button>
-                </div>
-            </form>
+      
+      <form id="signin">
+        <label id="labelEmaillogin" for="Email">Email</label>
+        <input type="email" placeholder="Email" id="email"  autocomplete="on" required />
+        <i class="fas fa-envelope iEmail"></i>
+        <label id="labelPasswordlogin" for="Email">Senha</label>
+        <input type="password" placeholder="Senha" id="password" autocomplete="on" required />
+        <i class="fas fa-lock iPassword"></i>
+        <div class="divCheck">
+          <a href="#" onclick="recoverPassword()" id="recoverpassword" >Recuperar senha</a>
         </div>
+        <button id="logar" type="button" onclick="login()">Entrar</button>
+      </form>
+  
+      <form id="signup">
+        <label id="labelEmail" for="Email">Email</label>
+        <input type="regemail" placeholder="Email"  id="regemail" autocomplete="on" required />
+        <i class="fas fa-envelope iRegEmail"></i>
+        <label id="labelPassword1" for="Senha">Senha</label>
+        <input type="password" placeholder="Senha" id="regpassword1"  autocomplete="on" required />
+        <i class="fas fa-lock iRegPassword"></i>
+        <label id="labelPassword2" for="Senha">Confirmar Senha</label>
+        <input type="password" placeholder="Senha" id="regpassword2" autocomplete="on" required />
+        <i class="fas fa-lock iRegPassword2"></i>
+
+        <button id="cadastrar" type="button" onclick="register()">Cadastrar</button>
+      </form>
     </div>
+
   </div>
 
-  <div class="modal-ajuste">
-    <div class="modal">
-        
-        <div id="form">
-            <h2>Nova Transação</h2>
-            <form action="" onsubmit="Form.submit(event)">
-                <div class="input-group">
-                    <label 
-                    class="sr-only"
-                    for="description">Descrição</label>
-                    <input 
-                    type="text" 
-                    id="descNew" 
-                    name="description"
-                    placeholder="Descrição"/>
-                </div>
-                <div class="input-group">
-                    <select class="ls-select" id="categoryNew">
-                        <option>Alimentação</option>
-                        <option>Assinaturas</option>
-                        <option>Bares e restaurantes</option>
-                        <option>Casa</option>
-                        <option>Compras</option>
-                        <option>Cuidados pessoais</option>
-                        <option>Dívidas e empréstimos</option>
-                        <option>Educação</option>
-                        <option>Família e filhos</option>
-                        <option>Impostos e taxas</option>
-                        <option>Investimentos</option>
-                        <option>Lazer e hobbies</option>
-                        <option>Mercado</option>
-                        <option>Pets</option>
-                        <option>Presentes e doações</option>
-                        <option>Saúde</option>
-                        <option>Trabalho</option>
-                        <option>Transporte</option>
-                        <option>Viagem</option>
-                        <option>Outros</option>
-                    </select>
-                </div>
-                <div class="input-group">
-                    <label 
-                    class="sr-only"
-                    for="amount">Valor</label>
-                    <input 
-                    type="number" 
-                    step="0.01"
-                    id="amountNew" 
-                    name="amount"
-                    placeholder="0,00"
-                    />
-                    <small class="help">
-                        Use o sinal - (negativo) para despesas e , (vírgula) para casas decimais
-                    </small>
-                </div>
-                <div class="input-group">
-                    <label 
-                    class="sr-only"
-                    for="date">Data</label>
-                    <input 
-                    type="date" 
-                    id="dateNew" 
-                    name="date"
-                    />
-                </div>
-                <div class="input-group actions">
-                    <a 
-                    onclick="Modal_ajuste.close()"
-                    href="#"
-                    class="button cancel">Cancelar</a>
-                    <button id="btnAtualizar">Atualizar</button>
-                </div>
-            </form>
-        </div>
-    </div>
-  </div>
+<script src="https://kit.fontawesome.com/cf6fa412bd.js" crossorigin="anonymous"></script>
 
-  <div class="modal-sobre">
-    <div class="modal">
-        <div id="form">
-          <h2>Sobre</h2>
-          <p>O Pila nasceu no Centro Educativo Senac e tem como principal objetivo auxiliar o usuário em seu controle financeiro, 
-            sendo uma aplicação que possibilita incluir suas movimentações financeiras e se ter um controle quanto a entrada e saída de seu dinheiro.
-          </p>
-            <div class="input-group actions">
-                <a 
-                onclick="Modal_sobre.close()"
-                href="#"
-                class="button cancel">Cancelar</a>
-              </div>   
-        </div>
-    </div>
-  </div>
-    <div class="modal-ajuda">
-      <div class="modal">
-          <div id="form">
-            <h2>Ajuda</h2>
-            <p>Ficou com alguma duvida ou aconteceu algum erro durante o uso do Pila?</p>
-            <div class="input-group">
-              <textarea name="erro" id="ajuda" cols="65" rows="10" placeholder="Conte-nos mais como ocorreu o erro, caso necessário nossa equipe entrará em contato." ></textarea>
-            </div>
-              <div class="input-group actions">
-                  <a 
-                  onclick="Modal_ajuda.close()"
-                  href="#"
-                  class="button cancel">Cancelar</a>
-                  <button onclick="sendmailhelp()">Enviar</button>
-              </div>   
-          </div>
-      </div>
-    </div>
-  <div class="modal-configuracoes">
-    <div class="modal">
-      <div id="form">
-        <h2>Sugestões</h2>
-        <p>Tem alguma ideia ou sugestão que possam tornar a usabilidade do Pila melhor? </p>
-        <div class="input-group">
-          <textarea name="erro" id="sugestão" cols="65" rows="10" placeholder="Encaminhe um email para nossa equipe de desenvolvimento, garantimos que todas as sugestão serão analisadas." ></textarea>
-        </div>
-          <div class="input-group actions">
-              <a 
-              onclick="Modal_configuracoes.close()"
-              href="#"
-              class="button cancel">Cancelar</a>
-              <button onclick="sendmailsugestao()">Enviar</button>
-          </div>   
-      </div>
-  </div>
-  </div>
-  <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+<script src="https://www.gstatic.com/firebasejs/9.6.7/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/9.6.7/firebase-auth-compat.js"></script>
 
-  <script>
-    $(document).ready(function() {
-    $('#category').select2();
-    });
-    $(document).ready(function() {
-    $('#categoryNew').select2();
-    });
+<script src="js/Firebase/firebase-init.js"></script>
+
+<script src="js/login.js"></script>
+<!-- <script src="scripts.js"></script> -->
+<script src="js/home.js"></script>
+<script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+<script>
+    AOS.init();
   </script>
-
-    <script type="text/javascript"
-    src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js">
-    </script>
-    <script src="js/emailjs.js"></script>
-    <script src="js/Dashboard.js"></script>
-    <script src="js/index.js"></script>
-    <script src="js/scripts.js"></script>
-    <script src="js/js/logout.js"></script>  
-    
-    <script src="https://www.gstatic.com/firebasejs/9.6.7/firebase-app-compat.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/9.6.7/firebase-auth-compat.js"></script>
-    <script src="js/Firebase/firebase-init.js"></script>
-    <script src="js/Firebase/auth-guard.js"></script>
 </body>
 </html>

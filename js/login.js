@@ -1,7 +1,7 @@
 // FIREBASE AUTH - VERIFICA SE O USER TA LOGADO, E NÃO DEIXA ENTRAR NA TELA DE LOGIN
 firebase.auth().onAuthStateChanged(user => {
   if (user) {
-      window.location.href = "index.html";
+      window.location.href = "principal.html";
   }
 })
 
@@ -43,9 +43,9 @@ document.querySelector('#btnSignup')
 //logout
 function logout() {
   firebase.auth().signOut().then(() => {
-      window.location.href = "home.html";
+      window.location.href = "index.html";
   }).catch(() => {
-      alert('Erro ao fazer logout');
+    alerterror('Erro ao fazer logout');
   })
 }
 
@@ -150,7 +150,7 @@ function login() {
     firebase.auth().signInWithEmailAndPassword(
       form.email().value, form.password().value
     ).then(() => {
-        window.location.href = "index.html";
+        window.location.href = "principal.html";
         const emailuser = firebase.auth().currentUser.email;
         var user = ((emailuser.match(/(\S+)@/) || [])[1]);
         localStorage.setItem('user', user.toUpperCase());
@@ -159,10 +159,6 @@ function login() {
         getErrorMessage(error);
     });
   }
-}
-
-function teste(){
-  alert(form.email().value + form.password().value);
 }
 
 // FUNCTION DE CADASTRAR NOVO USER
@@ -177,7 +173,7 @@ function register() {
         var user = ((emailuser.match(/(\S+)@/) || [])[1]);
         localStorage.setItem('user', user );
         localStorage.setItem('id', firebase.auth().currentUser.uid);  
-        window.location.href = "index.html";
+        window.location.href = "principal.html";
     }).catch(error => {
         getErrorMessage(error);
     })
@@ -205,7 +201,7 @@ function recoverPassword() {
   }
   else{
     firebase.auth().sendPasswordResetEmail(form.email().value).then(() => {
-      alert('Email enviado com sucesso');
+      alertsuccess('Email enviado com sucesso');
   }).catch(error => {
       getErrorMessage(error);
   });
@@ -231,3 +227,28 @@ function getErrorMessage(error) {
   }
   return error.message;
 };
+
+//notificacoes
+function alertsuccess(msg) {
+  iziToast.success({
+      title: 'Sucesso',
+      position: 'topRight',
+      message: msg,
+  }); 
+}
+
+function alerterror(msg){
+  iziToast.error({
+      title: 'Erro',
+      position: 'topRight',
+      message: msg,
+  });
+}
+
+function alertwarning(msg) {
+  iziToast.warning({
+      title: 'Atenção',
+      position: 'topRight',
+      message: msg,
+  });
+}
