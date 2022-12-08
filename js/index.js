@@ -187,8 +187,17 @@ function insertItem(item){
     tbody.appendChild(tr);
 };
 
+//mudar categoria
+function changecategory(categoria){
+    $('#categoryNew').val(categoria);
+    $('#categoryNew').select2().trigger('change');
+
+}
+
 // Abertura do modal para atualização de um gasto
 function openModal(index){
+    let listaIndex = [];
+    listaIndex.push(index);
     Modal_ajuste.open();
     let userId;
     const dateNew = document.querySelector("#dateNew");
@@ -200,8 +209,8 @@ function openModal(index){
     items.forEach((item) => {
         dateNew.value = item.date.split("T")[0];
         descNew.value = item.description;
-        //amountNew.value = item.price;
-        categoryNew.value = item.category;
+        //categoryNew.value = item.category;
+        changecategory(item.category)
         userId = item.id_user;
         if(item.type === "E"){
             amountNew.value = item.price;
@@ -228,23 +237,24 @@ function openModal(index){
                 category: categoryNew.value,
                 type: type_value_new
             };
-            var request = new XMLHttpRequest();
-            request.open("PUT", "https://controle-de-gastos-pila.herokuapp.com/update/"+parseInt(index), true);
-            console.log(index);
-            request.setRequestHeader("Content-type","application/json");
-            request.onload = function(){
-                const item = JSON.parse(request.responseText);
-                if(request.readyState == 4 && request.status == "200"){
-                    console.table(item);
-                    loadItens();
-                    alertsuccess("Transação atualizada com sucesso!");
-                    Modal_ajuste.close();
-                }else{
-                    console.error(item);
-                };
-            };
-            request.send(JSON.stringify(params));
-         index = null;
+            if(listaIndex.length == 1){
+                const request = new XMLHttpRequest();
+                request.open("PUT", "https://controle-de-gastos-pila.herokuapp.com/update/"+parseInt(listaIndex[0]), true);
+                request.setRequestHeader("Content-type","application/json");
+                request.onload = function(){
+                    const item = JSON.parse(request.response);  
+                    if(request.readyState == 4 && request.status == "200"){
+                        loadItens();
+                        alertsuccess("Transação atualizada com sucesso!");
+                        Modal_ajuste.close();
+                    }else{
+                        console.error(item);
+                    };
+                    // console.table(item);
+                }; 
+                request.send(JSON.stringify(params));
+                listaIndex.length = 0;
+            }
         }
     });
 };
@@ -350,6 +360,7 @@ function alerterror(msg){
         title: 'Erro',
         position: 'topRight',
         message: msg,
+        displayMode: 1,
     });
 }
 
@@ -358,6 +369,7 @@ function alertwarning(msg) {
         title: 'Atenção',
         position: 'topRight',
         message: msg,
+        displayMode: 1,
     });
 }
 
