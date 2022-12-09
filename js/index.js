@@ -258,8 +258,9 @@ function openModal(index){
         }
     });
     btnCancelar.addEventListener("click", function(){
-        console.log(listaIndex.length)
-        //listaIndex.length = 0;
+        listaIndex.length = 0;
+        // console.log(listaIndex)
+        
     })
 };
 
