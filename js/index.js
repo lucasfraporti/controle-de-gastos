@@ -257,6 +257,10 @@ function openModal(index){
             }
         }
     });
+    btnCancelar.addEventListener("click", function(){
+        console.log(listaIndex.length)
+        //listaIndex.length = 0;
+    })
 };
 
 // Deletar um gasto
